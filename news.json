@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21T22:01:52.429790+00:00",
+  "updated_at": "2026-11-22T02:17:40.359108+00:00",
   "regions": {
     "Langerwehe": [
       {
@@ -59,9 +59,9 @@
         "published_at": "2026-11-20T09:02:00+00:00"
       },
       {
-        "title": "Zartmann: „Bad Düren“ über Politik und Streit in der Familie - BZ Berlin",
+        "title": "Zartmann: „Bad Düren“ über Politik und Streit in der Familie - BZ-BERLIN.de",
         "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVnFlX3dmSVdib002eEhZcWFXM1FMR0FzbGJjZy1VWFZ3b0VKRXZTRFZIbUtGWS1ZR1JUX1RWenlKZFRZc3BVUHg0ZVVxUXVRMDZwdS1vc3VNSjA0QU1xMGZtU3NIOVNFVTJhR0RlYWhQb2E0Wjc1bHRaR1pZMnBkVzlmUzMtUWZITWR3UjFWVmtHNXVNa1I3WW9oYUVYbmh6aU91UUlYUXNoSl95NngtQTd3WmdLYUM4b0NXRFRLYw?oc=5",
-        "source": "BZ Berlin",
+        "source": "BZ-BERLIN.de",
         "published_at": "2026-11-20T07:49:12+00:00"
       },
       {
@@ -91,12 +91,6 @@
         "published_at": "2026-11-20T11:30:00+00:00"
       },
       {
-        "title": "Anne Schröer - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1Kdl9hZGMteDhmcklmOVNNZmdQSjZpWURtZHZqYWUyNUhYdWlONU5tUE9sM1lxTE5rLXcwdFdwRC12WldCMTBHYS1ieDRFc0wxaTE4YnE1SDk4bXZuNUJHaDdGQzRxLVFtRERGTXNn?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-14T22:16:00+00:00"
-      },
-      {
         "title": "Polizei-News Jülich, 19.11.26: Gebrauchtwagen von Händlerparkplatz entwendet - News.de",
         "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOVGNQN2pZTmF1c2toMW85U0p6SllNaWY1Zi13WXZRZGVkem1PYXU0TmI5RXpnOVJaTklUQ1l2UVpNc3dVdmRJUVBTbkcyeThXMnJPbm9Dbm81NDZSdC1zd2lVaC1nSmpNcFF0VFg1MlFHbUxmZnNOTGU4ZzQ2dGtITlJjR1JOa0dpYWdlTFN1ZjRqWjV2STlQRUc4ZlFlWXM0ZkNET1V0SQ?oc=5",
         "source": "News.de",
@@ -105,6 +99,12 @@
       {
         "title": "Polizei-News Jülich, 19.11.26: Einbruch in Einfamilienhaus - Die Polizei sucht Zeugen - News.de",
         "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQb0pPVUFyM1h3ZXdHdzg1SGlDQzBtNkZraTVwOVI2SlAzQmJUVlRtVjRndDNHY2xpVkhoZnQ5YzZVWE9HbHM1V0h1Yk1sVlF4S3QzS0hhVDUyT2pEY3BoY3E4bmU5bE5nYU5nNmNlQ3dBZzRQTTFfTmhwSzV3UEVuZjVIeU91aUNSYmlZWDFBR0RUbDlsSnVlS3ZrdndWNmdXNUxNSHpWaw?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-19T10:58:02+00:00"
+      },
+      {
+        "title": "Polizei-News Jülich, 19.11.26: Bargeld aus Aufenthaltsraum gestohlen - die Polizei bittet um Hinweise - News.de",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNM2RtUTFhZnhmTUd3aTFoQ1N1QjVPdk9NUWtwVzNYb050M3JDNW9yZFZUSUNkYWx6Z2k2X3JGLU1aWVNGcUQ5a3FMUF9UT0s1NFFVZ0F5SUEzMFdfc1JHc284SmdudWJsT2cwNExlSUl0aWRRZWY1N3RtUnpRVnF1cjhQQVpWVHA3ZWFwMWtOYy1pQ1RkdHdlWjdTR01UZDg0ZGU2Q1p5VQ?oc=5",
         "source": "News.de",
         "published_at": "2026-11-19T10:58:02+00:00"
       },
@@ -129,18 +129,6 @@
         "published_at": "2026-11-18T08:00:00+00:00"
       },
       {
-        "title": "SPRIND investiert in Batterierecycler cylib aus Aachen - Startbase",
-        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQMy1JSWJ4cUo2YU8ybUdfM0tZSWhZakFFUGU5aDFib0ZZTlJBU3VfZWJTYkpORjlma0thMXBlUFhMbUxtWTNEUm0wOVZ6dzNSVHlrel9ZVEhzUTFjVEV1S1J3TzVDQlZNVGVfRTVJYUNkaHVndFVURXlSek1abVJhaUdpTy15czJiYXl2M3ZB?oc=5",
-        "source": "Startbase",
-        "published_at": "2026-11-17T09:30:00+00:00"
-      },
-      {
-        "title": "Krebs-OP in Aachen: Erster Einsatz eines neuen Symani-Mikroinstruments - heise online",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQcldqUkREZ1Fya3VNdzg0YkVtOHItRE52T1BBSjVSVU93dGxzYWduc25OVzZSQlAtMUphV3Q4dFg4ajkyVFVaY3VQM1BtYi1udGhSUko1a3VxT0NvNllOQnltQ3VRb0x3ZHp3VG5oZmRFbzAzckUzck9aYkFuUEp2N1pPa1hvWW1HOXBueVRJSW5aMDZYbEw4MXNZOFVtN0w4d3VxcFMwc19BM1JWY1ZNTnczUQ?oc=5",
-        "source": "heise online",
-        "published_at": "2026-11-19T13:44:00+00:00"
-      },
-      {
         "title": "Waldhof Mannheim verliert bei Alemannia Aachen - Zeitungsverlag Waiblingen",
         "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZU1wcGlxVFQ0Rms2d1gtc05rUmQtX3Y2T0cyd05MTVNfQ1JGaHkzV2tocFN6TFFLdGtDWElSTTRtU2R6ZVRST2NEdS02ZE5lRGhsbXJ4RFp0Z2Nzcl9vSTJseVIyel8zanlFdFJnNTNmbndJWEF4bm1uWFdTOHgwakZ0eWMzVHdLUG5tbw?oc=5",
         "source": "Zeitungsverlag Waiblingen",
@@ -151,6 +139,18 @@
         "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPeVRuYndCUFcxYTIwZzZGRTNvWmdyZkx1X0tMemcyR19HYzdwUmotMU9RSkUtNjdYYzY0X3M4aUltVVJkRmRiM09HNXZxaXF2NFpuMTg5Zmd3b010RlhCUWJYcFR3X1ZsQW8xS0ctY0hMcGdMWEFVRlJJVWhJTzI2MlYzWGl2QW1DdTZvcjRub0NOWXVoa3NvX1ptTVMwdm1EM1NTTnFMR2dwY3lPT044N2pfQTdPTnpTbHM4NHZB?oc=5",
         "source": "Die Sachsen News",
         "published_at": "2026-11-19T18:45:00+00:00"
+      },
+      {
+        "title": "Wetterdienst warnt vor Dauerregen - vor allem bei Aachen - Neue Westfälische",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPZmhRSE9jSDNkckJXTkdkbXlhZGhJV1h3U0tmNTR0VFQ5enI3eHI0NHRocDFqNzk5N29fOHIxM0tVN0gwRTd6UG1YWVZXb0JlTU1TdzlHT3JNTHFUUlJqc2ZVSGpsazN0aUw2elN0a3pLdGROTTlvdkE0YjZYLW9sYTdmMTg0UmpaYTFwczNBRnJoSy1ubzRnVk9YVDJiRmJFYjZEbw?oc=5",
+        "source": "Neue Westfälische",
+        "published_at": "2026-11-19T11:31:50+00:00"
+      },
+      {
+        "title": "Netzschau: Schroers dich nicht ab, lass Mika machen - Aachener Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQc3hJemhPeVhNSG1UYmRYNTNpdURZOVNMYVA4cjFFMTBRblFEZkZkcXNKZlI4RnNIaEZFOENjZURuaUVrU3R1R2pucHQ5eS1LNGs4RllvNU1tZ2x3c0VLcnY5VHVCMHlHMG5HcUduQ3NSOEZ0Ul9lTWxCUUd5RHZvZEVkWWJhb2RteE5DQXgtZlJCNTRPMWlkaFdCWWZuSWN5YlpfdldQMVIxWFpIODA0OHdaOUpSQ0F0NlhaNjQyVnJqUzhCelRZ?oc=5",
+        "source": "Aachener Zeitung",
+        "published_at": "2026-11-19T11:30:00+00:00"
       }
     ]
   }
