@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-23T21:29:16.922261+00:00",
+  "updated_at": "2026-11-24T06:06:30.044830+00:00",
   "regions": {
     "Langerwehe": [
       {
@@ -7,12 +7,6 @@
         "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSmdkMUQwX0JXdlBVUC1fTnhlcXpiaDh1eUYxYThpTFk2dEZkUFNseEZxWWR6VVZWMzFlalV1cXRYZk9VVmdkcm5kT1dRTnQ4T0ZsZ21pVHlyWTFqeFVZUUFwWWI4WmxpQ1N3a21VZ0RiVFZ5RDd2a2d6cmQxdnEwNVNuLUdEV1BCVUM4UzVlRVZEUDBieHRHUU1iRVFERGl2dS0yNnF6WTVtTzdQTEhyLXVhUlVlNWJsZVlQUEw4RDVvQQ?oc=5",
         "source": "Aachener Zeitung",
         "published_at": "2026-11-19T00:30:00+00:00"
-      },
-      {
-        "title": "Wetter Langerwehe: 7-Tage Prognose - wetter.com",
-        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTm1MSENkYmRIWVl5WFhyY3pTeVJpZlZQUDJjUE95X3RLXzJHb2tWYTM2SE45dkctaklwMURVNlJoRVNjSzFXeThGOHZ3U0hKR29rNzl5cHRSd2FZc3RfemQ1OGV5Uy14MnNaZ1ZHZW5aNDUwLWJCTV9KVjVibFVCZUVKa2hJMm03eW9od2JmWGQwVTdubThXbWpqY21iOGI4cmsxTmlxTFpPQmdFNmxv?oc=5",
-        "source": "wetter.com",
-        "published_at": "2026-11-22T09:41:48+00:00"
       },
       {
         "title": "Polizei-News Meiningen, 19.11.26: Baucontainer aufgebrochen - AOL.com",
@@ -33,10 +27,16 @@
         "published_at": "2026-11-18T10:18:02+00:00"
       },
       {
-        "title": "Einbruch in Baucontainer – Zeugen gesucht - DN-News",
-        "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOc05uWEtGRlBTX3h6VFRkZmp6cVpnMHplSnBqTGdhWFk3VnRMcXdFUmJfclNPOFhYRUV1ZzJhSmhnWkNPS3phaFV3dm1kSVoyVUZsWWNyQ0hrMFh4WjYwbzhpRlhqcnNRdjNUeXVNc18wZ043Wk1NdGdZOXVwNDFTQm5uempUczYzMVNmWnlXQXg0SDJFNmw1ZmItWdIBowFBVV95cUxPQmdUbEFGSS1UU2ROWm1aNjNNZzNudXFhZzFGc2p2MjVNM1YxR21vTXdhNmtON1RQQjhpRmlxZlZJVEZ4LTZIRkRzdG43cE5rXzkzLTZhMkdpMTNZVEY2ejFuYTFockpKVUd5SW9BQVNqNTJfQUdCN0QxMEJic1AwbFphcEE2MnpWRkc1dURUSmVyblk3TDNVcHZwNWVuTHVfTnJN?oc=5",
-        "source": "DN-News",
-        "published_at": "2026-11-18T10:46:27+00:00"
+        "title": "News für den Landkreis Düren am 18.11.2026: Immer gut informiert mit den aktuellen Lokal-Nachrichten für Ihren Landkreis - News.de",
+        "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPS2RfOTdPQzhKelZxV3FfU2VWZV91aUx1d2dkT29IMHZMcFJTUUllVmkwRW80NFZucmx0ZDdEbXRLMDV3QkJ3cEgtMFotYUtyc0RsZVZQN2RrRzA3ZnBZNXcySDBWZldlb1JhcW1zZlItSWk2OWZPTGhUdE5mODNib1Z4TERJRV9QZHROVENNWkxGTkhwMDNvVkZhbHZCeDEwV0RMLUFjVkFRUXE3bHRTMWZJOE4yR09QUlZ4bm15ZU95ZVZvNGt4QnUxME92cmN1V3JwNFZvM2xFQQ?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-18T11:53:00+00:00"
+      },
+      {
+        "title": "Polizei-News Jülich, 19.11.26: Gebrauchtwagen von Händlerparkplatz entwendet - News.de",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOQkdJUU9JVTQwMGtrSHk5TUR5Y2NjdU11d2pOMmU1Z1dzQlluMk1VQW5VbnFpYkJuSkRmNUswVXNTdG9IWm55Q203RDdhVTdQTzEzRG05T2diSHAyV1RLYkYwaXVyMWI1azZVSWxuZmxJY1BTeHZFYl9uaVpVT3Y4WGJOM3A1YU9IelB0Q3lfNUJCSWV3NWtreDNRSHBCbm1SeGgtLXdQSQ?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-19T11:07:02+00:00"
       }
     ],
     "Düren": [
@@ -53,18 +53,6 @@
         "published_at": "2026-11-20T13:00:00+00:00"
       },
       {
-        "title": "Oliver Pocher macht Christian Düren Friedensangebot - RTL.de",
-        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNNkVza0tNQUF4aEJzdDVRNDVSRDNROUNkSzBXTkw2WDJzTHlfeVhzRXluSkNvc1FGZDJvdVZxSUxoWVd0UjJMUWdaX3ZHYVQtOXZPRFlKVTBZWXVsRzVQaWlPVVR0bXlYLU5YZ2tXdzg2MkZ6X2VhdE1XUE8teUNhN0M1OHZwVWZ4dC1pOC1reTFLODVQbXVWTzQ3dlhGZFNfUkRUTnVIanIyUQ?oc=5",
-        "source": "RTL.de",
-        "published_at": "2026-11-20T06:56:07+00:00"
-      },
-      {
-        "title": "Christian Düren sorgt mit Baby-Update für Herzklopfen – jetzt lenkt sogar Oliver Pocher ein - TV Movie",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPUVFvQ0toT05rc3FMY0ZoSlNTa2xTWC15bkJFNmdiWGo0VEh0TENJVWZOZWhZWWc0b0VjX0did0lmbV9VdW4xMFhQVzlNT0dwUWZBWm01MHh6TXlXUzR6ZnAyeDdSS0M3d2xxZ2RFM2tURlhFUm5hVXE5MFQxam9PazdoRTdIaExZbU9TYmlCc2ZNeXRkTGhILXQwZTNUSzdBc2h5OC1wUVMyUE5rNmtRUzJmb204cFJOTjVSOTd6VXpzRHp4?oc=5",
-        "source": "TV Movie",
-        "published_at": "2026-11-23T15:06:04+00:00"
-      },
-      {
         "title": "SWD powervolleys Düren springen auf Platz zwei - Radio Rur",
         "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYzNnUENvS3B6aFZXUHdlei1HMnFIYlpfX05EY1BCZndwMGZlV2FjbGNVSl9jOE5ObmRRNUhDeUxJOTJ3UlpDU1RxWGZRME1PWWlqNEFSc2ZWM2FVeUhSLUowSk9YTnhLeGZoRVNDSmdLS3NzaEkxSzJNZ0FId0w3VFBiMGFIOXZZTVhqV243c2o?oc=5",
         "source": "Radio Rur",
@@ -75,20 +63,32 @@
         "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE85aHdNOHpGb2k5cnNtSG1aX1RITzlQUHhaR1lNSGVnanJNV1BSVnNzeDRqZjMxYnhFNTdhZmQxVXV4T29hQTExT1lTOWF2QUJtMzZKMW1qblRxQ19FaU5xQXo5SnVNaWV0b3ItNEZTbktRZw?oc=5",
         "source": "Radio Rur",
         "published_at": "2026-11-23T12:49:00+00:00"
+      },
+      {
+        "title": "„Fisch sucht Fahrrad“ im Theater Düren im Haus der Stadt - DN-News",
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQazNYaGNwbTFHVVp6aUFkS1NidDRDOXlGUUlVM015OTNwZ1k1TU5RLVFod0JvMHcxVHdhREpHREpoVEVab1JuM3BPeE1wckRvampTcHVIOTg2NlkzbU5XdzFrVjA5VVgxUTNaZFQ3ZE45SHpwX28yUldzbWx3OGJEd0FQbktYSi1jTXdvWm5QdUZvWDNmcmczdNIBoAFBVV95cUxPbzVNRGdCSzZRQnZKZmpqXzZUR09RSmJPVTR3MEZyUVhwTjdOaUFBcFo0MldMUWhuX0hFRFhxdmNpY1M3VjMwcDJsTFhXODk5aDZ3UGVDWVkzRWRsWW9MbzRzZEhlWjB2MGdFcVNUMDE1clNwNXFYOVRvdGVzQ2pKVGtURmt6VzN2YTJkem9lSUNEcmZoUXBiSmFabU5xZHE2?oc=5",
+        "source": "DN-News",
+        "published_at": "2026-11-20T12:36:32+00:00"
+      },
+      {
+        "title": "Polizei-News Düren, 23.11.26: Nach privater Feier mit Verdacht auf \"K.O.-Tropfen\" ins Krankenhaus - News.de",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOaGc3SEZBQmY4bFVQVkUySzlaQkdYc3lBM1dJczVSQUd3b24zaDNTZkFoUkN5Mi0xd3FlcE8taUEwZTNiaVlpMjg4Z1VJMm1aVVpPeWJPSW90MmVjQWEzN3RtN0M4dHlULWtlbVVwQ1haSjhIbDc1YzhUZmk2UDVnMFNrVnplQnI1Uy0tVmtPV2NtX01xa0V5a0tYRFdqS1FzdlYzQWJfeDN3QQ?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-23T09:09:02+00:00"
       }
     ],
     "Jülich": [
-      {
-        "title": "Revierbahn-West: Drei Trassen für Jülich - HERZOG Kultur",
-        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFB2OXhfeHljZzd3U09rbUdfZWlIeWQ1eGpkWmRxTFk0WUhlNjB0S2pXRTRYcE55UDNnVVQxdmEzWUdobnVVYlFLaW5pMy1wR2E3?oc=5",
-        "source": "HERZOG Kultur",
-        "published_at": "2026-11-20T07:00:50+00:00"
-      },
       {
         "title": "Seenotrettung: Was macht Jülich zum „sicheren Hafen“? - Aachener Zeitung",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONFl5OUF2Y19KemtEbFdJTmQ1NkFDMXZlMTFkUno2NGg2RnJ5NDdnWDFGbGdLMVh0amxTa1BSeklxcFE5SVRtcnpoaE9Oa1l0ZVFyT1YxVl9FZC1OcDFGYmFORm1wRnFXUGdybmxiaEU4ZW9jWU0yN1JWTUZsY1diR3hIanROUjlxNThwOXVQbzNxNmh5N0RCWDYxb3JOTkhEOWNtUWtYNGNBazdyN2NpdEphOXFOMWFSMlVpaW5FTVM3Ujd5ZFE?oc=5",
         "source": "Aachener Zeitung",
         "published_at": "2026-11-20T11:30:00+00:00"
+      },
+      {
+        "title": "Traditionelle Tanne steht - HERZOG Kultur",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPT1dlU0xpWDNzTUhLdHhZT1NnUkhWNzJ0LU5jNGtRZWdTSHFVS01CUnJSem9INU5HcFlPZU1Cb1ZiRWpQY2k2Nl80Z3FqQUFxZkNHRlloaDYybzdFamN6M2RuMGNWQUNjQzh4bVUzMm5DQnQxUGhpbFBVeUVkblljU3dn?oc=5",
+        "source": "HERZOG Kultur",
+        "published_at": "2026-11-21T06:59:42+00:00"
       },
       {
         "title": "Wölflinge putzen Schuhe - HERZOG Kultur",
@@ -123,34 +123,34 @@
         "published_at": "2026-11-23T12:13:00+00:00"
       },
       {
+        "title": "Aachen: Mahntafel zum Gedenken an Betroffene sexualisierter Gewalt - Vatican News",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNQk54R3p0cHU1OEZWWkxnU1NXVUU1MTZvSWN0VS1ZYi1CY3pxQTdPN2FRRGRfQ1FHc3kwSkotN2tpSjhWanBoNUhxaW9zXzNqckFNWENSSHBaY0lEWTFQTkdhMGNSY09vMGZLc1dkTnVyUDlCOU5aNFNUdm1wd2FHNDFaMlFiNmRXcFBVeWtoanl3cVBRalFhaHNnZmVKY3pQSVdsdmZJME1SUTdySnpUTGRYMA?oc=5",
+        "source": "Vatican News",
+        "published_at": "2026-11-19T14:27:30+00:00"
+      },
+      {
+        "title": "Alemannia Aachen gelingt ein Transfercoup - FuPa ⚽️",
+        "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQRjhkOVVWMzZ2UnFjMXM5TTJveUJ5WGxPcWVtdXlva3ZhNVpaNGp6Zzc5eDduYkpWQjl4ZnpoUnBYam1HLWdKOEhwRmFHT2sxQmFaYTJsUEZrV2dra2l6Uy1ZbGNKeWl6ZWZrM2trQm55MU95a0dFV0JTZmlFMVNPeQ?oc=5",
+        "source": "FuPa ⚽️",
+        "published_at": "2026-11-17T11:13:23+00:00"
+      },
+      {
+        "title": "Wir gratulieren: Ordensjubiläum im Mutterhaus der Elisabethinnen, Aachen - Bistum Aachen",
+        "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPWkZVWnF5cFNJeGsydnhkUXpKU1pINnhmZHBmZkVCeG9yODZPQ2NkcFh3bXd4N0ZvQkVoZkVDU2JVR2RHR3FrS2pSYzJ1M3hzSkdnTmNYVFNUSEtselVVdWRvQ1BDUnZwbTF4eDVYVXR0UGM1UTVHVHR1WHVMUk90ZTBLajVncjVTbmdEWndNR2otRzJ4ejZxdnBkb2tkV1Fob1NueExMYkFRVzMwSFJYbkVwaUt2VWkwcjVPd0JMZWpEektDRlZjWWtEUUs4LTNkeDl1RnJB?oc=5",
+        "source": "Bistum Aachen",
+        "published_at": "2026-11-17T10:32:31+00:00"
+      },
+      {
+        "title": "Baden-Württemberg: Waldhof Mannheim verliert bei Alemannia Aachen - n-tv.de",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPbUVNOWoxQkJZM3hzZzlJdEc3bk1oSzJnVVFBZGxUZF8weFg3a00wc0cwWnRzUXltcHBFT2JFT21wZTFfaW5UX01WSTQ5cml0WVY2OWRPMVpjRW5pbjNOUzQ0NkxsZnpwMjIzeG5PRkdNRUlqemF4T1ppd3ZVZWZYclppXzkza3AxSXBLWXlqMV9ubm1YLWFJNHpYLVlTRUMzUG84R2hpeGJmVTNfWUx2WXlR?oc=5",
+        "source": "n-tv.de",
+        "published_at": "2026-11-21T17:55:00+00:00"
+      },
+      {
         "title": "Keine Dorfkneipe, kein Bad mehr: Was passiert, wenn Treffpunkte verschwinden? - Die Sachsen News",
         "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPeVRuYndCUFcxYTIwZzZGRTNvWmdyZkx1X0tMemcyR19HYzdwUmotMU9RSkUtNjdYYzY0X3M4aUltVVJkRmRiM09HNXZxaXF2NFpuMTg5Zmd3b010RlhCUWJYcFR3X1ZsQW8xS0ctY0hMcGdMWEFVRlJJVWhJTzI2MlYzWGl2QW1DdTZvcjRub0NOWXVoa3NvX1ptTVMwdm1EM1NTTnFMR2dwY3lPT044N2pfQTdPTnpTbHM4NHZB?oc=5",
         "source": "Die Sachsen News",
         "published_at": "2026-11-19T18:45:00+00:00"
-      },
-      {
-        "title": "Waldhof Mannheim verliert bei Alemannia Aachen - Zeitungsverlag Waiblingen",
-        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZU1wcGlxVFQ0Rms2d1gtc05rUmQtX3Y2T0cyd05MTVNfQ1JGaHkzV2tocFN6TFFLdGtDWElSTTRtU2R6ZVRST2NEdS02ZE5lRGhsbXJ4RFp0Z2Nzcl9vSTJseVIyel8zanlFdFJnNTNmbndJWEF4bm1uWFdTOHgwakZ0eWMzVHdLUG5tbw?oc=5",
-        "source": "Zeitungsverlag Waiblingen",
-        "published_at": "2026-11-21T17:54:00+00:00"
-      },
-      {
-        "title": "Netzschau: Schroerste Sahne! - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWnNzSWVHWE1rZ29SdnhUYlFya1dRYjJjcWVpQmNMc0hSbHZVVEFQREUtZktLY3MybERYSExSeUNLSjB1TzNTNTJqUU8zUjZ6a3Vid3M2VEJNMFlDY0hkbHY4WjRCanRhdlZybTd2amxzMTZsTFM2ZF9UUUp5d0puV3J2VHA4RlFRU2t3eEd4eEF2bWtUUjVlNXY1VzJPanUtU0RDS2NhekE?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-22T10:35:00+00:00"
-      },
-      {
-        "title": "Klaus Honnef ist tot: Von Aachen aus in die Kunstwelt - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQTUZ3Mi02MXM4ZWxkUmFIejFNbmhwUC1rTWxacEk3WWlaUU5jOFM4SzVfRVRGWklLSXR2a1o0VmRoMXpPS3BMSTV1bHNJY3FJZy1lMER3M2FyY3EzaVFJNXo1Z1doa0JwSmtSNG1oN0Z1OGdjMDJPOWNpZmstb3hLeTBGSUhCUWJQN00xVE90aTRuY0QyclJjYVdQeVhSSlZESnVqZmQ4RVV5S3hrV19yZFA2dksxYXBPLWVIVjYtN09JclUteHVJ?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-23T16:00:00+00:00"
-      },
-      {
-        "title": "Luisenhospital Aachen: Nach Brandanschlag kann der Wiederaufbau endlich beginnen - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNa1dYb2VYM2RheGxOWkhJSXF4UnhRNlFTSXpmQTBib3lxYUNKSndUWnJMZmVhakpjeDR4TDBzVm5WdnlNWWt5MWxOdEMyclhESmJXa3Z1bzVDR2s4WnphdERMeWRqWWNpRWUwa19FS0NNNUhhSFozdFVUMVIwaXZjNmVrSDY5NnRqYkY2bm9VanZWSmd0QVpKS1JwWVB4UjdiX3NHc18xM25EWGNmdkFKNERBRjI5VDJoN0dYVnQtRWtRaHo1YnJUZ1pUelRzM2phdkw3N0VkZ05CWm1wYWFvbi1VZFZNUHI4N0Rn?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-23T09:00:00+00:00"
       }
     ]
   }
