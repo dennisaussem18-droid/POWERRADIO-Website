@@ -1,9 +1,83 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-11-24T18:59:36Z",
   "regions": {
-    "Langerwehe": [],
-    "Düren": [],
-    "Jülich": [],
-    "Aachen": []
+    "Langerwehe": [
+      {
+        "title": "A4 nach Lkw-Panne wieder frei",
+        "summary": "Der liegengebliebene Lastwagen zwischen Elsdorf und Langerwehe wurde abgeschleppt. Die Auffahrt Düren Richtung Aachen wurde ebenfalls wieder freigegeben.",
+        "url": "https://www.radiorur.de/artikel/lkw-panne-sorgt-fuer-langen-stau-auf-der-a4-2814846",
+        "source": "Radio Rur",
+        "published_at": "2026-11-24T07:49:00+01:00"
+      }
+    ],
+    "Düren": [
+      {
+        "title": "Polizei sucht Zeugen nach Überfall in der Innenstadt",
+        "summary": "Ein 19-Jähriger wurde am Montag in der Violengasse von Jugendlichen bedrängt und leicht verletzt. Die Polizei bittet um Hinweise.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6396749",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-24T10:00:00+01:00"
+      },
+      {
+        "title": "Brand in Papierfabrik in Untermaubach",
+        "summary": "Im Kreis Düren wurden bei einem Fabrikbrand 16 Menschen verletzt, einer davon schwer. Die Polizei ermittelt zur Ursache.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6396751",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-24T10:00:00+01:00"
+      },
+      {
+        "title": "Weihnachtsbäume werden teurer",
+        "summary": "Für Nordmanntannen werden laut Radio Rur 25 bis 33 Euro pro Meter erwartet. Gestiegene Produktionskosten treiben die Preise.",
+        "url": "https://www.radiorur.de/artikel/weihnachtsbaeume-im-kreis-dueren-werden-teurer-2814793",
+        "source": "Radio Rur",
+        "published_at": "2026-11-24T06:54:00+01:00"
+      },
+      {
+        "title": "Powervolleys auf Tabellenplatz zwei",
+        "summary": "Nach einem 3:0-Auswärtssieg in Freiburg rücken die Dürener in der Volleyball-Bundesliga auf Rang zwei vor.",
+        "url": "https://www.radiorur.de/artikel/swd-powervolleys-dueren-springen-auf-platz-zwei-2813490",
+        "source": "Radio Rur",
+        "published_at": "2026-11-23T06:39:00+01:00"
+      }
+    ],
+    "Jülich": [
+      {
+        "title": "Zwei Verletzte bei Unfall in Welldorf",
+        "summary": "Bei einer Kollision an der L264/L213 wurden zwei Autofahrerinnen leicht verletzt. Der Schaden beträgt laut Polizei rund 18.000 Euro.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6396750",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-24T10:00:00+01:00"
+      },
+      {
+        "title": "Nächtliche Brückenarbeiten an der Römerstraße",
+        "summary": "Bis Freitag schränken Arbeiten an der Eisenbahnbrücke nachts den Straßenverkehr ein.",
+        "url": "https://www.radiorur.de/artikel/deutsche-bahn-fuehrt-arbeiten-in-juelich-durch-2814216",
+        "source": "Radio Rur",
+        "published_at": "2026-11-23T13:43:00+01:00"
+      },
+      {
+        "title": "Straßensperrungen in Jülich und Bourheim",
+        "summary": "Die Jan-von-Werth-Straße ist voraussichtlich bis 11. Dezember gesperrt. In Bourheim wird die Zufahrt von der Adenauerstraße zur B56 rund zwei Wochen gesperrt.",
+        "url": "https://www.radiorur.de/artikel/zwei-strassensperrungen-ab-heute-in-juelich-2813494",
+        "source": "Radio Rur",
+        "published_at": "2026-11-23T06:41:00+01:00"
+      },
+      {
+        "title": "Villa Buth darf vorerst nicht abgerissen werden",
+        "summary": "Das NRW-Bauministerium hält laut Medienberichten die geplante Abrissgenehmigung für rechtswidrig. Initiativen setzen sich für einen Gedenkort ein.",
+        "url": "https://www.radiorur.de/artikel/nrw-ministerium-lehnt-abriss-der-villa-buth-ab-2813493",
+        "source": "Radio Rur",
+        "published_at": "2026-11-23T06:40:00+01:00"
+      }
+    ],
+    "Aachen": [
+      {
+        "title": "Ulla-Klinger-Halle bleibt länger geschlossen",
+        "summary": "Wegen langer Lieferzeiten für Deckenplatten soll das Schwimmbad voraussichtlich erst Ende Mai 2027 wieder öffnen.",
+        "url": "https://www.antenneac.de/artikel/ulla-klinger-halle-bleibt-bis-mai-geschlossen-2815483",
+        "source": "Antenne AC",
+        "published_at": "2026-11-24T15:44:00+01:00"
+      }
+    ]
   }
 }
