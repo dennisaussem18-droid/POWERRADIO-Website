@@ -6,9 +6,9 @@ const db=getFirestore(app),stage=document.getElementById('prTvStage'),status=doc
 let ads=[],idx=0,timer=null,live=false;const video=document.getElementById('prTvVideo'),radioBtn=document.getElementById('prTvRadio');
 radioBtn.addEventListener('click',()=>{document.getElementById('play')?.click();setTimeout(()=>{const audio=document.getElementById('audio');radioBtn.textContent=audio&&!audio.paused?'⏸ POWER RADIO Ton ausschalten':'▶ POWER RADIO Ton einschalten'},250)});
 document.getElementById('audio')?.addEventListener('play',()=>radioBtn.textContent='⏸ POWER RADIO Ton ausschalten');document.getElementById('audio')?.addEventListener('pause',()=>radioBtn.textContent='▶ POWER RADIO Ton einschalten');
-function setLive(value){live=value;stage.hidden=value;if(value){clearTimeout(timer);status.textContent='🔴 LIVE aus dem Foodtruck · Twitch-Bild ohne Ton';}else show()}
+function setLive(value){live=value;stage.hidden=value;video.style.opacity=value?'1':'0';video.style.pointerEvents=value?'auto':'none';if(value){clearTimeout(timer);status.textContent='🔴 LIVE aus dem Foodtruck · Twitch-Bild ohne Ton';}else show()}
 function initTwitch(){if(!window.Twitch?.Player){setTimeout(initTwitch,1000);return}const player=new Twitch.Player('prTvVideo',{channel:'dennis8731',width:'100%',height:'100%',parent:[location.hostname],autoplay:true,muted:true});player.addEventListener(Twitch.Player.ONLINE,()=>{player.setMuted(true);setLive(true);try{player.play()}catch(e){console.warn('Twitch autoplay unavailable',e)}});player.addEventListener(Twitch.Player.OFFLINE,()=>setLive(false));player.addEventListener(Twitch.Player.READY,()=>{player.setMuted(true);});}
-initTwitch();
+video.style.opacity='0';video.style.pointerEvents='none';initTwitch();
 const safeUrl=u=>{try{const v=new URL(u);return v.protocol==='https:'?v.href:null}catch{return null}};
 function show(){if(live)return;clearTimeout(timer);stage.replaceChildren();if(!ads.length){const msg=document.createElement('div');msg.className='pr-tv-empty';msg.textContent='📺 POWER RADIO TV · Hier erscheinen bald Werbung, Vereine und Events.';stage.append(msg);status.textContent='Derzeit keine Werbespots aktiv';return}
 idx%=ads.length;const a=ads[idx],slide=document.createElement('div');slide.className='pr-tv-slide';
