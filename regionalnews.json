@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T09:57:51+01:00",
+  "updated_at": "2026-11-25T11:06:16+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -12,6 +12,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Powervolleys erreichen Pokal-Halbfinale",
+        "summary": "Die Dürener gewannen beim SV Warnemünde mit 3:0 und stehen im DVV-Pokal-Halbfinale. Der Gegner wird am Mittwochabend ausgelost.",
+        "url": "https://www.radiorur.de/artikel/swd-powervolleys-dueren-stehen-im-pokal-halbfinale-2815825",
+        "source": "Radio Rur",
+        "published_at": "2026-11-25T06:56:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Café Lichtblick bittet um Spenden",
         "summary": "Der Verein In-Via sammelt Spenden, damit die Dürener Anlaufstelle mit Aufenthalts- und Duschmöglichkeiten ihr Angebot auch 2027 aufrechterhalten kann.",
@@ -70,6 +78,14 @@
       }
     ],
     "Jülich": [
+      {
+        "title": "Neue DHL-Packstation in Jülich",
+        "summary": "An der Shell-Tankstelle an der Neusser Straße steht eine neue Packstation mit 75 Fächern. Pakete können rund um die Uhr per Post- und DHL-App abgeholt und verschickt werden.",
+        "url": "https://www.radiorur.de/artikel/neue-dhl-packstationen-in-juelich-und-niederzier-2815804",
+        "source": "Radio Rur",
+        "published_at": "2026-11-25T06:40:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Euroschlüssel für barrierefreie öffentliche Toiletten",
         "summary": "Berechtigte können den Euroschlüssel gegen Gebühr im neuen Rathaus erhalten. Ein entsprechender Nachweis ist erforderlich.",
