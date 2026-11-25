@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T13:10:08+01:00",
+  "updated_at": "2026-11-25T13:13:31+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -144,6 +144,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Urteil gegen ehemaligen Krankenpfleger rechtskräftig",
+        "summary": "Der Bundesgerichtshof hat die lebenslange Freiheitsstrafe gegen einen ehemaligen Pfleger des Rhein-Maas-Klinikums bestätigt. Das Urteil des Aachener Landgerichts ist damit rechtskräftig.",
+        "url": "https://www.antenneac.de/artikel/urteil-gegen-ex-rmk-pfleger-rechtskraeftig-2815814",
+        "source": "Antenne AC",
+        "published_at": "2026-11-25T06:50:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Bücherbus Fabian stellt Betrieb ein",
         "summary": "Wegen altersbedingter Schäden wird die mobile Bibliothek ausgemustert. Die Stadtbücherei sucht eine Übergangslösung; ein neuer Bücherbus soll nach den Sommerferien starten.",
