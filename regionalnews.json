@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T12:28:58+01:00",
+  "updated_at": "2026-11-25T13:10:08+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -12,6 +12,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Kleinkraftradfahrer bei Unfall leicht verletzt",
+        "summary": "An der Einmündung Zeppelinstraße/Südstraße kollidierten ein Auto und ein Kleinkraftrad. Der 71-jährige Zweiradfahrer wurde leicht verletzt und ins Krankenhaus gebracht.",
+        "url": "https://www.news.de/lokales/860217775/blaulicht-news-polizei-einsatz-dueren-25-11-26-verkehrskontrolle-heute/1/",
+        "source": "news.de (Polizeimeldung)",
+        "published_at": "2026-11-25T10:20:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Powervolleys erreichen Pokal-Halbfinale",
         "summary": "Die Dürener gewannen beim SV Warnemünde mit 3:0 und stehen im DVV-Pokal-Halbfinale. Der Gegner wird am Mittwochabend ausgelost.",
