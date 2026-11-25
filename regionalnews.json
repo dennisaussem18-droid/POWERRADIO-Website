@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T06:02:47Z",
+  "updated_at": "2026-11-25T09:09:53+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -104,6 +104,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Bücherbus Fabian stellt Betrieb ein",
+        "summary": "Wegen altersbedingter Schäden wird die mobile Bibliothek ausgemustert. Die Stadtbücherei sucht eine Übergangslösung; ein neuer Bücherbus soll nach den Sommerferien starten.",
+        "url": "https://www.antenneac.de/artikel/buecherbus-fabian-stellt-betrieb-ein-2815812",
+        "source": "Antenne AC",
+        "published_at": "2026-11-25T06:17:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Ulla-Klinger-Halle bleibt länger geschlossen",
         "summary": "Wegen langer Lieferzeiten für Deckenplatten soll das Schwimmbad voraussichtlich erst Ende Mai 2027 wieder öffnen.",
