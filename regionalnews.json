@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T16:25:47+01:00",
+  "updated_at": "2026-11-25T18:43:01+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -152,6 +152,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Zahlreiche Baustellen in Aachen für 2027 geplant",
+        "summary": "Die Stadt hat einen Überblick über geplante Straßenarbeiten veröffentlicht. Betroffen sind unter anderem die A4, die A44 und mehrere Hauptverkehrsstraßen im Stadtgebiet. Genaue Termine stehen noch nicht fest.",
+        "url": "https://www.antenneac.de/artikel/viele-baustellen-im-kommenden-jahr-das-steht-an-2816533",
+        "source": "Antenne AC",
+        "published_at": "2026-11-25T15:53:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Polizei ermittelt nach mutmaßlichem Pfeffersprayeinsatz an Schule",
         "summary": "Nach dem Einsatz am Dienstag ermittelt die Polizei wegen des Verdachts der gefährlichen Körperverletzung. 28 Schüler wurden betreut; nach bisherigem Kenntnisstand war kein Krankenhausaufenthalt erforderlich.",
