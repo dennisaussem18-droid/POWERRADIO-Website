@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T09:09:53+01:00",
+  "updated_at": "2026-11-25T09:57:51+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -12,6 +12,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Café Lichtblick bittet um Spenden",
+        "summary": "Der Verein In-Via sammelt Spenden, damit die Dürener Anlaufstelle mit Aufenthalts- und Duschmöglichkeiten ihr Angebot auch 2027 aufrechterhalten kann.",
+        "url": "https://www.radiorur.de/artikel/caf%C3%A9-lichtblick-in-dueren-ruft-zu-spenden-auf-2815820",
+        "source": "Radio Rur",
+        "published_at": "2026-11-25T06:46:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Polizei warnt vor neuer Telefonbetrugsmasche",
         "summary": "Im Kreis Düren häufen sich betrügerische Anrufe mit vorgetäuschten medizinischen Notfällen und Geldforderungen. Die Polizei rät, solche Anrufe zu melden.",
