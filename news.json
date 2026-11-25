@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-25T13:03:54.203218+00:00",
+  "updated_at": "2026-11-25T22:36:17.377626+00:00",
   "regions": {
     "Langerwehe": [
-      {
-        "title": "Zwei Unfälle auf der A4: Stau Richtung Köln - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSmdkMUQwX0JXdlBVUC1fTnhlcXpiaDh1eUYxYThpTFk2dEZkUFNseEZxWWR6VVZWMzFlalV1cXRYZk9VVmdkcm5kT1dRTnQ4T0ZsZ21pVHlyWTFqeFVZUUFwWWI4WmxpQ1N3a21VZ0RiVFZ5RDd2a2d6cmQxdnEwNVNuLUdEV1BCVUM4UzVlRVZEUDBieHRHUU1iRVFERGl2dS0yNnF6WTVtTzdQTEhyLXVhUlVlNWJsZVlQUEw4RDVvQQ?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-19T00:30:00+00:00"
-      },
       {
         "title": "Lkw-Panne sorgt für langen Stau auf der A4 - Radio Rur",
         "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQTzl5YVZJWERTX2ZYOVFFQXVMSEQ3NF9OUnVPWVR5MXU5QnZiTXQwaUNsSkNUdmljQWZveGN3cmRRLWFsTXlCRzJmLXNHZ0taSklUUUNLUlVHNFhacVBuaVRUcDUyN3FfTC1uMXNrSUx3ZFMwSmNwTHU1NFk1ZVF6ZEdNaFRGaUk2TXhr?oc=5",
         "source": "Radio Rur",
         "published_at": "2026-11-24T06:49:00+00:00"
+      },
+      {
+        "title": "Zwei Unfälle auf der A4: Stau Richtung Köln - Aachener Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSmdkMUQwX0JXdlBVUC1fTnhlcXpiaDh1eUYxYThpTFk2dEZkUFNseEZxWWR6VVZWMzFlalV1cXRYZk9VVmdkcm5kT1dRTnQ4T0ZsZ21pVHlyWTFqeFVZUUFwWWI4WmxpQ1N3a21VZ0RiVFZ5RDd2a2d6cmQxdnEwNVNuLUdEV1BCVUM4UzVlRVZEUDBieHRHUU1iRVFERGl2dS0yNnF6WTVtTzdQTEhyLXVhUlVlNWJsZVlQUEw4RDVvQQ?oc=5",
+        "source": "Aachener Zeitung",
+        "published_at": "2026-11-19T00:30:00+00:00"
       },
       {
         "title": "Polizei-News Meiningen, 19.11.26: Baucontainer aufgebrochen - AOL.com",
@@ -27,10 +27,10 @@
         "published_at": "2026-11-19T06:30:00+00:00"
       },
       {
-        "title": "Polizei-News Saalfeld, 19.11.26: Einbruch in Baucontainer - Polizei sucht Zeugen - AOL.com",
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFAzTm5HMDNjZ1U0X2VOVVRlclVTbnM1UzFYUEVHaDZnT3hZMlZnSUFMVXRCT2NBN0tkSU1aamkyd2JnaTNjR0tvMDNXOFlGenRraDNYakJRVDFzQ3RVb1dkaXoybGw0aVpfQzBKZkhlWjRRZHBXR2lvb3V3QQ?oc=5",
-        "source": "AOL.com",
-        "published_at": "2026-11-19T08:37:30+00:00"
+        "title": "Klassenerhalt als Auftrag: Ex-Alemannia-Trainer übernehmen Jüngersdorf-Stütgerloch - Aachener Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxObFBHckdGeUJxeWxabWVMLTZxUUpzbmZSOGpQU2Zvdm8zMEUwR2NDNTFyQ3dYazBJUjZmdmlhMzdOa044ZmkxaVRHZDluNHczdUY0QjhhX3FHZi1NLWJ4bmMxandEcmlrVlF1RlpsUjhhaFE5QU10SFMzX19idDdzb0JwUXR2UlhEcXVtSk5yaW1OUGZ4SHg3MmN0eVJVdTJHMkY4RmpUTmlieEc0RGp5X3pVLU1QMnBlQXhCYm5nM1R5emwyOU5Wcm5CZDViMjJUYTlZQkZoLUJSZTBqOHVuUUFLYl84eDY4bUpFTkdMS2txUG1rY1Vz?oc=5",
+        "source": "Aachener Zeitung",
+        "published_at": "2026-11-24T16:00:00+00:00"
       },
       {
         "title": "Polizei-News Jülich, 19.11.26: Gebrauchtwagen von Händlerparkplatz entwendet - News.de",
@@ -41,10 +41,10 @@
     ],
     "Düren": [
       {
-        "title": "Drei Unfälle in Düren: Alkohol und Polizeiflucht - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNYmtuaDA5TDZ2R0JuTXd0LUZLWTZ2YmlCS3BVODc2LVYxSWtpLU8ycC1BdDNjYXFpNmFiTXBRaExiS3FMY3lfendnYUFlYjhrU2x6WHgtZG5fQXdVdGVsOFQ3OWJnREt1czA4V09xcFdMaElmTVB3Q29STTRSbVRPVXFrWndqWS1BNHJ6VnhIb2dHQ2c?oc=5",
+        "title": "Düren setzt Zeichen gegen Gewalt an Frauen - Radio Rur",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQWUx0QkRzY09ya251Z0JjeEtxdnJVbHQtVElrWXhfODFBZ0diU05RcnlNYjd0N2UxekpJRW1aX1hrMDJrMFZJUkk3NGhvX2NVZ1p5U0VxZUxDNzl3bVUtWlk0VkJlc2NYS1E2VG9iUHlCU0JMU3piTW5PUTdGWWZfZHk0eGlmRlhsdmZj?oc=5",
         "source": "Radio Rur",
-        "published_at": "2026-11-23T05:43:00+00:00"
+        "published_at": "2026-11-25T05:31:00+00:00"
       },
       {
         "title": "POL-DN: Polizei Düren schlägt bei den Powervolleys auf - Presseportal",
@@ -65,16 +65,16 @@
         "published_at": "2026-11-20T13:00:00+00:00"
       },
       {
-        "title": "Neues AOK-Haus in Düren - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE85aHdNOHpGb2k5cnNtSG1aX1RITzlQUHhaR1lNSGVnanJNV1BSVnNzeDRqZjMxYnhFNTdhZmQxVXV4T29hQTExT1lTOWF2QUJtMzZKMW1qblRxQ19FaU5xQXo5SnVNaWV0b3ItNEZTbktRZw?oc=5",
+        "title": "Drei Unfälle in Düren: Alkohol und Polizeiflucht - Radio Rur",
+        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNYmtuaDA5TDZ2R0JuTXd0LUZLWTZ2YmlCS3BVODc2LVYxSWtpLU8ycC1BdDNjYXFpNmFiTXBRaExiS3FMY3lfendnYUFlYjhrU2x6WHgtZG5fQXdVdGVsOFQ3OWJnREt1czA4V09xcFdMaElmTVB3Q29STTRSbVRPVXFrWndqWS1BNHJ6VnhIb2dHQ2c?oc=5",
         "source": "Radio Rur",
-        "published_at": "2026-11-23T12:49:00+00:00"
+        "published_at": "2026-11-23T05:43:00+00:00"
       },
       {
-        "title": "SWD powervolleys Düren springen auf Platz zwei - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYzNnUENvS3B6aFZXUHdlei1HMnFIYlpfX05EY1BCZndwMGZlV2FjbGNVSl9jOE5ObmRRNUhDeUxJOTJ3UlpDU1RxWGZRME1PWWlqNEFSc2ZWM2FVeUhSLUowSk9YTnhLeGZoRVNDSmdLS3NzaEkxSzJNZ0FId0w3VFBiMGFIOXZZTVhqV243c2o?oc=5",
+        "title": "Jugendlicher in Düren angegriffen - Radio Rur",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9KS2RCZE1KZThzalduakRBTnByZFZvWVR0dTZmUGpJTnVFUVZkSkxmaF9UbmwwUEFnZjJDbVBHTWZjSW9QVVFEZVdUbmlhQl9NamhfU05VNTRxZVZiM1lkS0tvdTdhai1sY1I3ZGhxcVlHMjJmN1EyYjJiQXAtUVk?oc=5",
         "source": "Radio Rur",
-        "published_at": "2026-11-23T05:39:00+00:00"
+        "published_at": "2026-11-24T12:27:00+00:00"
       }
     ],
     "Jülich": [
@@ -85,22 +85,16 @@
         "published_at": "2026-11-24T12:30:00+00:00"
       },
       {
-        "title": "Wölflinge putzen Schuhe - HERZOG Kultur",
-        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQUXZra1RPaURoSzNmaGo3TkJkbnp2S1JueGdNcC1KX21uZldaY012a1Awem1uN2lKUDc4dVRXbHJ6NnlwVjdWRFJKODk5dTUxekFma0czbzJteV9WVU1WUklrYnF4NURfUmg0dWt2cmlqOEhFZkFBSjhsUkVrRk8zQlJB?oc=5",
+        "title": "Sicherer Hafen - HERZOG Kultur",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9WTTNWR2x1aUhqUHlNTHU5N21BY3pHa3BIcG81dFZKVG56QndmN2J0dG9QM1kyd1RxZm5tQlVnOWtNUmplVF8tdkk4TDBvS1Nt?oc=5",
         "source": "HERZOG Kultur",
-        "published_at": "2026-11-23T15:00:20+00:00"
+        "published_at": "2026-11-25T15:00:28+00:00"
       },
       {
         "title": "Seenotrettung: Was macht Jülich zum „sicheren Hafen“? - Aachener Zeitung",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONFl5OUF2Y19KemtEbFdJTmQ1NkFDMXZlMTFkUno2NGg2RnJ5NDdnWDFGbGdLMVh0amxTa1BSeklxcFE5SVRtcnpoaE9Oa1l0ZVFyT1YxVl9FZC1OcDFGYmFORm1wRnFXUGdybmxiaEU4ZW9jWU0yN1JWTUZsY1diR3hIanROUjlxNThwOXVQbzNxNmh5N0RCWDYxb3JOTkhEOWNtUWtYNGNBazdyN2NpdEphOXFOMWFSMlVpaW5FTVM3Ujd5ZFE?oc=5",
         "source": "Aachener Zeitung",
         "published_at": "2026-11-20T11:30:00+00:00"
-      },
-      {
-        "title": "Deutsche Bahn führt Arbeiten in Jülich durch - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNQ3BSbW1nR2VieEd0RE85aVJRWnpldGVWVTVUc1JJY3ZkbXdvVllpemI0cnZIX2pXZC12VW9RZmZNaERvUktVMm94bHphcVRWVnVfWFcyVlNFTzJZbzFUdnU3V1FLWHQ3eGRVRnMtWk1jU3VieFB0ckJpX1c1X2xqZFN5YXpoUUZWQlJmRWRTYw?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-23T12:43:00+00:00"
       },
       {
         "title": "Polizei-News Jülich, 24.11.26: Zwei Leichtverletzte und hoher Sachschaden nach Zusammenstoß im Einmündungsbereich - News.de",
@@ -113,6 +107,12 @@
         "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOVGNQN2pZTmF1c2toMW85U0p6SllNaWY1Zi13WXZRZGVkem1PYXU0TmI5RXpnOVJaTklUQ1l2UVpNc3dVdmRJUVBTbkcyeThXMnJPbm9Dbm81NDZSdC1zd2lVaC1nSmpNcFF0VFg1MlFHbUxmZnNOTGU4ZzQ2dGtITlJjR1JOa0dpYWdlTFN1ZjRqWjV2STlQRUc4ZlFlWXM0ZkNET1V0SQ?oc=5",
         "source": "News.de",
         "published_at": "2026-11-19T12:20:02+00:00"
+      },
+      {
+        "title": "Polizei-News Jülich, 19.11.26: Einbruch in Einfamilienhaus - Die Polizei sucht Zeugen - News.de",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQb0pPVUFyM1h3ZXdHdzg1SGlDQzBtNkZraTVwOVI2SlAzQmJUVlRtVjRndDNHY2xpVkhoZnQ5YzZVWE9HbHM1V0h1Yk1sVlF4S3QzS0hhVDUyT2pEY3BoY3E4bmU5bE5nYU5nNmNlQ3dBZzRQTTFfTmhwSzV3UEVuZjVIeU91aUNSYmlZWDFBR0RUbDlsSnVlS3ZrdndWNmdXNUxNSHpWaw?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-19T10:58:02+00:00"
       }
     ],
     "Aachen": [
@@ -120,37 +120,37 @@
         "title": "Blaulicht aktuell: Polizeieinsätze, Unfälle und Feuerwehreinsätze in der Region auf einen Blick - Aachener Zeitung",
         "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNZ0JRQmJRRzJCSDVFS3pocTRrQUU5ZnkySlRzS2pMRDZKcUp3aXJJWnhEckduRWFlZ0FTdVAyU29PWjBxVTZ6alRmT1BWRW5jM2tGd05KQUNPUmt4YmtqaEx4T3h3TUxVUjJWU1diZFJNN2s1WHJXcXFLVU1vT0JEeHZ1cXJTQUl1empwTWd2cHllZTFUM2tpTTRxT3NIYWZaN1Q1RXRxMUxERkZIRWNDWVZPaUV1bmZocHhvdkMtczJXWG5rRVBubHJyUWlENXg5S2NmUkkxVW5HMzVieEVlUThwdEdnUQ?oc=5",
         "source": "Aachener Zeitung",
-        "published_at": "2026-11-23T12:13:00+00:00"
+        "published_at": "2026-11-25T15:13:00+00:00"
       },
       {
-        "title": "Klaus Honnef ist tot: Von Aachen aus in die Kunstwelt - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQTUZ3Mi02MXM4ZWxkUmFIejFNbmhwUC1rTWxacEk3WWlaUU5jOFM4SzVfRVRGWklLSXR2a1o0VmRoMXpPS3BMSTV1bHNJY3FJZy1lMER3M2FyY3EzaVFJNXo1Z1doa0JwSmtSNG1oN0Z1OGdjMDJPOWNpZmstb3hLeTBGSUhCUWJQN00xVE90aTRuY0QyclJjYVdQeVhSSlZESnVqZmQ4RVV5S3hrV19yZFA2dksxYXBPLWVIVjYtN09JclUteHVJ?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-23T16:00:00+00:00"
+        "title": "Migration: Mettmann, Aachen, Köln – Neue Liste zeigt NRW-weites Ausmaß der nicht abgeschobenen Straftäter - WELT",
+        "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNQkEyajdhbTNXVTZlYjdfWUNQX05VZ0VmYkRTcUkxVG50dHBPaTk5SWo3dHZXWm9KRGpxOUdVSVVZY0JrcVE3Q1V5QVlUMzFBVVB2OUtZZFVtUG5uZU1FaExRRHdKVnNxWFNkbzV0QUphZjVLQVg1QUUzZ0FSWmxRVmdGNGtkNjgyV2xpTVBWMndMc1dwS3lEbWpnYlFUSHBzMFlGQXVWU2FQOHgzcVlzbk5oRzVTYnlVUFlNNEZPanJUT3VmN2pTSVVqOGZTRXpyRFEydnpsekNfWUtybDAzMkZyYWxUV180YWR4SXMxcHVDRks1bXhNb1V3NS1XbFhzXzhQTU5ITl9BcENj?oc=5",
+        "source": "WELT",
+        "published_at": "2026-11-24T12:05:18+00:00"
       },
       {
-        "title": "Netzschau: Schroerste Sahne! - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWnNzSWVHWE1rZ29SdnhUYlFya1dRYjJjcWVpQmNMc0hSbHZVVEFQREUtZktLY3MybERYSExSeUNLSjB1TzNTNTJqUU8zUjZ6a3Vid3M2VEJNMFlDY0hkbHY4WjRCanRhdlZybTd2amxzMTZsTFM2ZF9UUUp5d0puV3J2VHA4RlFRU2t3eEd4eEF2bWtUUjVlNXY1VzJPanUtU0RDS2NhekE?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-22T10:35:00+00:00"
+        "title": "FCS gegen Aachen: Polizei trennt Fanlager und setzt Drohne ein - CityRadio Saarland",
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBmaE9Mc2VYbzhTR2piWThCTE92MHpmUXdzOFVPdEYyOVNpVmRGQmZLRVJjZEFpeTJtWHB2djhjdEo0cHdtMlh5ZU9fdlNZS1RrQW1kQURPVTNrTUFZUFVDY1lqajJJMjFYU2VSUVJNN3gwQWdJU3c?oc=5",
+        "source": "CityRadio Saarland",
+        "published_at": "2026-11-25T11:08:16+00:00"
       },
       {
-        "title": "Luisenhospital Aachen: Nach Brandanschlag kann der Wiederaufbau endlich beginnen - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNa1dYb2VYM2RheGxOWkhJSXF4UnhRNlFTSXpmQTBib3lxYUNKSndUWnJMZmVhakpjeDR4TDBzVm5WdnlNWWt5MWxOdEMyclhESmJXa3Z1bzVDR2s4WnphdERMeWRqWWNpRWUwa19FS0NNNUhhSFozdFVUMVIwaXZjNmVrSDY5NnRqYkY2bm9VanZWSmd0QVpKS1JwWVB4UjdiX3NHc18xM25EWGNmdkFKNERBRjI5VDJoN0dYVnQtRWtRaHo1YnJUZ1pUelRzM2phdkw3N0VkZ05CWm1wYWFvbi1VZFZNUHI4N0Rn?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-23T09:00:00+00:00"
+        "title": "Kresings gewinnt Planungsverfahren von Midstad in Aachen - Konii - Digital Real Estate",
+        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZFJiLXJyQkY3ODJUN1luWUI4bGNDRHRVM1JPeGtCWFpzajR4TTdkYnhuazFhOFRZQW9yVFZENEdGeXk1UG9FQTVCX182QUdfVUVWV21lcFdONWVPT2ZxWXlEeHJ0SkF5cWtrS2xrckNDVXFJQ1JKNmI4bVR1cjhFeVNHai1nWE5pSnZpYkR1TUNkZ0ZwNG9rWlVTdkZuaWJsVkFGaUtHU2hELVU?oc=5",
+        "source": "Konii - Digital Real Estate",
+        "published_at": "2026-11-24T17:36:50+00:00"
       },
       {
-        "title": "Alemannia Aachen: Vor dem Duell gegen die Mannheimer - Die Lage bei Aachen - News.de",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPXzZzZlN0czJhVjhuNmdNbGRScWJzMXBseFZHMGRxNDFuYVlkN2s2NDY0d2FXenBISmlfWF9FdlJrRVJJWVctMzJ6dng1aUl6Tks1TmlJWmVINElZM3ZZaFZSVjJBazhLWXA4WjhCZC1qSWpIMzk0M1VqaFNNa1ZXWUdaYkE0Zm5KZkJmT0tVcjlTSDlaVGprMlViYW5OS2l1bWdrdXRseVNxdzRRUU9kbmpkaGRGdEV3VG50NVpIcDlsSzFZ?oc=5",
-        "source": "News.de",
-        "published_at": "2026-11-21T08:46:02+00:00"
+        "title": "Elena Tzavara wird neue Opernintendantin am Nationaltheater Mannheim - SWR",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPckpteG82QkFjZDR4eU5SZWQ0WDZuRFdDX2ZQZ0ttQld4cS1UbW9lbGtPTjZsUFFfa0FrTzNWT2k2a2NENHdDWlZTV2t4NFR2SDI2WXlleHJFR1lIUVkwd0YyUkhUdUNqckRVUndjdDZrdDYwU0pDTmpZUFNZYVZNdnlMa0JuN1A3Ni0tcU9Nc01waDBMQTB6dG05YURORXRVNS1DVHFzUzhyVlctQUZNM1Y4NXR2R1VlYVE?oc=5",
+        "source": "SWR",
+        "published_at": "2026-11-23T19:00:00+00:00"
       },
       {
-        "title": "Alemannia Aachen: Was kommt nach dem 3:0 gegen SV Waldhof Mannheim? - News.de",
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOOEkxLWE0cldyREVaMnVXTEM3VFRwU2NPTEpfN2Zhd2ZqdnRxLXJENHZNTWZUMzBrUlllZEZLcHBPWWZPVmswUTJucDRmR2wwYV92SzNIVnc3elk0ZGxDN0NGTl8yQXRqeXNhaEk5Q25QY25Jc3R3b3dYd0ZWUEdSTTQ1WXpaX1oxdTNONVZQOFZQZnJZbmVWMlJtNmNad21yM0pQd01BZGdyRDZHb0FfcmF2aElpZ185MzNfcC05Z2dtdw?oc=5",
-        "source": "News.de",
-        "published_at": "2026-11-22T08:46:02+00:00"
+        "title": "Keine Dorfkneipe, kein Bad mehr: Was passiert, wenn Treffpunkte verschwinden? - Die Sachsen News",
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPeVRuYndCUFcxYTIwZzZGRTNvWmdyZkx1X0tMemcyR19HYzdwUmotMU9RSkUtNjdYYzY0X3M4aUltVVJkRmRiM09HNXZxaXF2NFpuMTg5Zmd3b010RlhCUWJYcFR3X1ZsQW8xS0ctY0hMcGdMWEFVRlJJVWhJTzI2MlYzWGl2QW1DdTZvcjRub0NOWXVoa3NvX1ptTVMwdm1EM1NTTnFMR2dwY3lPT044N2pfQTdPTnpTbHM4NHZB?oc=5",
+        "source": "Die Sachsen News",
+        "published_at": "2026-11-19T18:45:00+00:00"
       }
     ]
   }
