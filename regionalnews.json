@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T11:06:16+01:00",
+  "updated_at": "2026-11-25T12:28:58+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -26,6 +26,14 @@
         "url": "https://www.radiorur.de/artikel/caf%C3%A9-lichtblick-in-dueren-ruft-zu-spenden-auf-2815820",
         "source": "Radio Rur",
         "published_at": "2026-11-25T06:46:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Düren setzt Zeichen gegen Gewalt an Frauen",
+        "summary": "Am 25. November finden auf dem Weihnachtsmarkt Aktionen gegen Gewalt an Frauen statt. Um 16.10 Uhr ist eine Schweigeminute geplant. Ein orangefarbener Rurtalbus wirbt ein Jahr lang für das kostenlose Hilfetelefon 116016.",
+        "url": "https://www.radiorur.de/artikel/dueren-setzt-zeichen-gegen-gewalt-an-frauen-2815802",
+        "source": "Radio Rur",
+        "published_at": "2026-11-25T06:31:00+01:00",
         "priority": "normal"
       },
       {
