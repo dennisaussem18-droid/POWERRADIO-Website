@@ -1,0 +1,33 @@
+name: Regionalnachrichten Verarbeitungsprüfung
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vorhandenen Upload pruefen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.error
+          token=os.environ['LAUTFM_TOKEN']
+          path='/stations/1687/tracks/-20878626'
+          req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json'})
+          try:
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  data=json.load(r)
+          except urllib.error.HTTPError as e:
+              raise SystemExit(f'HTTP {e.code}: Verarbeitungsstatus nicht abrufbar')
+          def records(o):
+              if isinstance(o,dict):
+                  if 'id' in o:
+                      print(json.dumps({k:o[k] for k in ('id','title','artist','type','duration','private','original_filename','status') if k in o},ensure_ascii=False))
+                  for v in o.values(): records(v)
+              elif isinstance(o,list):
+                  for v in o: records(v)
+          records(data)
+          print('Nur Statusabfrage; keine Playlist oder Sendeplan geaendert.')
+          PY
