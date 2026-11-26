@@ -1,0 +1,45 @@
+name: Laut.fm Verbindungstest
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sender und Playlist lesen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, json, urllib.request, urllib.error
+          token = os.environ.get('LAUTFM_TOKEN')
+          if not token:
+              raise SystemExit('Secret LAUTFM_TOKEN fehlt')
+          def get(path):
+              req = urllib.request.Request('https://api.radioadmin.laut.fm'+path, headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as resp:
+                      return json.load(resp)
+              except urllib.error.HTTPError as e:
+                  raise SystemExit(f'API HTTP {e.code} bei {path}')
+          def records(obj):
+              if isinstance(obj, dict):
+                  yield obj
+                  for v in obj.values():
+                      if isinstance(v,(dict,list)):
+                          yield from records(v)
+              elif isinstance(obj,list):
+                  for v in obj:
+                      yield from records(v)
+          stations=get('/stations')
+          candidates=[x for x in records(stations) if 'id' in x and any(str(x.get(k,'')).lower().replace(' ','')=='powerradio' for k in ('name','title','slug','station_name','display_name'))]
+          if len(candidates)!=1:
+              raise SystemExit('Hauptsender nicht eindeutig gefunden')
+          sid=int(candidates[0]['id'])
+          playlists=get(f'/stations/{sid}/playlists')
+          matches=[x for x in records(playlists) if 'id' in x and str(x.get('title',x.get('name',''))).strip().lower()=='power radio regionalnachrichten']
+          if len(matches)!=1:
+              raise SystemExit('Nachrichtenplaylist nicht eindeutig gefunden')
+          print('Verbindung erfolgreich. Hauptsender-ID:',sid,'Playlist-ID:',int(matches[0]['id']))
+          PY
