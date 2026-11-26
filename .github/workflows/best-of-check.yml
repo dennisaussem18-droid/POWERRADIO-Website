@@ -1,0 +1,32 @@
+name: Best of Music Bestandsprüfung
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/best-of-check.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sendeplan und Playlistnamen lesen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          def get(path):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687/'+path,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          import urllib.parse
+          p=get('playlists')
+          for x in p.get('playlists',[]):
+              print('Playlist:',x.get('id'),x.get('title'),x.get('duration'),x.get('size'),x.get('shuffle_opts'),x.get('automation_algorithm_name'))
+          for q in [{'artist':'laut.fm'},{'title':'Weihnachtswunder','own':'true'}]:
+              try:
+                  d=get('tracks?'+urllib.parse.urlencode(q))
+                  for x in d.get('tracks',[]):
+                      print('Track:',{k:x.get(k) for k in ('id','title','artist','type','duration','private')})
+              except Exception as e: print('Suche fehlgeschlagen:',str(e))
+          PY
