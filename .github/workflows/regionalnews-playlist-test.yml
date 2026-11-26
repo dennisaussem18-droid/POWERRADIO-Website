@@ -1,0 +1,44 @@
+name: Regionalnachrichten Playlist-Test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Metadaten und Playlist-Zuordnung
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          base='/stations/1687'
+          tid=20690543
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          tracks=[x for x in records(api(base+'/tracks/'+str(tid))) if x.get('id')==tid and x.get('private') is True and x.get('duration',0)>0]
+          if not tracks: raise SystemExit('Privater Track nicht bestaetigt')
+          ids={int(x.get('id',x.get('playlist_id'))) for x in records(api(base+'/playlists')) if str(x.get('title') or x.get('name') or x.get('playlist_title','')).strip().lower()=='regionalnachrichten' and x.get('id',x.get('playlist_id')) is not None}
+          if len(ids)!=1: raise SystemExit('Playlist nicht eindeutig')
+          pid=ids.pop()
+          schedule=api(base+'/schedule')
+          if any(str(x.get('playlist_id'))==str(pid) or str(x.get('base_playlist_id'))==str(pid) for x in records(schedule)): raise SystemExit('Playlist ist eingeplant; keine Aenderung')
+          path=base+'/playlists/'+str(pid)
+          api(base+'/tracks/'+str(tid),'PATCH',{'title':'Regionalnachrichten','artist':'POWER RADIO'})
+          existing=api(path+'/tracks')
+          if not any(str(x.get('id',x.get('track_id')))==str(tid) for x in records(existing)):
+              api(path,'POST',{'track_id':tid})
+          if not any(str(x.get('id',x.get('track_id')))==str(tid) for x in records(api(path+'/tracks'))): raise SystemExit('Zuordnung nicht bestaetigt')
+          print('Playlist-Zuordnung bestaetigt:',pid,tid)
+          print('Keine alten Titel geloescht; Sendeplan unveraendert.')
+          PY
