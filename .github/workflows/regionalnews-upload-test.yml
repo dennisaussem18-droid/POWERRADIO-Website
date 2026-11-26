@@ -1,0 +1,71 @@
+name: Regionalnachrichten Privater Upload-Test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install edge-tts
+      - name: Nachrichtentext und MP3 erstellen
+        run: |
+          python - <<'PY'
+          import json, datetime, pathlib
+          now = datetime.datetime.now(datetime.timezone.utc)
+          data = json.loads(pathlib.Path('regionalnews.json').read_text())
+          items = []
+          for region, entries in data['regions'].items():
+              for e in entries:
+                  date = datetime.datetime.fromisoformat(e['published_at'])
+                  if now-datetime.timedelta(hours=48) <= date <= now and (not e.get('expires_at') or datetime.datetime.fromisoformat(e['expires_at']) > now):
+                      items.append((e.get('priority') == 'breaking', date, region, e))
+          items.sort(key=lambda x: (x[0],x[1]), reverse=True)
+          selected = items[:5]
+          if not selected:
+              raise SystemExit('Keine aktuellen Meldungen vorhanden')
+          parts = ['Power Radio, die Regionalnachrichten. Diese Nachrichtensendung wurde mithilfe künstlicher Intelligenz erstellt.']
+          last_region = None
+          for _, date, region, e in selected:
+              if region != last_region:
+                  transition = f'Weiter geht es mit einer Meldung aus {region}: ' if last_region else f'Wir beginnen in {region}: '
+              else:
+                  transition = 'Außerdem: '
+              parts.append(transition + e['summary'].strip().replace('Lkw', 'Lastwagen').replace('Pkw', 'Auto').replace('bzw.', 'beziehungsweise').replace('VHS', 'Volkshochschule'))
+              last_region = region
+          parts.append('Das waren die Power Radio Regionalnachrichten. Mehr Musik, mehr Power.')
+          pathlib.Path('nachrichten.txt').write_text(' '.join(parts), encoding='utf-8')
+          PY
+          edge-tts --voice de-DE-SeraphinaMultilingualNeural --rate=+3% --file nachrichten.txt --write-media nachrichten.mp3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: POWER-RADIO-Nachrichten-Test
+          path: |
+            nachrichten.mp3
+            nachrichten.txt
+      - name: Privater MP3 Upload ohne Sendeplan
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,subprocess
+          token=os.environ['LAUTFM_TOKEN']
+          req=urllib.request.Request('https://api.radioadmin.laut.fm/stations',headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json'})
+          with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          ids={int(x['id']) for x in records(data) if 'id' in x and any(str(x.get(k,'')).lower().replace(' ','')=='powerradio' for k in ('name','title','slug','station_name','display_name'))}
+          if ids!={1687}: raise SystemExit('Hauptsender nicht eindeutig bestaetigt')
+          subprocess.run(['curl','--silent','--show-error','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F','track=@nachrichten.mp3;type=audio/mpeg','-F','private=true','-o','upload-response.json','-w','HTTP %{http_code}\\n','https://api.radioadmin.laut.fm/stations/1687/tracks'],check=True)
+          result=json.load(open('upload-response.json'))
+          print('Upload angenommen. Track-ID:',result.get('id') if isinstance(result,dict) else 'unbekannt')
+          print('Keine Playlist oder Sendeplan geaendert.')
+          PY
