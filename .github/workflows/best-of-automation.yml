@@ -1,0 +1,33 @@
+name: Best of Music Automation prüfen
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/best-of-automation.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sendeplan und Playlistnamen lesen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          def get(path):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687/'+path,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          import urllib.parse
+          def write(path,method,data):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687/'+path,data=json.dumps(data).encode(),method=method,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          for path in ['playlists/556357','playlists/117360']:
+              p=get(path)
+              print('SETTINGS',path,{k:v for k,v in p.items() if k not in ('entries','tracks')})
+          try:
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/automation_algorithms/laut_automation',headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: print('ALGORITHM',r.read().decode())
+          except Exception as e: print('Algorithm unavailable',str(e))
+          PY
