@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T14:24:59+01:00",
+  "updated_at": "2026-11-26T16:25:12+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -177,11 +177,27 @@
     ],
     "Aachen": [
       {
+        "title": "Quellenhof unter Deutschlands besten Stadthotels",
+        "summary": "Das Aachener Parkhotel zählt im Ranking der 101 besten Hotels Deutschlands zu neun ausgezeichneten Häusern in der Kategorie Luxury City Hotels.",
+        "url": "https://www.antenneac.de/artikel/quellenhof-zaehlt-zu-deutschlands-besten-stadthotels-2817677",
+        "source": "Antenne AC",
+        "published_at": "2026-11-26T15:42:00+01:00",
+        "priority": "normal"
+      },
+      {
         "title": "Polizei sucht Zeugen nach Fahrzeugbrand",
         "summary": "In der Katharinenstraße wurde am Mittwoch offenbar versucht, ein geparktes Auto anzuzünden. Die Feuerwehr löschte den Schwelbrand. Niemand wurde verletzt; die Polizei sucht Zeugen.",
         "url": "https://www.antenneac.de/artikel/nach-brand-eines-fahrzeugs-polizei-sucht-zeugen-2817294",
         "source": "Polizei Aachen / Antenne AC",
         "published_at": "2026-11-26T11:24:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Zwei Verletzte bei Unfall auf Kohlscheider Straße",
+        "summary": "Bei einem Unfall mit mehreren Autos wurden zwei Menschen verletzt und ins Krankenhaus gebracht. Zeitweise war die Fahrbahn stadteinwärts nur einspurig befahrbar.",
+        "url": "https://www.antenneac.de/artikel/unfall-auf-kohlscheider-strasse-2817213",
+        "source": "Antenne AC",
+        "published_at": "2026-11-26T11:19:00+01:00",
         "priority": "normal"
       },
       {
