@@ -1,0 +1,96 @@
+name: POWER RADIO Best of Music
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/best-of-music.yml'
+permissions:
+  contents: read
+concurrency:
+  group: power-music-test
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testplaylist erstellen und befuellen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.error,random,re
+          token=os.environ['LAUTFM_TOKEN']
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      raw=r.read()
+                      return json.loads(raw) if raw else None
+              except urllib.error.HTTPError as e:
+                  raise SystemExit(f'API HTTP {e.code} bei {method} {path}')
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def norm(s): return re.sub(r'[^a-z0-9]','',str(s).lower())
+          stations={str(x['id']) for x in records(api('/stations')) if 'id' in x and any(norm(x.get(k,''))=='powerradio' for k in ('name','title','slug','station_name','display_name'))}
+          if len(stations)!=1: raise SystemExit('Hauptsender nicht eindeutig')
+          base='/stations/'+stations.pop()
+          title='POWER RADIO – Best of Music'
+          def playlists():
+              return {str(x.get('id',x.get('playlist_id'))):str(x.get('title') or x.get('name') or x.get('playlist_title')) for x in records(api(base+'/playlists')) if x.get('id',x.get('playlist_id')) is not None and (x.get('title') or x.get('name') or x.get('playlist_title'))}
+          if title in playlists().values(): raise SystemExit('Testplaylist existiert bereits; keine Aenderung')
+          pool={1980:[],1990:[],2000:[],2010:[],2020:[]}
+          seen=set()
+          for pid,name in playlists().items():
+              if pid not in ('520041','520023','117360','518282','519969','518280') or any(w in norm(name) for w in ('nachrichten','news','werbung','jingle','test')): continue
+              try:
+                  data=api(base+'/playlists/'+pid+'/tracks')
+              except SystemExit as e:
+                  print('Playlist uebersprungen:',name,str(e))
+                  continue
+              for x in records(data):
+                  tid=str(x.get('id',x.get('track_id','')))
+                  year=str(x.get('release_year') or x.get('releaseyear') or '')
+                  if not tid.isdigit() or tid in seen or not x.get('artist') or not x.get('title') or not year.isdigit(): continue
+                  if str(x.get('type','')).lower() in ('jingle','news','advertisement','moderation','commercial','spot'): continue
+                  y=int(year)
+                  if not 1980<=y<=2026: continue
+                  if any(w in str(x.get('genre','')).lower() for w in ('schlager','volksmusik','ballermann')): continue
+                  if not any(w in str(x.get('genre','')).lower() for w in ('pop','rock','dance','house','disco','soul','r&b','hip hop','electronic','trance','funk')): continue
+                  if not isinstance(x.get('duration'),(int,float)) or not 120<=x['duration']<=420: continue
+                  era=(y//10)*10
+                  x=dict(x,id=int(tid))
+                  pool[era].append(x)
+                  seen.add(tid)
+              print('Playlist gelesen:',name,'Gesamtpool:',len(seen))
+          for era,tracks in pool.items():
+              random.shuffle(tracks)
+              print(era,':',len(tracks),'Kandidaten')
+          chosen=[]
+          keys=set()
+          seconds=0
+          last=''
+          pattern=[1980,2000,1990,2010,2020,1990,2000,1980,2010,2020]
+          while seconds<36000:
+              progress=False
+              for era in pattern:
+                  for x in pool[era]:
+                      key=(norm(x['artist']),norm(x['title']))
+                      if key in keys or key[0]==last: continue
+                      chosen.append(x);keys.add(key);last=key[0];seconds+=x['duration'];progress=True
+                      break
+                  if seconds>=36000: break
+              if not progress: break
+          print('Auswahl:',len(chosen),'Titel',seconds,'Sekunden')
+          if seconds<34200: raise SystemExit('Nicht genug passende Musik fuer zehn Stunden; keine Playlist erstellt')
+          api(base+'/playlists','POST',{'title':title,'color':'#E53935','description':'Bekannte Pop Rock Dance Hits aus allen Jahrzehnten, ohne Schlager','shuffled':True})
+          ids=[k for k,v in playlists().items() if v==title]
+          if len(ids)!=1: raise SystemExit('Neue Playlist nicht eindeutig')
+          for x in chosen:
+              api(base+'/playlists/'+ids[0],'POST',{'track_id':int(x['id'])})
+              print('Hinzugefuegt:',x['artist'], '-',x['title'])
+          print('Testplaylist erstellt:',len(chosen),'Titel. Sendeplan unveraendert.')
+          PY
