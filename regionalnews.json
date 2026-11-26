@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T20:46:48+01:00",
+  "updated_at": "2026-11-26T21:54:32+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -50,6 +50,14 @@
         "url": "https://www.antenneac.de/artikel/kinofamilie-stuertz-uebernimmt-lumen-in-dueren-2816495",
         "source": "Antenne AC",
         "published_at": "2026-11-25T15:09:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "RegioEntsorgung gibt Tipps gegen festgefrorenen Müll",
+        "summary": "Bei Frost können feuchte Abfälle in Mülltonnen festfrieren. Die RegioEntsorgung empfiehlt Zeitungspapier für feuchte Abfälle und Pappe auf dem Tonnenboden. Nachträgliche Leerungen sind nicht möglich.",
+        "url": "https://www.radiorur.de/artikel/tipps-gegen-frost-in-muelltonnen-2816330",
+        "source": "Radio Rur / RegioEntsorgung",
+        "published_at": "2026-11-25T13:32:00+01:00",
         "priority": "normal"
       },
       {
@@ -214,6 +222,14 @@
         "url": "https://www.antenneac.de/artikel/quellenhof-zaehlt-zu-deutschlands-besten-stadthotels-2817677",
         "source": "Antenne AC",
         "published_at": "2026-11-26T15:42:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Bauarbeiten auf der Eupener Straße abgeschlossen",
+        "summary": "Nach zehn Monaten ist der Umbau zwischen Köpfchen und der Stadtgrenze abgeschlossen. Es gibt eine neue Radvorrangroute, einen Fußgängerüberweg und sechs barrierefreie Bushaltestellen. Eine Engstelle bleibt vorerst bestehen.",
+        "url": "https://www.antenneac.de/artikel/10-monate-baustelle-eupenerstrasse-ist-fertig-2817448",
+        "source": "Antenne AC / Straßen.NRW",
+        "published_at": "2026-11-26T13:42:00+01:00",
         "priority": "normal"
       },
       {
