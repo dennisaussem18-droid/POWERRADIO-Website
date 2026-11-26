@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T13:13:11+01:00",
+  "updated_at": "2026-11-26T14:24:59+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -12,6 +12,22 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Fußgänger bei Unfall leicht verletzt",
+        "summary": "Ein 31-Jähriger wurde am Mittwoch auf der Fritz-Erler-Straße von einem Auto am Fuß verletzt. Nach ambulanter Behandlung konnte er das Krankenhaus verlassen.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6398545",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-26T12:15:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Polizei warnt vor Fake-Shops zum Black Friday",
+        "summary": "Die Polizei im Kreis Düren empfiehlt, Online-Händler vor dem Kauf zu prüfen und bei unbekannten Anbietern Zahlungsmethoden mit Käuferschutz zu nutzen.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6398547",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-26T12:15:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Kinofamilie Stürtz übernimmt Lumen",
         "summary": "Zum Jahreswechsel übernimmt die Kinofamilie Stürtz das Lumen. Alle Mitarbeitenden sollen übernommen werden; Gutscheine bleiben gültig.",
@@ -102,6 +118,14 @@
       }
     ],
     "Jülich": [
+      {
+        "title": "Polizei stellt alkoholisierten Autofahrer",
+        "summary": "Nach einem Zeugenhinweis kontrollierte die Polizei einen 63-Jährigen. Der Atemalkoholtest ergab 2,04 Promille. Sein Führerschein wurde sichergestellt.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6398546",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-26T12:15:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Neue DHL-Packstation in Jülich",
         "summary": "An der Shell-Tankstelle an der Neusser Straße steht eine neue Packstation mit 75 Fächern. Pakete können rund um die Uhr per Post- und DHL-App abgeholt und verschickt werden.",
