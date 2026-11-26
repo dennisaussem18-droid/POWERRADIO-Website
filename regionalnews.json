@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T18:43:01+01:00",
+  "updated_at": "2026-11-26T13:13:11+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -152,6 +152,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Polizei sucht Zeugen nach Fahrzeugbrand",
+        "summary": "In der Katharinenstraße wurde am Mittwoch offenbar versucht, ein geparktes Auto anzuzünden. Die Feuerwehr löschte den Schwelbrand. Niemand wurde verletzt; die Polizei sucht Zeugen.",
+        "url": "https://www.antenneac.de/artikel/nach-brand-eines-fahrzeugs-polizei-sucht-zeugen-2817294",
+        "source": "Polizei Aachen / Antenne AC",
+        "published_at": "2026-11-26T11:24:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Zahlreiche Baustellen in Aachen für 2027 geplant",
         "summary": "Die Stadt hat einen Überblick über geplante Straßenarbeiten veröffentlicht. Betroffen sind unter anderem die A4, die A44 und mehrere Hauptverkehrsstraßen im Stadtgebiet. Genaue Termine stehen noch nicht fest.",
