@@ -48,7 +48,7 @@ jobs:
               if pid is not None and title:
                   found[str(pid)] = str(title)
           print('Verfügbare Playlists:', json.dumps(found, ensure_ascii=False))
-          matches=[{'id':pid} for pid,title in found.items() if norm(title)=='powerradioregionalnachrichten']
+          matches=[{'id':pid} for pid,title in found.items() if norm(title)=='regionalnachrichten']
           if len(matches)!=1:
               raise SystemExit('Nachrichtenplaylist nicht eindeutig gefunden')
           print('Verbindung erfolgreich. Hauptsender-ID:',sid,'Playlist-ID:',int(matches[0]['id']))
