@@ -1,0 +1,45 @@
+name: Best of Music Nachrichten und eigene Tracks
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/best-of-news.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sendeplan und Playlistnamen lesen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          def get(path):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687/'+path,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          import urllib.parse
+          def write(path,method,data):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687/'+path,data=json.dumps(data).encode(),method=method,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          path='playlists/556357'
+          p=next(x for x in get('playlists')['playlists'] if x['id']==556357)
+          assert p['title']=='POWER RADIO – Best of Music'
+          tracks=get(path+'/tracks')['tracks']
+          if not any(x['id']==1 for x in tracks):
+              write(path,'POST',{'track_id':1})
+          write(path,'PATCH',{'shuffled':True,'shuffle_function':'laut_automation','shuffle_opts':{'newsInterval':60,'newsMin':59,'newsMax':15}})
+          p=next(x for x in get('playlists')['playlists'] if x['id']==556357)
+          print('VERIFIED playlist:',p['id'],p.get('size'),p.get('shuffle_opts'),p.get('automation_algorithm_name'))
+          assert any(x['id']==1 for x in get(path+'/tracks')['tracks'])
+          for q in [{'own':'true'},{'title':'Weihnachtswunder'},{'artist':'WDR'}]:
+              try:
+                  for page in range(1,11):
+                      d=get('tracks?'+urllib.parse.urlencode(dict(q,page=page)))
+                      for x in d.get('tracks',[]):
+                          if q.get('own') or 'weihnacht' in str(x.get('title','')).lower():
+                              print('Candidate:',{k:x.get(k) for k in ('id','title','artist','type','duration','private')})
+                      if not d.get('_paging',{}).get('next_page'): break
+              except Exception as e: print('Search error:',str(e))
+          PY
