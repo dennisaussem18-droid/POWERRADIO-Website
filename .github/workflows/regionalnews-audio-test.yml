@@ -29,12 +29,16 @@ jobs:
           if not selected:
               raise SystemExit('Keine aktuellen Meldungen vorhanden')
           parts = ['Power Radio. Die Regionalnachrichten.']
+          last_region = None
           for _, date, region, e in selected:
-              parts.append(f"{region}. {e['title']}. {e['summary']} Quelle: {e['source']}.")
+              if region != last_region:
+                  parts.append(f'Nach {region}.' if last_region else f'Wir beginnen in {region}.')
+              parts.append(e['summary'].strip())
+              last_region = region
           parts.append('Das waren die Power Radio Regionalnachrichten. Mehr Musik, mehr Power.')
-          pathlib.Path('nachrichten.txt').write_text(' '.join(parts), encoding='utf-8')
+          pathlib.Path('nachrichten.txt').write_text('\n\n'.join(parts), encoding='utf-8')
           PY
-          edge-tts --voice de-DE-ConradNeural --file nachrichten.txt --write-media nachrichten.mp3
+          edge-tts --voice de-DE-KillianNeural --rate=-5% --file nachrichten.txt --write-media nachrichten.mp3
       - uses: actions/upload-artifact@v4
         with:
           name: POWER-RADIO-Nachrichten-Test
