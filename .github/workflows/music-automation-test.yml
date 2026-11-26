@@ -1,0 +1,69 @@
+name: POWER RADIO Musikautomation Test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: power-music-test
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testplaylist erstellen und befuellen
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.error,random,re
+          token=os.environ['LAUTFM_TOKEN']
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as r:
+                      raw=r.read()
+                      return json.loads(raw) if raw else None
+              except urllib.error.HTTPError as e:
+                  raise SystemExit(f'API HTTP {e.code} bei {method} {path}')
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def norm(s): return re.sub(r'[^a-z0-9]','',str(s).lower())
+          stations={str(x['id']) for x in records(api('/stations')) if 'id' in x and any(norm(x.get(k,''))=='powerradio' for k in ('name','title','slug','station_name','display_name'))}
+          if len(stations)!=1: raise SystemExit('Hauptsender nicht eindeutig')
+          base='/stations/'+stations.pop()
+          title='POWER Musikautomation TEST'
+          def playlists():
+              return {str(x.get('id',x.get('playlist_id'))):str(x.get('title') or x.get('name') or x.get('playlist_title')) for x in records(api(base+'/playlists')) if x.get('id',x.get('playlist_id')) is not None and (x.get('title') or x.get('name') or x.get('playlist_title'))}
+          if title in playlists().values(): raise SystemExit('Testplaylist existiert bereits; keine Aenderung')
+          pool={}
+          for lo,hi in [(1980,1999),(2000,2009),(2010,2019),(2020,2026)]:
+              data=api(base+f'/tracks?min_release_year={lo}&max_release_year={hi}')
+              tracks={}
+              for x in records(data):
+                  if 'id' in x and x.get('artist') and x.get('title') and str(x.get('release_year','')).isdigit() and lo<=int(x['release_year'])<=hi:
+                      if str(x.get('type','')).lower() not in ('jingle','news','advertisement','moderation','commercial','spot'):
+                          tracks[str(x['id'])]=x
+              pool[lo]=list(tracks.values())
+              random.shuffle(pool[lo])
+              print(f'{lo}-{hi}: {len(tracks)} Kandidaten')
+          chosen=[]
+          artists=set()
+          for _ in range(10):
+              for era in pool:
+                  for x in pool[era]:
+                      artist=norm(x['artist'])
+                      if artist and artist not in artists and all(str(y['id'])!=str(x['id']) for y in chosen):
+                          chosen.append(x);artists.add(artist);break
+          if len(chosen)<10: raise SystemExit('Zu wenige eindeutig erkannte Musiktitel; keine Playlist erstellt')
+          api(base+'/playlists','POST',{'title':title,'color':'#E53935','description':'Isolierter Musikautomation-Test ohne Sendeplan','shuffled':False})
+          ids=[k for k,v in playlists().items() if v==title]
+          if len(ids)!=1: raise SystemExit('Neue Playlist nicht eindeutig')
+          for x in chosen:
+              api(base+'/playlists/'+ids[0],'POST',{'track_id':int(x['id'])})
+              print('Hinzugefuegt:',x['artist'], '-',x['title'])
+          print('Testplaylist erstellt:',len(chosen),'Titel. Sendeplan unveraendert.')
+          PY
