@@ -28,7 +28,7 @@ jobs:
           selected = items[:5]
           if not selected:
               raise SystemExit('Keine aktuellen Meldungen vorhanden')
-          parts = ['Power Radio. Die Regionalnachrichten.']
+          parts = ['Power Radio, die Regionalnachrichten. Diese Nachrichtensendung wurde mithilfe künstlicher Intelligenz erstellt.']
           last_region = None
           for _, date, region, e in selected:
               if region != last_region:
