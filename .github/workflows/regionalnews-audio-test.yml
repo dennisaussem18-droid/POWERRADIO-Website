@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install edge-tts
+      - run: pip install edge-tts pydub
       - name: Nachrichtentext und MP3 erstellen
         run: |
           python - <<'PY'
@@ -41,6 +41,20 @@ jobs:
           pathlib.Path('nachrichten.txt').write_text(' '.join(parts), encoding='utf-8')
           PY
           edge-tts --voice de-DE-ConradNeural --rate=+0% --file nachrichten.txt --write-media nachrichten.mp3
+      - name: Lange Sprechpausen kuerzen
+        run: |
+          python - <<'PY'
+          from pydub import AudioSegment
+          from pydub.silence import detect_silence
+          audio = AudioSegment.from_mp3('nachrichten.mp3')
+          result = AudioSegment.empty()
+          cursor = 0
+          for start, end in detect_silence(audio, min_silence_len=650, silence_thresh=-40, seek_step=5):
+              result += audio[cursor:start+175] + audio[end-175:end]
+              cursor = end
+          result += audio[cursor:]
+          result.export('nachrichten.mp3', format='mp3', bitrate='128k')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: POWER-RADIO-Nachrichten-Test
