@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T16:25:12+01:00",
+  "updated_at": "2026-11-26T17:38:06+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -29,6 +29,14 @@
         "priority": "normal"
       },
       {
+        "title": "VHS Rur-Eifel wieder online",
+        "summary": "Die erneuerte Website ist wieder erreichbar. Das Programm für das kommende Semester kann bereits online eingesehen werden.",
+        "url": "https://www.dueren.de/de/verwaltung-politik/stadtverwaltung/presse/pressemitteilung/vhs-rur-eifel-wieder-online-mit-modernem-auftritt-und-vertrauter-orientierung",
+        "source": "Stadt Düren",
+        "published_at": "2026-11-25T15:47:00+01:00",
+        "priority": "normal"
+      },
+      {
         "title": "Kinofamilie Stürtz übernimmt Lumen",
         "summary": "Zum Jahreswechsel übernimmt die Kinofamilie Stürtz das Lumen. Alle Mitarbeitenden sollen übernommen werden; Gutscheine bleiben gültig.",
         "url": "https://www.antenneac.de/artikel/kinofamilie-stuertz-uebernimmt-lumen-in-dueren-2816495",
@@ -37,11 +45,27 @@
         "priority": "normal"
       },
       {
+        "title": "Quartiersbüro in Nord-Düren eröffnet",
+        "summary": "In der Neuen Jülicher Straße 13 gibt es eine neue Anlaufstelle für Stadtteilentwicklung und Fördermöglichkeiten.",
+        "url": "https://www.dueren.de/de/verwaltung-politik/stadtverwaltung/presse/pressemitteilung/quartiersbuero-in-nord-dueren-feierlich-eroeffnet",
+        "source": "Stadt Düren",
+        "published_at": "2026-11-25T13:03:00+01:00",
+        "priority": "normal"
+      },
+      {
         "title": "Kleinkraftradfahrer bei Unfall leicht verletzt",
         "summary": "An der Einmündung Zeppelinstraße/Südstraße kollidierten ein Auto und ein Kleinkraftrad. Der 71-jährige Zweiradfahrer wurde leicht verletzt und ins Krankenhaus gebracht.",
         "url": "https://www.news.de/lokales/860217775/blaulicht-news-polizei-einsatz-dueren-25-11-26-verkehrskontrolle-heute/1/",
         "source": "news.de (Polizeimeldung)",
         "published_at": "2026-11-25T10:20:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Baumfällarbeiten in der Rurstraße am Freitag",
+        "summary": "Am 27. November werden zwischen Aachener Straße und Tivolistraße Bäume für den geplanten Kanalbau entfernt. Nach Abschluss der Arbeiten ist eine Neubepflanzung vorgesehen.",
+        "url": "https://www.dueren.de/de/verwaltung-politik/stadtverwaltung/presse/pressemitteilung/baumfaellarbeiten-in-der-rurstrae-in-dueren",
+        "source": "Stadt Düren",
+        "published_at": "2026-11-25T10:02:00+01:00",
         "priority": "normal"
       },
       {
