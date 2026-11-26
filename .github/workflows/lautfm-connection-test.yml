@@ -38,7 +38,17 @@ jobs:
               raise SystemExit('Hauptsender nicht eindeutig gefunden')
           sid=int(candidates[0]['id'])
           playlists=get(f'/stations/{sid}/playlists')
-          matches=[x for x in records(playlists) if 'id' in x and str(x.get('title',x.get('name',''))).strip().lower()=='power radio regionalnachrichten']
+          import re
+          def norm(s):
+              return re.sub(r'[^a-z0-9]', '', str(s).lower())
+          found = {}
+          for x in records(playlists):
+              pid = x.get('id', x.get('playlist_id'))
+              title = x.get('title') or x.get('name') or x.get('playlist_title') or ''
+              if pid is not None and title:
+                  found[str(pid)] = str(title)
+          print('Verfügbare Playlists:', json.dumps(found, ensure_ascii=False))
+          matches=[{'id':pid} for pid,title in found.items() if norm(title)=='powerradioregionalnachrichten']
           if len(matches)!=1:
               raise SystemExit('Nachrichtenplaylist nicht eindeutig gefunden')
           print('Verbindung erfolgreich. Hauptsender-ID:',sid,'Playlist-ID:',int(matches[0]['id']))
