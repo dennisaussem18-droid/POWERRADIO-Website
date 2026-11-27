@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T13:30:29+01:00",
+  "updated_at": "2026-11-27T14:34:55+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -224,6 +224,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Polizei sucht Hundehalter nach Fahrradunfall",
+        "summary": "Eine 15-jährige Radfahrerin stürzte am 18. November am Pommerotter Weg nach einer Kollision mit einem Hund und wurde leicht verletzt. Die Polizei sucht den Hundehalter und Zeugen.",
+        "url": "https://www.antenneac.de/artikel/fahrradunfall-durch-freilaufenden-hund-polizei-sucht-2818255",
+        "source": "Polizei Aachen / Antenne AC",
+        "published_at": "2026-11-27T10:26:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "StädteRegion kritisiert geplante Maut in Belgien",
         "summary": "Städteregionsrat Tim Grüttemeier und der Ministerpräsident der Deutschsprachigen Gemeinschaft, Oliver Paasch, setzen sich gemeinsam dafür ein, dass die geplante belgische Maut die Bedürfnisse der Menschen im Grenzgebiet berücksichtigt.",
