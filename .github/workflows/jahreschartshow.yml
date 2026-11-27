@@ -1,0 +1,95 @@
+name: Jahreschartshow 2000-2008
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/jahreschartshow.yml']
+permissions:
+  contents: read
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - run: pip install edge-tts beautifulsoup4
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,subprocess,time,re,unicodedata
+          from bs4 import BeautifulSoup
+          base='/stations/1687'
+          token=os.environ['LAUTFM_TOKEN']
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+base+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def norm(s):
+              return re.sub('[^a-z0-9]','',unicodedata.normalize('NFKD',s.lower()).encode('ascii','ignore').decode())
+          url='https://www.wolfgangroehl.de/topcharts-2000-2007.htm'
+          html=urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=45).read()
+          rows={}
+          for tr in BeautifulSoup(html,'html.parser').find_all('tr'):
+              c=[x.get_text(' ',strip=True) for x in tr.find_all('td',recursive=False)]
+              if len(c)>=4 and re.fullmatch('200[0-7]',c[0]) and re.fullmatch(r'\d+\.?',c[1]):
+                  y=int(c[0]); n=int(c[1].rstrip('.'))
+                  if n<=15: rows.setdefault((y,n),(c[3],c[2]))
+          data=[('Timbaland','Apologize'),('Leona Lewis','Bleeding Love'),('Kid Rock','All Summer Long'),('Schnuffel','Kuschel Song'),('Katy Perry','I Kissed a Girl'),('Duffy','Mercy'),('Ich + Ich','So soll es bleiben'),('Amy Macdonald','This Is The Life'),('Madonna','4 Minutes'),('Gabriella Cilmi','Sweet About Me'),('Stefanie Heinzmann','My Man Is A Mean Man'),('Ich + Ich','Stark'),('Polarkreis 18','Allein Allein'),('Mark Ronson','Valerie'),('Thomas Godoj','Love Is You')]
+          rows.update({(2008,i+1):v for i,v in enumerate(data)})
+          assert len(rows)==135, len(rows)
+          selected=[]
+          used=set()
+          for (y,n),(a,t) in sorted(rows.items(),key=lambda x:(x[0][0],-x[0][1])):
+              candidates=[]
+              for artist in [a,re.split(r' feat\.? | ft\.? | pres\.? ',a,flags=re.I)[0]]:
+                  try:
+                      for x in records(api('/tracks?'+urllib.parse.urlencode({'artist':artist,'title':t,'type':'song'}))):
+                          if x.get('type')=='song' and x.get('duration',0)>60 and x.get('id') not in used and norm(t)==norm(x.get('title','')) and norm(artist) in norm(x.get('artist','')): candidates.append(x)
+                  except Exception as e: print('search error',y,n,str(e))
+                  if candidates: break
+              if not candidates:
+                  print('Missing',y,n,a,t);continue
+              x=candidates[0];used.add(x['id']);selected.append((y,n,x))
+          assert len(selected)>=90, len(selected)
+          print('Music duration',sum(x['duration'] for y,n,x in selected))
+          title='POWER RADIO – Jahreschartshow Teil 1 (2000–2008)'
+          assert not any(x.get('title')==title for x in records(api('/playlists'))), 'Already exists'
+          def mod(script,i):
+              f='chart.mp3'
+              subprocess.run(['edge-tts','--voice','de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural','--text',script,'--write-media',f],check=True)
+              raw=subprocess.check_output(['curl','-sS','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
+              pending=int(json.loads(raw)['id'])
+              for _ in range(30):
+                  try:
+                      found=[x['id'] for x in records(api('/tracks/'+str(pending))) if isinstance(x.get('id'),int) and x['id']>0 and x.get('private') is True and x.get('duration',0)>0]
+                      if len(set(found))==1:
+                          tid=found[0];break
+                  except Exception: pass
+                  time.sleep(10)
+              else: raise RuntimeError('Upload not confirmed')
+              api('/tracks/'+str(tid),'PATCH',{'title':f'Jahreschartshow Moderation {i:03}','artist':'POWER RADIO','type':'moderation'})
+              return tid
+          expected=[mod('Herzlich willkommen zur großen Jahreschartshow auf Power Radio! Im ersten Teil reisen wir durch die Jahre zweitausend bis zweitausendacht. Wir zählen die Hits aus historischen deutschen Jahreswertungen herunter. Nicht verfügbare Titel lassen wir aus. Die Moderationen wurden mithilfe künstlicher Intelligenz erstellt. Viel Spaß bei unserer musikalischen Zeitreise!',0)]
+          year=None
+          for i,(y,n,x) in enumerate(selected,1):
+              prefix=f'Wir reisen ins Jahr {y}. ' if y!=year else ''
+              year=y
+              intro= 'Und jetzt die Spitze des Jahrgangs! ' if n==1 else ''
+              expected.extend([mod(prefix+intro+f'Platz {n}: {x["artist"]} mit {x["title"]}.',i),x['id']])
+          expected.append(mod('Das war der erste Teil unserer großen Jahreschartshow, von zweitausend bis zweitausendacht. Danke fürs Zuhören auf Power Radio!',len(selected)+1))
+          assert len(set(expected))==len(expected)
+          api('/playlists','POST',{'title':title,'description':'Historische Jahreshitlisten Wolfgang Roehl 2000–2007; BVMI 2008. Nicht verfügbare Titel ausgelassen. KI-Moderation.','shuffled':False,'color':'#F59E0B'})
+          p=[x for x in records(api('/playlists')) if x.get('title')==title and x.get('id')]
+          assert len(p)==1
+          path='/playlists/'+str(p[0]['id'])
+          for tid in expected: api(path,'POST',{'track_id':tid})
+          actual=api(path)
+          assert actual['shuffled'] is False and [x['track_id'] for x in actual['entries']]==expected
+          print('VERIFIED',actual['id'],actual['duration'],len(selected),'songs; schedule unchanged')
+          PY
