@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T14:34:55+01:00",
+  "updated_at": "2026-11-27T16:40:26+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -26,6 +26,14 @@
         "url": "https://www.radiorur.de/artikel/cdu-und-spd-in-dueren-sparen-bauen-und-sicherheit-2817994",
         "source": "Radio Rur",
         "published_at": "2026-11-27T06:58:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Veterinäramt stellt Gerüchte über Tierkadaver richtig",
+        "summary": "Bei den an einem Feldweg in Arnoldsweiler gefundenen Kadavern handelt es sich laut Kreisveterinäramt um Füchse, nicht um Hunde. Die Umstände werden untersucht; die Stadt bittet darum, keine Gerüchte weiterzuverbreiten.",
+        "url": "https://www.radiorur.de/artikel/keine-hundeleichen-in-arnoldsweiler-am-feldweg-2817801",
+        "source": "Radio Rur",
+        "published_at": "2026-11-26T16:53:00+01:00",
         "priority": "normal"
       },
       {
@@ -225,6 +233,22 @@
     ],
     "Aachen": [
       {
+        "title": "Bistum Aachen kommentiert Kölner Schmerzensgeldurteil nicht",
+        "summary": "Nach dem Urteil des Oberlandesgerichts Köln über 550.000 Euro Schmerzensgeld für eine Missbrauchsbetroffene äußert sich das Bistum Aachen nicht zu möglichen regionalen Folgen. Nach eigenen Angaben hat es bisher 5,2 Millionen Euro an Betroffene gezahlt.",
+        "url": "https://www.antenneac.de/artikel/bistum-aachen-schweigt-zu-koelner-schmerzensgeld-urteil-2818706",
+        "source": "Antenne AC",
+        "published_at": "2026-11-27T14:57:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Arbeitslosigkeit in der StädteRegion leicht gesunken",
+        "summary": "Im November waren rund 23.800 Menschen arbeitslos, etwa 200 weniger als im Oktober. Die Quote sank auf 7,5 Prozent. Unternehmen meldeten mehr offene Stellen, besonders in Lager und Logistik.",
+        "url": "https://www.antenneac.de/artikel/arbeitslosenzahlen-gehen-leicht-runter-2818522",
+        "source": "Antenne AC",
+        "published_at": "2026-11-27T13:39:00+01:00",
+        "priority": "normal"
+      },
+      {
         "title": "Polizei sucht Hundehalter nach Fahrradunfall",
         "summary": "Eine 15-jährige Radfahrerin stürzte am 18. November am Pommerotter Weg nach einer Kollision mit einem Hund und wurde leicht verletzt. Die Polizei sucht den Hundehalter und Zeugen.",
         "url": "https://www.antenneac.de/artikel/fahrradunfall-durch-freilaufenden-hund-polizei-sucht-2818255",
@@ -366,14 +390,6 @@
         "url": "https://www.antenneac.de/artikel/lebensmittelkontrolleure-auf-dem-aachener-weihnachtsmarkt-2814877",
         "source": "Antenne AC",
         "published_at": "2026-11-24T08:36:00+01:00",
-        "priority": "normal"
-      },
-      {
-        "title": "Wiederaufbau im Luisenhospital kommt voran",
-        "summary": "Die Baugenehmigung für einen neuen OP-Saal und eine neue Intensivstation liegt vor.",
-        "url": "https://www.antenneac.de/artikel/wiederaufbau-im-luisenhospital-geht-voran-2814783",
-        "source": "Antenne AC",
-        "published_at": "2026-11-24T06:43:00+01:00",
         "priority": "normal"
       }
     ]
