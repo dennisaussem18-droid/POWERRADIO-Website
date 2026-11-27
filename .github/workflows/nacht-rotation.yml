@@ -1,0 +1,91 @@
+name: Nachtprogramm Stundenrotation
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/nacht-rotation.yml']
+permissions:
+  contents: read
+concurrency: nacht-rotation
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,datetime
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def playlists(): return {x['title']:x['id'] for x in records(api('/playlists')) if x.get('title') and x.get('id')}
+          source=playlists().get('Gemischt in die Nacht – Musikmix 1970–2026')
+          assert source, 'Music library preparation must finish first'
+          p=api('/playlists/'+str(source))
+          ids=[x['track_id'] for x in p['entries'] if x['track_id']!=1]
+          assert len(ids)==300
+          special=[1,19896219,19893862,19849290,20662554,20551604]
+          meta={}
+          for i in range(0,len(ids+special),30):
+              for x in records(api('/tracks/'+','.join(map(str,(ids+special)[i:i+30])))):
+                  if isinstance(x.get('id'),int) and x.get('duration',0)>0: meta[x['id']]=x
+          assert all(t in meta for t in ids+special)
+          assert meta[1]['type']=='news'
+          assert all(meta[t].get('own') for t in special[1:])
+          blocks=[]
+          cursor=0
+          for n in range(18):
+              seq=[1,19896219]
+              seconds=sum(meta[t]['duration'] for t in seq)
+              count=0
+              while seconds<3600:
+                  t=ids[cursor%len(ids)];cursor+=1
+                  if t in seq: continue
+                  seq.append(t);seconds+=meta[t]['duration'];count+=1
+                  if count in (4,8,12,16):
+                      j={4:19893862,8:20662554,12:19849290,16:20551604}[count]
+                      seq.append(j);seconds+=meta[j]['duration']
+              assert 20662554 in seq and len(seq)==len(set(seq))
+              title=f'Gemischt in die Nacht – Stunde {n+1:02}'
+              pid=playlists().get(title)
+              if not pid:
+                  api('/playlists','POST',dict(title=title,color='#F1C40F',description='Nachrichten und Wetter zum Stundenbeginn, eigene Jingles und Weihnachtswunder, Musikmix 1970–2026',shuffled=False))
+                  pid=playlists()[title]
+              path='/playlists/'+str(pid)
+              old=[x['track_id'] for x in api(path)['entries']]
+              assert old==seq[:len(old)], 'Existing block differs'
+              for t in seq[len(old):]: api(path,'POST',dict(track_id=t))
+              actual=api(path)
+              assert actual['shuffled'] is False and [x['track_id'] for x in actual['entries']]==seq and actual['duration']>=3600
+              blocks.append(pid)
+              print('VERIFIED BLOCK',n+1,pid,actual['duration'],flush=True)
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          old=api('/schedule');a=expand(old);b=a.copy()
+          slots=[i for i,v in enumerate(a) if v==520023]
+          assert slots
+          for n,i in enumerate(slots): b[i]=blocks[n%len(blocks)]
+          entries=[]
+          for i,v in enumerate(b):
+              if v is None: continue
+              if entries and i%24 and entries[-1]['playlist_id']==v and entries[-1]['slot']+entries[-1]['duration']==i: entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=v,slot=i,duration=1))
+          assert expand(api('/schedule'))==a
+          api('/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
+          assert expand(api('/schedule'))==b
+          print('VERIFIED NIGHT SCHEDULE',slots,'other slots unchanged')
+          PY
