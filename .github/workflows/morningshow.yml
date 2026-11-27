@@ -1,0 +1,73 @@
+name: POWER RADIO Morningshow
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/morningshow.yml']
+permissions:
+  contents: read
+concurrency: power-morningshow
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Musiksuche und Playlist
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,re,unicodedata
+          base='/stations/1687'
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def norm(s):
+              return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',str(s)).lower())
+          title='POWER RADIO – Die Morningshow | 3 Stunden geballte Power'
+          def playlists():
+              return [x for x in records(api(base+'/playlists')) if x.get('title')==title and x.get('id')]
+          if playlists(): raise SystemExit('Playlist existiert bereits; keine Aenderung')
+          candidates=[["Queen","Don't Stop Me Now"],["Katrina","Walking on Sunshine"],["a-ha","Take On Me"],["Bon Jovi","Livin' on a Prayer"],["Haddaway","What Is Love"],["Corona","The Rhythm of the Night"],["Snap!","Rhythm Is a Dancer"],["Backstreet Boys","Everybody"],["P!nk","So What"],["Black Eyed Peas","I Gotta Feeling"],["Kylie Minogue","Can't Get You Out of My Head"],["Robbie Williams","Let Me Entertain You"],["Avicii","Wake Me Up"],["Pharrell Williams","Happy"],["Mark Ronson","Uptown Funk"],["OneRepublic","Counting Stars"],["Dua Lipa","Dance the Night"],["David Guetta","I'm Good"],["Harry Styles","As It Was"],["Sabrina Carpenter","Espresso"],["Wham!","Wake Me Up Before You Go-Go"],["Toto","Africa"],["Bryan Adams","Summer of '69"],["Whitney Houston","I Wanna Dance with Somebody"],["Madonna","Like a Prayer"],["Michael Jackson","Beat It"],["Cyndi Lauper","Girls Just Want to Have Fun"],["Eurythmics","Sweet Dreams"],["Roxette","The Look"],["Spice Girls","Wannabe"],["Ace of Base","The Sign"],["Cher","Believe"],["Lou Bega","Mambo No. 5"],["Scatman John","Scatman"],["Britney Spears","Toxic"],["Outkast","Hey Ya!"],["Gnarls Barkley","Crazy"],["Shakira","Whenever, Wherever"],["Katy Perry","Firework"],["Lady Gaga","Poker Face"],["Coldplay","Adventure of a Lifetime"],["Imagine Dragons","On Top of the World"],["Justin Timberlake","Can't Stop the Feeling"],["The Weeknd","Blinding Lights"],["Ed Sheeran","Shivers"],["Miley Cyrus","Flowers"],["Taylor Swift","Shake It Off"],["George Ezra","Shotgun"],["Walk the Moon","Shut Up and Dance"],["American Authors","Best Day of My Life"],["Taio Cruz","Dynamite"],["Kelly Clarkson","Since U Been Gone"],["Nelly Furtado","Maneater"],["Maroon 5","Moves Like Jagger"],["Daft Punk","Get Lucky"],["Calvin Harris","Feel So Close"],["Sia","Cheap Thrills"],["Lizzo","About Damn Time"],["Benson Boone","Beautiful Things"],["Tate McRae","greedy"],["Purple Disco Machine","Hypnotized"],["Lost Frequencies","Where Are You Now"],["Ava Max","Sweet but Psycho"],["Portugal. The Man","Feel It Still"],["The Killers","Mr. Brightside"],["Train","Drive By"],["DNCE","Cake by the Ocean"],["Jason Derulo","Want to Want Me"],["Bruno Mars","Locked Out of Heaven"],["Alvaro Soler","Sofia"],["Rihanna","Don't Stop the Music"],["Culture Beat","Mr. Vain"],["No Doubt","Just a Girl"],["Lenny Kravitz","Fly Away"],["U2","Beautiful Day"],["Sunrise Avenue","Fairytale Gone Bad"],["Owl City","Fireflies"],["Flo Rida","Good Feeling"],["Pitbull","Give Me Everything"],["Clean Bandit","Rather Be"],["Kygo","Firestone"],["Tom Grennan","Little Bit of Love"],["Bastille","Pompeii"],["Ofenbach","Overdrive"],["Shawn Mendes","There's Nothing Holdin' Me Back"]]
+          chosen=[]
+          ids=set()
+          total=0
+          for artist,song in candidates:
+              if total>=10800: break
+              try:
+                  data=api(base+'/tracks?'+urllib.parse.urlencode({'artist':artist,'title':song,'type':'song'}))
+              except Exception as e:
+                  print('Suche fehlgeschlagen',artist,song,str(e));continue
+              matches=[]
+              for x in records(data):
+                  tid=x.get('id',x.get('track_id'))
+                  dur=x.get('duration')
+                  if not isinstance(tid,int) or tid in ids or not isinstance(dur,(int,float)) or not 120<=dur<=420: continue
+                  if x.get('type')!='song' or x.get('private') is True: continue
+                  if norm(artist) not in norm(x.get('artist','')): continue
+                  if norm(song) not in norm(x.get('title','')): continue
+                  if any(w in str(x.get('title','')).lower() for w in ('karaoke','tribute','instrumental','live version','extended','remix')): continue
+                  matches.append(x)
+              if not matches:
+                  print('Nicht gefunden:',artist,song);continue
+              x=min(matches,key=lambda x:(norm(x['title'])!=norm(song),abs(x['duration']-210)))
+              tid=x.get('id',x.get('track_id'))
+              ids.add(tid);chosen.append(x);total+=x['duration']
+              print('Gefunden:',x['artist'],x['title'],x['duration'])
+          print('Auswahl:',len(chosen),total)
+          if total<10500: raise SystemExit('Zu wenig Musik; keine Playlist erstellt')
+          api(base+'/playlists','POST',{'title':title,'description':'Drei Stunden Gute-Laune-Hits aus dem laut.fm-Musikfundus','color':'#F59E0B','shuffled':True})
+          p=playlists()
+          if len(p)!=1: raise SystemExit('Playlist nicht eindeutig')
+          pid=p[0]['id']
+          for x in chosen:
+              api(base+'/playlists/'+str(pid),'POST',{'track_id':x.get('id',x.get('track_id'))})
+          print('VERIFIZIERUNG',json.dumps(api(base+'/playlists/'+str(pid)))[:1500])
+          print('Sendeplan unveraendert')
+          PY
