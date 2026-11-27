@@ -1,0 +1,58 @@
+name: Chartshow heute aktivieren
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/chartshow-activate.yml']
+  schedule:
+    - cron: '15 0 * * 6'
+permissions:
+  contents: read
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,datetime
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          now=datetime.datetime.now(ZoneInfo('Europe/Berlin'))
+          old=api('/schedule')
+          a=expand(old)
+          b=a.copy()
+          original=[520041]*8+[520023]
+          if now.date().isoformat()=='2026-11-27' and now.hour<14:
+              p=api('/playlists/556414')
+              assert p['shuffled'] is False and len(p['entries'])==254 and p['duration']==29942
+              assert a[110:119] in (original,[556414]*9)
+              b[110:119]=[556414]*9
+          elif now.date().isoformat()>='2026-11-28':
+              for i,v in enumerate(original,110):
+                  if b[i]==556414: b[i]=v
+          else:
+              raise SystemExit('Startzeit bereits vorbei')
+          if a==b:
+              print('No change needed');raise SystemExit(0)
+          entries=[]
+          for i,v in enumerate(b):
+              if v is None: continue
+              if entries and i%24 and entries[-1]['playlist_id']==v and entries[-1]['slot']+entries[-1]['duration']==i:
+                  entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=v,slot=i,duration=1))
+          assert expand(api('/schedule'))==a
+          api('/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
+          actual=api('/schedule')
+          assert expand(actual)==b and actual['base_playlist_id']==old['base_playlist_id']
+          print('VERIFIED',b[110:119],'other slots unchanged')
+          PY
