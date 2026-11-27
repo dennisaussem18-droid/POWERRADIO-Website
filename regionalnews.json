@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T12:11:44+01:00",
+  "updated_at": "2026-11-27T13:30:29+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -224,6 +224,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "StädteRegion kritisiert geplante Maut in Belgien",
+        "summary": "Städteregionsrat Tim Grüttemeier und der Ministerpräsident der Deutschsprachigen Gemeinschaft, Oliver Paasch, setzen sich gemeinsam dafür ein, dass die geplante belgische Maut die Bedürfnisse der Menschen im Grenzgebiet berücksichtigt.",
+        "url": "https://www.antenneac.de/artikel/staedteregion-und-dg-zur-maut-in-belgien-2818073",
+        "source": "Antenne AC",
+        "published_at": "2026-11-27T09:08:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Alemannia tritt in Saarbrücken an",
         "summary": "Am Samstag spielt Alemannia Aachen beim punktgleichen 1. FC Saarbrücken. Anstoß ist um 14 Uhr. Rund 1.700 Aachener Fans reisen mit.",
