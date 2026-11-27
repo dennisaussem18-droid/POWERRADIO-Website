@@ -38,6 +38,9 @@ jobs:
                       for x in records(api('/tracks?'+q)):
                           if x.get('type')!='song' or x.get('private') or not x.get('artist') or not x.get('title') or not isinstance(x.get('id'),int) or not 120<=x.get('duration',0)<=420: continue
                           if str(x.get('release_year'))!=str(y): continue
+                          g=str(x.get('genre') or '').lower()
+                          if not g or re.search(r'schlager|volksmusik|volkstüm|ballermann|après|apres|party.?schlager|german folk|polka|karneval',g+' '+str(x.get('tags',[])),re.I): continue
+                          if not re.search(r'pop|rock|dance|soul|disco|hip.?hop|r&b|rhythm|funk',g): continue
                           key=(norm(x['artist']),norm(x['title']))
                           if key in seen: continue
                           seen.add(key);pool[y//10*10].append(x)
@@ -47,14 +50,18 @@ jobs:
           assert all(len(v)>=50 for v in pool.values()), {k:len(v) for k,v in pool.items()}
           selected=[]
           last=[]
-          pattern=[1980,2020,1970,2000,1990,2010]
+          pattern=list(pool)
+          previous=None
           for _ in range(50):
+              random.shuffle(pattern)
+              if pattern[0]==previous: pattern[0],pattern[1]=pattern[1],pattern[0]
+              previous=pattern[-1]
               for era in pattern:
                   v=pool[era]
                   idx=next((i for i,x in enumerate(v) if norm(x['artist']) not in last),None)
                   assert idx is not None
                   x=v.pop(idx);selected.append(x['id']);last=(last+[norm(x['artist'])])[-8:]
-          title='Gemischt in die Nacht – Musikmix 1970–2026'
+          title='Gemischt in die Nacht – Musikmix ohne Schlager'
           assert not any(x.get('title')==title for x in records(api('/playlists')))
           api('/playlists','POST',dict(title=title,color='#F4C20D',description='300 Bibliothekstitel aus sechs Jahrzehnten, gemischte feste Reihenfolge; Nachrichten-Konfiguration vor Freigabe prüfen.',shuffled=False))
           p=[x for x in records(api('/playlists')) if x.get('title')==title and x.get('id')]
