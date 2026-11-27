@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T09:03:44+01:00",
+  "updated_at": "2026-11-27T12:11:44+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -20,6 +20,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "CDU und SPD beraten Sparmaßnahmen für Düren",
+        "summary": "Die Ratskoalition diskutiert höhere kommunale Gebühren und mögliche Immobilienverkäufe angesichts der angespannten Haushaltslage. Zugleich plant sie rund 600 neue Wohnungen und wünscht mehr Polizeipräsenz am Bahnhof.",
+        "url": "https://www.radiorur.de/artikel/cdu-und-spd-in-dueren-sparen-bauen-und-sicherheit-2817994",
+        "source": "Radio Rur",
+        "published_at": "2026-11-27T06:58:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Fußgänger bei Unfall leicht verletzt",
         "summary": "Ein 31-Jähriger wurde am Mittwoch auf der Fritz-Erler-Straße von einem Auto am Fuß verletzt. Nach ambulanter Behandlung konnte er das Krankenhaus verlassen.",
