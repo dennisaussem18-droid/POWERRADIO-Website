@@ -1,0 +1,47 @@
+name: Vormittag Sendeplatz aktivieren
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/vormittag-activate.yml']
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          base='/stations/1687'
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+base+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          p=api('/playlists/556384')
+          assert p['shuffled'] is False and 14280<=p['duration']<=14820
+          old=api('/schedule')
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert 0<=i<168 and a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          hours=expand(old)
+          target=hours[:]
+          for day in range(7):
+              for h in range(10,14): target[day*24+h]=556384
+          entries=[]
+          for i,pid in enumerate(target):
+              if pid is None: continue
+              if entries and entries[-1]['playlist_id']==pid and entries[-1]['slot']+entries[-1]['duration']==i and i%24!=0:
+                  entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=pid,slot=i,duration=1))
+          print('Backup',json.dumps(old))
+          assert expand(api('/schedule'))==hours
+          api('/schedule','PATCH',{'base_playlist_id':old['base_playlist_id'],'entries':entries})
+          new=api('/schedule')
+          assert expand(new)==target and new['base_playlist_id']==old['base_playlist_id']
+          print('Confirmed 7 daily slots 10-14; other hours unchanged')
+          PY
