@@ -1,0 +1,60 @@
+name: Chartshow bis 23 Uhr auffuellen
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/chartshow-fill.yml']
+permissions:
+  contents: read
+concurrency: chartshow-fill
+jobs:
+  fill:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,datetime
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          now=datetime.datetime.now(ZoneInfo('Europe/Berlin'))
+          assert now.date().isoformat()=='2026-11-27' and now.hour<14, 'Do not modify running show'
+          path='/playlists/556414'
+          p=api(path)
+          assert p['shuffled'] is False
+          old=[x['track_id'] for x in p['entries']]
+          assert len(old)>=254
+          target=32400-int(p['duration'])
+          if target<=0:
+              print('Already filled',p['duration']);raise SystemExit(0)
+          ids=list(dict.fromkeys(x['track_id'] for pid in (556376,556357) for x in api('/playlists/'+str(pid))['entries'] if x['track_id'] not in old))
+          meta={}
+          for i in range(0,len(ids),30):
+              for x in records(api('/tracks/'+','.join(map(str,ids[i:i+30])))):
+                  if x.get('id') in ids and x.get('type')=='song' and 90<=x.get('duration',0)<=420:
+                      meta[x['id']]=int(x['duration'])
+          dp={0:[]}
+          for tid,d in meta.items():
+              for s,seq in list(dp.items()):
+                  if s+d<=target+30 and s+d not in dp: dp[s+d]=seq+[tid]
+          viable=[s for s in dp if s>=target]
+          assert viable, 'No combination reaching 23:00'
+          total=min(viable)
+          chosen=dp[total]
+          assert [x['track_id'] for x in api(path)['entries']]==old
+          for tid in chosen: api(path,'POST',{'track_id':tid})
+          actual=api(path)
+          assert [x['track_id'] for x in actual['entries']]==old+chosen and actual['shuffled'] is False
+          assert 32400<=actual['duration']<=32430
+          print('VERIFIED',len(chosen),'extra songs; total seconds',actual['duration'])
+          PY
