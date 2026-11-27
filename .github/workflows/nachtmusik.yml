@@ -1,0 +1,67 @@
+name: Nachtmusik Bibliothek vorbereiten
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/nachtmusik.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,random,re
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def norm(s): return re.sub(r'[^a-z0-9]','',str(s).lower())
+          old=api('/playlists/520023')
+          assert 'gemischtindienacht' in norm(old['title'])
+          print('Existing news and shuffle settings:',json.dumps({k:v for k,v in old.items() if k in ('shuffle_opts','shuffle_function','automation_algorithm_name','shuffled')}))
+          pool={y:[] for y in range(1970,2030,10)}
+          seen=set()
+          for y in range(1970,2027):
+              for genre in ('Pop','Rock','Dance','Soul','Disco','Hip Hop'):
+                  try:
+                      q=urllib.parse.urlencode(dict(release_year=y,genre=genre,type='song',min_duration=120,max_duration=420))
+                      for x in records(api('/tracks?'+q)):
+                          if x.get('type')!='song' or x.get('private') or not x.get('artist') or not x.get('title') or not isinstance(x.get('id'),int) or not 120<=x.get('duration',0)<=420: continue
+                          if str(x.get('release_year'))!=str(y): continue
+                          key=(norm(x['artist']),norm(x['title']))
+                          if key in seen: continue
+                          seen.add(key);pool[y//10*10].append(x)
+                  except Exception as e: print('Search failure',y,genre,str(e),flush=True)
+              print('Year',y,'pool',len(pool[y//10*10]),flush=True)
+          for v in pool.values(): random.shuffle(v)
+          assert all(len(v)>=50 for v in pool.values()), {k:len(v) for k,v in pool.items()}
+          selected=[]
+          last=[]
+          pattern=[1980,2020,1970,2000,1990,2010]
+          for _ in range(50):
+              for era in pattern:
+                  v=pool[era]
+                  idx=next((i for i,x in enumerate(v) if norm(x['artist']) not in last),None)
+                  assert idx is not None
+                  x=v.pop(idx);selected.append(x['id']);last=(last+[norm(x['artist'])])[-8:]
+          title='Gemischt in die Nacht – Musikmix 1970–2026'
+          assert not any(x.get('title')==title for x in records(api('/playlists')))
+          api('/playlists','POST',dict(title=title,color='#F4C20D',description='300 Bibliothekstitel aus sechs Jahrzehnten, gemischte feste Reihenfolge; Nachrichten-Konfiguration vor Freigabe prüfen.',shuffled=False))
+          p=[x for x in records(api('/playlists')) if x.get('title')==title and x.get('id')]
+          assert len(p)==1
+          path='/playlists/'+str(p[0]['id'])
+          for tid in [1]+selected: api(path,'POST',dict(track_id=tid))
+          actual=api(path)
+          assert [x['track_id'] for x in actual['entries']]==[1]+selected and actual['shuffled'] is False
+          print('VERIFIED',actual['id'],actual['duration'],len(selected),'songs, news track included once; schedule unchanged')
+          PY
