@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T16:40:26+01:00",
+  "updated_at": "2026-11-27T18:24:06+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -20,6 +20,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Polizei beschlagnahmt Führerschein nach gefährlichen Fahrmanövern",
+        "summary": "Die Polizei Düren berichtet von erheblichen Geschwindigkeitsüberschreitungen und gefährlichen Fahrmanövern auf der B56 und im Stadtgebiet. Der Führerschein des Fahrers wurde beschlagnahmt.",
+        "url": "https://www.news.de/lokales/860223559/blaulicht-news-polizei-einsatz-dueren-27-11-26-verkehrsunfall-in-dueren-heute/1/",
+        "source": "news.de / Polizei Düren",
+        "published_at": "2026-11-27T10:38:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "CDU und SPD beraten Sparmaßnahmen für Düren",
         "summary": "Die Ratskoalition diskutiert höhere kommunale Gebühren und mögliche Immobilienverkäufe angesichts der angespannten Haushaltslage. Zugleich plant sie rund 600 neue Wohnungen und wünscht mehr Polizeipräsenz am Bahnhof.",
