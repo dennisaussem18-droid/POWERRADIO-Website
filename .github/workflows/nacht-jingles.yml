@@ -1,0 +1,26 @@
+name: Nachtprogramm Jingles und Nachrichten pruefen
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/nacht-jingles.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          def api(path):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r: return json.load(r)
+          for path in ['/playlists/520023','/tracks/1,2,3,20662554','/tracks?own=true&type=jingle','/tracks?own=true&type=advertisement']:
+              try:
+                  x=api(path)
+                  if path.startswith('/playlists'): x={k:v for k,v in x.items() if k!='entries'}
+                  print(path,json.dumps(x,ensure_ascii=False))
+              except Exception as e: print(path,str(e))
+          PY
