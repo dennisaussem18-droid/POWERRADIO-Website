@@ -1,0 +1,13 @@
+name: Vormittag Sendeplan Prüfung
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/vormittag-schedule-check.yml']
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          curl --silent --show-error --fail -H "Authorization: Bearer $LAUTFM_TOKEN" -H 'Origin: LautfmMCP' -H 'Accept: application/json' https://api.radioadmin.laut.fm/stations/1687/schedule | python -m json.tool
