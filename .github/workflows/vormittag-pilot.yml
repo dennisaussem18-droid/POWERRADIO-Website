@@ -1,0 +1,74 @@
+name: POWER RADIO Vormittag Pilot
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/vormittag-pilot.yml']
+permissions:
+  contents: read
+concurrency: power-vormittag-pilot
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install edge-tts
+      - name: Produce and verify pilot
+        env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,subprocess,time
+          base='/stations/1687'
+          token=os.environ['LAUTFM_TOKEN']
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+token,'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          title='POWER RADIO – Der Vormittag (Produktionstest)'
+          def playlists():
+              return [x for x in records(api(base+'/playlists')) if x.get('title')==title and x.get('id')]
+          if playlists(): raise SystemExit('Test existiert bereits')
+          music=api(base+'/playlists/556376')
+          tracks=[x['track_id'] for x in music['entries']][:6]
+          if len(set(tracks))!=6: raise SystemExit('Musikauswahl unvollstaendig')
+          scripts=[
+              ('de-DE-ConradNeural','Guten Vormittag! Hier ist Alex bei Power Radio. Schön, dass ihr dabei seid, ob unterwegs in Düren, Jülich, Aachen oder Langerwehe. Lisa und ich sind eure digitalen Moderatoren. Jetzt gibt es erst einmal zwei Hits für einen guten Start.'),
+              ('de-DE-KatjaNeural','Hier ist Lisa. Wusstet ihr, dass Musik Erinnerungen besonders lebendig machen kann? Vielleicht verbindet ihr einen unserer nächsten Songs mit einem ganz besonderen Moment. Viel Spaß beim Zuhören, hier bei Power Radio.'),
+              ('de-DE-ConradNeural','Alex hier. Zeit für eine kleine Bewegungspause. Wer gerade am Schreibtisch sitzt, kann sich kurz strecken und die Schultern lockern. Und jetzt drehen wir die Musik wieder auf. Mehr Musik, mehr Power!')]
+          mods=[]
+          for i,(voice,script) in enumerate(scripts):
+              f=f'moderation-{i}.mp3'
+              subprocess.run(['edge-tts','--voice',voice,'--text',script,'--write-media',f],check=True)
+              raw=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
+              pending=int(json.loads(raw)['id'])
+              tid=None
+              for _ in range(30):
+                  try:
+                      found=[x['id'] for x in records(api(base+'/tracks/'+str(pending))) if isinstance(x.get('id'),int) and x['id']>0 and x.get('private') is True and x.get('duration',0)>0]
+                      if len(set(found))==1: tid=found[0];break
+                  except Exception: pass
+                  time.sleep(10)
+              if tid is None: raise SystemExit('Upload nicht bestaetigt')
+              api(base+'/tracks/'+str(tid),'PATCH',{'title':f'Vormittag Pilot Moderation {i+1}','artist':'POWER RADIO','type':'moderation'})
+              mods.append(tid)
+          if len(set(mods))!=3: raise SystemExit('Moderationen nicht eindeutig')
+          api(base+'/playlists','POST',{'title':title,'description':'Nicht eingeplanter Test: Alex und Lisa, feste Reihenfolge','shuffled':False,'color':'#F59E0B'})
+          p=playlists()
+          if len(p)!=1: raise SystemExit('Playlist nicht eindeutig')
+          path=base+'/playlists/'+str(p[0]['id'])
+          expected=[]
+          for i,m in enumerate(mods):
+              expected.extend([m,*tracks[i*2:i*2+2]])
+          for tid in expected: api(path,'POST',{'track_id':tid})
+          actual=api(path)
+          print('PILOT',actual['id'],'Dauer',actual.get('duration'),'Shuffle',actual.get('shuffled'))
+          print('SOLL',expected,'IST',[x['track_id'] for x in actual['entries']])
+          if actual.get('shuffled') is not False or [x['track_id'] for x in actual['entries']]!=expected: raise SystemExit('Reihenfolge nicht bestaetigt')
+          print('Reihenfolge bestaetigt; Sendeplan unveraendert')
+          PY
