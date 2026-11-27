@@ -1,13 +1,7 @@
 {
-  "updated_at": "2026-11-27T09:43:08.600697+00:00",
+  "updated_at": "2026-11-27T19:30:24.696246+00:00",
   "regions": {
     "Langerwehe": [
-      {
-        "title": "Lkw-Panne sorgt für langen Stau auf der A4 - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQTzl5YVZJWERTX2ZYOVFFQXVMSEQ3NF9OUnVPWVR5MXU5QnZiTXQwaUNsSkNUdmljQWZveGN3cmRRLWFsTXlCRzJmLXNHZ0taSklUUUNLUlVHNFhacVBuaVRUcDUyN3FfTC1uMXNrSUx3ZFMwSmNwTHU1NFk1ZVF6ZEdNaFRGaUk2TXhr?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-24T06:49:00+00:00"
-      },
       {
         "title": "Weihnachtsmärkte auf Schlössern und Burgen in NRW: Diese 6 sind einen Ausflug wert - Ruhr Nachrichten",
         "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPVWVyMDZyM1dtandkeWFWMnRCMmRpbGV4MDlUNHJHa01tVzNZV19rWml4WFJmQXdad08taXR1SUc5ODNKSXlUNWFpQ2RVblNlYndpWGxieXZyeVctNjdRQ0RwN3JqT19pQ0MzNmg1M0F5UU1tM2g0QnJJNEMtZzZlVDhkLWRlbDhoZzNVYnJiTkM1NDVHTl9zeWN6bGkzTm15S3MxM1lseE9uR1BTNDZBemhEYnQtWmhzQS1CVmRlSEdRTzdxSkE4cVJRWDd4VElZMnNyVmZXZ05OMHA3V2hkWkh2SnhDaXZiTWI1RVhEaEtLUQ?oc=5",
@@ -25,26 +19,20 @@
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPbHhybXg5NlRHTnBmTWNWbXhJU3lXYmtlWWQ1Z18wLXBUZTFYMHhIQkYtSGRhVkZsQTZuLXdpZVVtZENKeUpEek1PS3lna1FXM3doRmN0NTU1b0ZYcnZ3N2l2LWJydEtoenpKeDkzZjEtenVEbTJqeUdLY1VtVEJqOVhSVmF3dmtJQ2g4bUxHd3VySEdpRkIzT0RWVGFnRFZqLUVyU0hudUV4Z2JRUHfSAbYBQVVfeXFMUFlacm5DMFVlMUt6RC1PTmlwZ2ZDdDA4aVlTZGk1UUhuR0xDenFzUlN6emdkVUpKQXlwc1g3b05KOEZqOHVWM3RxT2hVaE9xM2R3Ym54V3dZLXh6RHRTWDN2OGw5ZW52V3N1bi1kS3RZTjdmTkh0bTRiWHBrVzR2WGZrMHFSN1JSa0dKT0VrSnBQREhiNy1EQmZTRGd3WVpnTGl6dGdCSm4wdFdidlUtUVZGcEJUeHc?oc=5",
         "source": "DN-News",
         "published_at": "2026-11-24T15:06:38+00:00"
-      },
-      {
-        "title": "Luchem / Düren: Dauerbaustelle mit Sperrung auf der A4 noch bis November 2030 - News.de",
-        "url": "https://news.google.com/rss/articles/CBMi_AJBVV95cUxQeWxmdFUzZE5YblFZaUZjdVQ0eVdmSEowZW53Y2JFRURYeTItcUpwQXdZeWZ6OFZ2X0hXTVl6NllxQVVIb0hfejJJM3lEd2F3YVNfTk1kaXBBR290eVZOUVdjaHRPTWxlbzVVWWc4MXViUTN1aEJXalhQYklpRFJ1VGo1MWIwdk1uT1dGUHIxeW1zdmhMenl1ZXVXVGVUa21ncHhVYjFIRXdfdy0xUHBUeXA5QUVsM3NlX1VBLWNrYWVqdmdmYXNmcDFSN1JWQzcxM0tvVGlpcGg2c3NVTzNfSUd0RHRpa2FROWR4NXZqLWRMemJtbUZLLUxrSEQzdmZMWWdPLUNOMGJVTFZPVmFYd1lCYy1tN09xRW5KdDFLZVphdDhBLUVURXVyWHBQS2E0akZIaTdMVHNPWFNCVVN4dUlXbTNpbjBQc3ljdFJ0Tzl5bXc3N0VxcWlhS29XcmVTb2JwcGlQUzItTG83czlkelliTHJ5bWFYTEJVbw?oc=5",
-        "source": "News.de",
-        "published_at": "2026-11-20T16:13:00+00:00"
-      },
-      {
-        "title": "„Fisch sucht Fahrrad“ im Theater Düren im Haus der Stadt - DN-News",
-        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQazNYaGNwbTFHVVp6aUFkS1NidDRDOXlGUUlVM015OTNwZ1k1TU5RLVFod0JvMHcxVHdhREpHREpoVEVab1JuM3BPeE1wckRvampTcHVIOTg2NlkzbU5XdzFrVjA5VVgxUTNaZFQ3ZE45SHpwX28yUldzbWx3OGJEd0FQbktYSi1jTXdvWm5QdUZvWDNmcmczdNIBoAFBVV95cUxPbzVNRGdCSzZRQnZKZmpqXzZUR09RSmJPVTR3MEZyUVhwTjdOaUFBcFo0MldMUWhuX0hFRFhxdmNpY1M3VjMwcDJsTFhXODk5aDZ3UGVDWVkzRWRsWW9MbzRzZEhlWjB2MGdFcVNUMDE1clNwNXFYOVRvdGVzQ2pKVGtURmt6VzN2YTJkem9lSUNEcmZoUXBiSmFabU5xZHE2?oc=5",
-        "source": "DN-News",
-        "published_at": "2026-11-20T12:36:32+00:00"
       }
     ],
     "Düren": [
       {
-        "title": "SWD powervolleys Düren mit Heimspiel im Pokal-Halbfinale - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVERVSzRQVDd2SDlzb19CUEo3enhXVWdTd2R3dVdZNXNtem1kRWxmTFZ3RWJTOGczb0ZadlBraFBUYnpnLVEyNXFORkp0bkxLQWlGeG03YS1nbjJFRmRydGh4TkJpMncyWXQ4aXFlXzNLNnlVZ2ZxZmpmaFRCaHlYMFp4bExINjJ2QVJlNWtRdTBwczRrT19WOXNFWGlvdw?oc=5",
+        "title": "Fundsachen Online-Auktion der Stadt Düren - Radio Rur",
+        "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWkFrcWpmRDExcEx0SHh2Ull5Z2dNcndrVGs0RDVKSTA4WUdJWkZ1cFJ2NGdCbTFHUXdlNG9NWVhZazVxakMwZENqeVBPQm5CNzZRSGNYY0dsNkw3Y19BeGJPTVAtbkNwN0VyUUtTaFY2cVlzMDNJZnNkaGlESjhpZEhuRVZ5ZVRRWHc?oc=5",
         "source": "Radio Rur",
-        "published_at": "2026-11-26T05:38:00+00:00"
+        "published_at": "2026-11-26T13:22:00+00:00"
+      },
+      {
+        "title": "Christian Düren: \"Ich bin gerade noch in einer Baby-Bubble\" - RTL.de",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPelNDcU5ZQzFqSWx4aVlwU3RJWmthZXEySl9LUDBGbFk4VktZYW9WT0NyX3RIOExqcXBxZVZ2NjZ0RnhyUE1mTVU0bGg2NEZIZEFnMHk4RUNvQ0Y0dVM5Z29lM3ZWbDJONDBLUmtmTXlKaTRvb1dCem5pN0tZZWJ2TElVcUhBYVNvM18wSTdFak1pa2hJMDhyakFfYzBuRjVmQzJualdvNDlFaFBWZzVyaQ?oc=5",
+        "source": "RTL.de",
+        "published_at": "2026-11-27T13:16:35+00:00"
       },
       {
         "title": "POL-DN: Polizei Düren schlägt bei den Powervolleys auf - Presseportal",
@@ -54,15 +42,9 @@
       },
       {
         "title": "Organisationshelfer für die Familie - HERZOG Kultur",
-        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPd3hQeDJxSnJVcVhjRV9YaXpLTElFSlJWYUwwU0gzMlQyQVRVSVdONG9leEhiS2luWVBJYm1nQVlRem1famRuY0tCQ29mVG1ETlEwSnBlb3RXTkZpUHQwd19pYklJdzZoTEF1bHN2U0xDZExEU0xlbWpkVDY4cHE2MkQ4ZUZZYnc?oc=5",
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9OblJUMzJ1a0E0MUo2WW1BWm1QTG1SbWVkOVcxRUV3ajZ3ZGlPWFFNYXN5bDVnWUZZYlNZWnFSbVQyVlNYM0JYU3N2eW5zQkYt?oc=5",
         "source": "HERZOG Kultur",
         "published_at": "2026-11-26T07:00:02+00:00"
-      },
-      {
-        "title": "Oliver Pocher überrascht mit versöhnlichen Worten an Christian Düren - Yahoo Nachrichten",
-        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQzNxeWJSSVBzbDYtdHh3Q1FZcDdISzlMUDNsNXczc05BWXZvVVM5Rko0dFJYTWw5LS1IbFBScnhmTWZ6Q1ptUmJYalZkemd1cFlLU0h4QkF2LWQ5LWJ5M2o4cFBCZ3loaU04UmNrU0Q1X204YUhVQ0Y5NEptOWxSQzdEbV9ia3R1VWttVFJjY09pcWtjTnhJNDFzQjVOTWVfT1ozR21B?oc=5",
-        "source": "Yahoo Nachrichten",
-        "published_at": "2026-11-20T13:00:00+00:00"
       },
       {
         "title": "Christian Düren schwärmt von seiner Tochter: „Es dreht sich alles um die Kleine“ - BUNTE.de",
@@ -71,10 +53,10 @@
         "published_at": "2026-11-27T09:20:00+00:00"
       },
       {
-        "title": "Düren setzt Zeichen gegen Gewalt an Frauen - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQWUx0QkRzY09ya251Z0JjeEtxdnJVbHQtVElrWXhfODFBZ0diU05RcnlNYjd0N2UxekpJRW1aX1hrMDJrMFZJUkk3NGhvX2NVZ1p5U0VxZUxDNzl3bVUtWlk0VkJlc2NYS1E2VG9iUHlCU0JMU3piTW5PUTdGWWZfZHk0eGlmRlhsdmZj?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-25T05:31:00+00:00"
+        "title": "\"Es dreht sich alles um die Kleine\": Christian Düren spricht erstmals über seine Tochter - T-Online",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPaGdFRVJnVGc2aTlHRFdNMXNpajBGOFJVMkdUXzhPSkY3cFpJdmNPaFBsZVhNVDFVM0VSWFdKeV9WcWQwcG5icC1paERSWWg3eXlLTHNiWGZydm5Hck1JS0NrVy1fcHBnREl1UnRfY2Fic3Y0Q1BUM2Rrel9uZTRyOWZNV0FzY2VZTzdTR3ZzelFzUUxZMGp4M3g3dzdsSXdyd0pzNEtIR1pjT295N1BpalBDSUgxNERVV1BsdGJNTnJlUE1EVGk2QlhFTXgzaDFR?oc=5",
+        "source": "T-Online",
+        "published_at": "2026-11-27T12:20:28+00:00"
       }
     ],
     "Jülich": [
@@ -91,16 +73,16 @@
         "published_at": "2026-11-26T13:25:00+00:00"
       },
       {
-        "title": "Seenotrettung: Was macht Jülich zum „sicheren Hafen“? - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONFl5OUF2Y19KemtEbFdJTmQ1NkFDMXZlMTFkUno2NGg2RnJ5NDdnWDFGbGdLMVh0amxTa1BSeklxcFE5SVRtcnpoaE9Oa1l0ZVFyT1YxVl9FZC1OcDFGYmFORm1wRnFXUGdybmxiaEU4ZW9jWU0yN1JWTUZsY1diR3hIanROUjlxNThwOXVQbzNxNmh5N0RCWDYxb3JOTkhEOWNtUWtYNGNBazdyN2NpdEphOXFOMWFSMlVpaW5FTVM3Ujd5ZFE?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-20T11:30:00+00:00"
+        "title": "Radfahrer bei Verkehrsunfall in Jülich leicht verletzt - meinestadt.de",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE90TDMyaEhpWkh5X2h6dWpwd3NLazgzSGxNSUg0SFR3UGx0UTBOZjc1eWJheVZjeldvRklmTGU1a2FRTGZQWkh4ejYtQ2pWUzhCNFZWbFRpOEhWYXdBZ2JqVjNBczZKLVNFZWt6NVZPc2ZtY2Z6R2tjYg?oc=5",
+        "source": "meinestadt.de",
+        "published_at": "2026-11-27T09:04:20+00:00"
       },
       {
-        "title": "Neue DHL-Packstationen in Jülich und Niederzier - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQkpMT185ZlE1ZndJS2ZRNEpsdWNNd2RJdVk1ZEpsSENLVE0taWRhaVdUUEQ2dHFtM0lhaGJoekoybEdhRmNvMnF4eGVHWl9SdXVka01kMlFzM2VkNzRYekpZZTJ2Rmk5TnhNclhtTkZXOC1ZdHcta1A5YktQR0hpcVVIejhwYXJuM0JacFdlUXlHQQ?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-25T05:40:00+00:00"
+        "title": "Neugier braucht Freiheit - HERZOG Kultur",
+        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQcFlsLXhiRm9NTXpDUlZpdEwwdkJOSVJjeEV6UG1WWGs3M2V3YWNvUUdzdnJKOEJzRWFnZ1lPQXlPWThRZl9zdTgyT2xxNkY5OFBJY2dUd2c0aUNnaVVkWURFVkFod3dBOVVkdGgtUk9wSFFzNnNEX3MybWQ5d2xtamlXc0o?oc=5",
+        "source": "HERZOG Kultur",
+        "published_at": "2026-11-26T10:00:31+00:00"
       },
       {
         "title": "Süßes zum Advent - HERZOG Kultur",
@@ -109,10 +91,10 @@
         "published_at": "2026-11-26T15:00:16+00:00"
       },
       {
-        "title": "Euroschlüssel für öffentliche Toiletten in Jülich - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxORmx1OGpkbDZrc3RHUnBNMk54VFdXTjEzUWZReU4zT3JjTHhEWG00aEdSS0VwRFpVNVlva3FncHQzM1lvZzdRdW9fcjA5U1hZWm5UcTZJVzgyTW5SMUxkcHpWa0F0MWhCYkJwR0NRbWFkZS1pN1lEY2JVbk9jaFpzWGRQNzBneURucVNNTFRvOWJ4Rnh5Y3ZMYg?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-24T12:30:00+00:00"
+        "title": "Polizei-News Jülich, 27.11.26: Radfahrer bei Verkehrsunfall in Jülich leicht verletzt - News.de",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOTEJxcUpZYVZLbnBCUDlhSjVsUjA1ZU05Z2xqSWF2cEZBR0U1NTMwdks4OURhNUFLaFhzWE56WXRBSHRLMTZhYnlvWUd6R1pSQThKQzhfc24zTEZfaXNaQ21LdEluV2dENHplN2VzcHB3a3pqT1JDelRTdVlSMklKRnU4Q3E4RldlM2Flakl2cWswVHBfMDVsR0g2TmJmYlVRd2k3ZEFpWFhsUkJwN1E2NWM0WlNRLWZEUWdYXw?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-27T09:38:02+00:00"
       }
     ],
     "Aachen": [
@@ -126,31 +108,31 @@
         "title": "1. FC Saarbrücken Alemannia Aachen - 3. Liga 2026/2027 | Spielinfo | Profis - Alemannia Aachen",
         "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBOUi1aeEY4SzJTUDlmQ0F5LVJoTWZmTVJhQXZoTEpVUGI0blpaWTlWRkh6WUdWdHVGaHVhRnJLRFZTSkY3dXlTNDNTcTg3TEhLc3UwYU53T3M1ZDdLRTg1ZVVvNlNGcXFp?oc=5",
         "source": "Alemannia Aachen",
-        "published_at": "2026-11-27T02:15:44+00:00"
+        "published_at": "2026-11-27T11:01:29+00:00"
       },
       {
-        "title": "Kresings gewinnt Planungsverfahren von Midstad in Aachen - Konii",
-        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZFJiLXJyQkY3ODJUN1luWUI4bGNDRHRVM1JPeGtCWFpzajR4TTdkYnhuazFhOFRZQW9yVFZENEdGeXk1UG9FQTVCX182QUdfVUVWV21lcFdONWVPT2ZxWXlEeHJ0SkF5cWtrS2xrckNDVXFJQ1JKNmI4bVR1cjhFeVNHai1nWE5pSnZpYkR1TUNkZ0ZwNG9rWlVTdkZuaWJsVkFGaUtHU2hELVU?oc=5",
-        "source": "Konii",
-        "published_at": "2026-11-24T17:36:50+00:00"
+        "title": "Nordrhein-Westfalen: Studierende besuchen WDR-Studio in Aachen - tagesschau.de",
+        "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRFZLS0l1eFliUkZYbmctTzZTdWM3SEhIY1NITUlZZWFaWUNSNW9vQlVvYS15b0pnOFA1NkY0SU1HVWFsX3B5eGw3TzJKNGFFYktNYzhVN29jNzNWVkRPc0ljdTNDanFQc0NUam81SnZMdjBDaXNhUW9la0labGJBOVdnbVpyRnJacWpqQXl3WWhad3BHbFhUdWJsZEdwRnBpOFZOMWNSNWp1ZGl2cEx6RnN1V1Z5Z2tZZHF3czFmS2ViQ1kyYkZ0YkhXS2NUeEdjajR0dWxvX1c?oc=5",
+        "source": "tagesschau.de",
+        "published_at": "2026-11-27T10:47:00+00:00"
       },
       {
         "title": "RE9 betroffen: Verspätungen und Ausfälle zwischen Aachen, Köln und Siegen - Siegener Zeitung",
         "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPS0d1ekVrbHUyUkFRWG5FLXhYNUtUcXItRS12MVVmQUFGZUJubFo1MEIyM052Tk5qaS1RTnl4WmhjUlN2Z05KUzJzUFBETzdOVlFYZjdaN1lnYzd3TURTSkNrRzVnM0duclZZbWhRMm9IN3FTanFfWlhDWUg4M1c4b2VFV0tDdXpWal9lTkxTN3lJSEtCbWFvdkFFcC1rNWdRN01nMTUzQzhtWVhUa2lTTDFhNGx1Umw5eHRFTVl6M01iczBEOWZ3ZEpWZDFtV09fREZtazc0SGtyX2l4WEEtcEFnMjZuOVJjamx0MjE0RVpXVHFaTF9n0gGTAkFVX3lxTE42dFFGY2lTZ2l1eHJLU1M4Sk83MHJOZ3VQejBvNVN1UzdhWXBoQzN1ODFHbEtzYk1kRWpIWHduWjV0WFJaRjV4dDdTQ2hkTDlWLUtmVS1vLXRsZUNxXzR1Tk9qRUZTY1J4MWE3UlhxaExhSnpPUFpiUFI2QlpvQWNGTWRDRHFibWNCbXpBODdzendKd2tDWHkybW9yd2VXX0t2OEJBbGNseUpZWHY0aTEwVHBzYS1mcVdDNEpNb1VyM3VTbVZYRWJQUHhTRlpwME1BMUhWRU9lMmt2dlB6THh3M2ctUEZXYnpkWDBsSUo4WjJYTlFhMTZNTVdwWV9XUl9VU0VjdjlZaDhrWHpRRVFmWVJN?oc=5",
         "source": "Siegener Zeitung",
-        "published_at": "2026-11-27T06:28:03+00:00"
+        "published_at": "2026-11-27T07:48:43+00:00"
       },
       {
-        "title": "1. FC Saarbrücken gegen Alemannia Aachen – Polizei informiert über Einschränkungen - Saarbrücker Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQQkxNSGpWd3ZyckpqRU1PelJEM3JORmdSSzlmY0hBRHEtS3E3MUlQbW9EUGNLZFpkd3dEbWFRM2RPdXR0YXI2V0tuNUNCdlVSdWZJS2cyOHdxYmh3ay1xS25HLWRya1VJVi1aSkk1WW03Q1ZCQnZvTzNFYXlCZG5qM0FoMlRIV1ZzbU1RQTg4Ym9vZEFWNWMtWnpTWmlETHZaRU0xR0VHZUZid1hSTDJlWUpMNlp6X1VqMWVzQnN1Z2FmRll5b1Bja3B2ejdsRm5I?oc=5",
+        "title": "Fußball 3. Liga: 1. FC Saarbrücken live im TV und im Stream – hier sehen Sie das Spiel gegen Alemannia Aachen - Saarbrücker Zeitung",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZjgtTFBMUDllcEpTMTZldTBnWjF1NVBzTTFUeURUQnNIR1NLYThzX1RfZHp5V242UE9hel9xMVZWUjZDcUJ5c1RaQXdaWTZxcEV2WndZVzJKQ3FQWGRvbTVxOW5icDBSaE1wZmdUTjN2bndCZmk0Q1cyRXNzemV4Zzlhb1Y1dXlqRFRPVEZSaHJJcFpFeTM2cl9Ccm1wS2wyNTl5WGFlOExST01YQnNNYXBnZVJDdXFkLWZxcV9uUWNYWlZxWF9FSFoyUQ?oc=5",
         "source": "Saarbrücker Zeitung",
-        "published_at": "2026-11-25T11:43:00+00:00"
+        "published_at": "2026-11-27T12:56:00+00:00"
       },
       {
-        "title": "NRW verbietet Niqab für Schülerinnen – vollverschleierte Mutter gewinnt vor Gericht - Yahoo Nachrichten",
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxObDJTYWcyR2Nla2xTblFSSGV5M0ozVzBtZ0FxbGY3LV9ObDk0VHN2b3pOOC1HaThyaV9vVl9UcTNMWDY1bUhjaE9QeTFfbHZPaUxaUFZJWTg2cW94cnNtYUlmVVhxX0tXcmxuNnI2SER3b2FRZzRHNV9nVFdobEhIT1ZTRl9peTlldlBNcVk4aU1zYXNhOTRhM3FR?oc=5",
-        "source": "Yahoo Nachrichten",
-        "published_at": "2026-11-27T06:05:00+00:00"
+        "title": "ETV-Volleys wollen in Neugraben gegen Aachen für die nächste Überraschung sorgen - besser-im-blick",
+        "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcjJXRFp1TDA2NEJqWENMV0JqTVFNbmhjclRFQ1hRZmd2dWM3OUpMUXBsNTRmODRST0tfUFh5NlFjRTNjN0hNelJqc1h1SVY1aTA3azAwQXJaNVN6VklfdnZYa2dULS1PQklLTVRaSzV1dGk0MVFReUFQM01uTWlHVXZPbzMtclRZVk5zZXhhd1M5LXdFVlJScWthbHJibk1sRmkyb0VTWkNUbjViREhkY2VQemgzWVBVam9hT19qRWY5T0xZWFZyZWVVbnMyMEZRMVhQbw?oc=5",
+        "source": "besser-im-blick",
+        "published_at": "2026-11-27T12:15:32+00:00"
       }
     ]
   }
