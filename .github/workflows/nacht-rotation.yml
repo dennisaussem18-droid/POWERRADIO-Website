@@ -28,8 +28,13 @@ jobs:
               elif isinstance(o,list):
                   for v in o: yield from records(v)
           def playlists(): return {x['title']:x['id'] for x in records(api('/playlists')) if x.get('title') and x.get('id')}
-          source=playlists().get('Gemischt in die Nacht – Musikmix 1970–2026')
-          assert source, 'Music library preparation must finish first'
+          source=playlists().get('Gemischt in die Nacht – Musikmix ohne Schlager')
+          import time
+          for attempt in range(120):
+              source=playlists().get('Gemischt in die Nacht – Musikmix ohne Schlager')
+              if source and len(api('/playlists/'+str(source))['entries'])==301: break
+              time.sleep(20)
+          else: raise RuntimeError('Filtered music preparation not complete')
           p=api('/playlists/'+str(source))
           ids=[x['track_id'] for x in p['entries'] if x['track_id']!=1]
           assert len(ids)==300
@@ -55,7 +60,7 @@ jobs:
                       j={4:19893862,8:20662554,12:19849290,16:20551604}[count]
                       seq.append(j);seconds+=meta[j]['duration']
               assert 20662554 in seq and len(seq)==len(set(seq))
-              title=f'Gemischt in die Nacht – Stunde {n+1:02}'
+              title=f'Gemischt in die Nacht – Mix Stunde {n+1:02}'
               pid=playlists().get(title)
               if not pid:
                   api('/playlists','POST',dict(title=title,color='#F1C40F',description='Nachrichten und Wetter zum Stundenbeginn, eigene Jingles und Weihnachtswunder, Musikmix 1970–2026',shuffled=False))
@@ -76,7 +81,7 @@ jobs:
                       a[i]=e['playlist_id']
               return a
           old=api('/schedule');a=expand(old);b=a.copy()
-          slots=[i for i,v in enumerate(a) if v==520023]
+          slots=[i for i,v in enumerate(a) if v in {520023,*range(556424,556442)}]
           assert slots
           for n,i in enumerate(slots): b[i]=blocks[n%len(blocks)]
           entries=[]
