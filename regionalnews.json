@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T21:54:32+01:00",
+  "updated_at": "2026-11-27T09:03:44+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -216,6 +216,22 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Alemannia tritt in Saarbrücken an",
+        "summary": "Am Samstag spielt Alemannia Aachen beim punktgleichen 1. FC Saarbrücken. Anstoß ist um 14 Uhr. Rund 1.700 Aachener Fans reisen mit.",
+        "url": "https://www.antenneac.de/artikel/alemannia-auswaerts-gegen-saarbruecken-2818056",
+        "source": "Antenne AC",
+        "published_at": "2026-11-27T08:47:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Demonstration gegen Bundeswehr-Ausbau in der Beverau",
+        "summary": "Die Bürgerinitiative Eselsweg retten ruft für Samstag um 14 Uhr zu einer Demonstration auf. Sie beginnt am Neumarkt und führt über die Erzbergerallee zur Beverau.",
+        "url": "https://www.antenneac.de/artikel/demo-gegen-die-plaene-der-bundeswehr-in-der-beverau-2818004",
+        "source": "Antenne AC",
+        "published_at": "2026-11-27T07:07:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Quellenhof unter Deutschlands besten Stadthotels",
         "summary": "Das Aachener Parkhotel zählt im Ranking der 101 besten Hotels Deutschlands zu neun ausgezeichneten Häusern in der Kategorie Luxury City Hotels.",
