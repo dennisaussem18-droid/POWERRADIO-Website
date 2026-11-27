@@ -8,7 +8,7 @@ permissions:
 jobs:
   produce:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     steps:
       - run: pip install edge-tts beautifulsoup4
       - env:
@@ -61,18 +61,20 @@ jobs:
           title='POWER RADIO – Jahreschartshow Teil 1 (2000–2008)'
           assert not any(x.get('title')==title for x in records(api('/playlists'))), 'Already exists'
           def mod(script,i):
-              f='chart.mp3'
+              f=f'chart-{i:03}.mp3'
               subprocess.run(['edge-tts','--voice','de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural','--text',script,'--write-media',f],check=True)
               raw=subprocess.check_output(['curl','-sS','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
               pending=int(json.loads(raw)['id'])
-              for _ in range(30):
+              print('Upload pending',i,pending,flush=True)
+              for attempt in range(90):
                   try:
                       found=[x['id'] for x in records(api('/tracks/'+str(pending))) if isinstance(x.get('id'),int) and x['id']>0 and x.get('private') is True and x.get('duration',0)>0]
                       if len(set(found))==1:
                           tid=found[0];break
-                  except Exception: pass
+                  except Exception as e:
+                      if attempt%6==0: print('Polling',i,pending,str(e),flush=True)
                   time.sleep(10)
-              else: raise RuntimeError('Upload not confirmed')
+              else: raise RuntimeError(f'Upload not confirmed: moderation {i}, pending {pending}')
               api('/tracks/'+str(tid),'PATCH',{'title':f'Jahreschartshow Moderation {i:03}','artist':'POWER RADIO','type':'moderation'})
               return tid
           expected=[mod('Herzlich willkommen zur großen Jahreschartshow auf Power Radio! Im ersten Teil reisen wir durch die Jahre zweitausend bis zweitausendacht. Wir zählen die Hits aus historischen deutschen Jahreswertungen herunter. Nicht verfügbare Titel lassen wir aus. Die Moderationen wurden mithilfe künstlicher Intelligenz erstellt. Viel Spaß bei unserer musikalischen Zeitreise!',0)]
