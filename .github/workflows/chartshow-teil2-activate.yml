@@ -1,0 +1,70 @@
+name: Chartshow Teil 2 Sendetermin
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/chartshow-teil2-activate.yml']
+  schedule:
+    - cron: '0,30 7-12 * * 5'
+    - cron: '15 0 * * 6'
+permissions:
+  contents: read
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,datetime
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=30) as r: return json.load(r)
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          now=datetime.datetime.now(ZoneInfo('Europe/Berlin'))
+          old=api('/schedule')
+          a=expand(old)
+          b=a.copy()
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          date=now.date().isoformat()
+          if date<'2026-12-04': print('Waiting for December 4');raise SystemExit(0)
+          ids={x['id'] for x in records(api('/playlists')) if x.get('title')=='POWER RADIO – Jahreschartshow Teil 2 (2009–2017)' and isinstance(x.get('id'),int)}
+          assert len(ids)==1, 'Production not ready or ambiguous'
+          pid=next(iter(ids))
+          if date=='2026-12-04' and now.hour<14:
+              p=api('/playlists/'+str(pid))
+              assert p['shuffled'] is False and 32400<=p['duration']<=32820 and len(p['entries'])>=180
+              assert all(v in {520041,pid} for v in a[110:118]), 'Unexpected afternoon schedule'
+              assert a[118] in {520023,pid,*range(556517,556535)}, 'Unexpected evening schedule'
+              b[110:119]=[pid]*9
+          elif date>='2026-12-05':
+              for i in range(110,119):
+                  if b[i]==pid: b[i]=520041 if i<118 else 556517
+          else:
+              print('Show already airing or start passed');raise SystemExit(0)
+          if a==b:
+              print('No change needed');raise SystemExit(0)
+          entries=[]
+          for i,v in enumerate(b):
+              if v is None: continue
+              if entries and i%24 and entries[-1]['playlist_id']==v and entries[-1]['slot']+entries[-1]['duration']==i:
+                  entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=v,slot=i,duration=1))
+          assert expand(api('/schedule'))==a
+          api('/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
+          actual=api('/schedule')
+          assert expand(actual)==b and actual['base_playlist_id']==old['base_playlist_id']
+          print('VERIFIED',b[110:119],'other slots unchanged')
+          PY
