@@ -446,5 +446,512 @@
       "date": "2026-11-27",
       "purpose": "Current single chart candidates; no unverified regional claims in moderation"
     }
+  ],
+  "reuse_moderations": [
+    20696171,
+    20696172,
+    20696173,
+    20696174,
+    20696175,
+    20696177,
+    20696179,
+    20696181,
+    20696182,
+    20696183,
+    20696184,
+    20696185,
+    20696186,
+    20696187,
+    20696188,
+    20696189,
+    20696190,
+    20696191,
+    20696193,
+    20696194,
+    20696195,
+    20696196,
+    20696198,
+    20696199,
+    20696200,
+    20696201,
+    20696202,
+    20696204,
+    20696205,
+    20696209
+  ],
+  "reuse_verified_run": 46115429367,
+  "original_artist_pairs": [
+    [
+      "a-ha",
+      "Take On Me"
+    ],
+    [
+      "Tears For Fears",
+      "Everybody Wants To Rule The World"
+    ],
+    [
+      "Eurythmics",
+      "Sweet Dreams (Are Made Of This)"
+    ],
+    [
+      "Queen",
+      "I Want To Break Free"
+    ],
+    [
+      "Bon Jovi",
+      "Livin' On A Prayer"
+    ],
+    [
+      "Bryan Adams",
+      "Summer Of '69"
+    ],
+    [
+      "Toto",
+      "Africa"
+    ],
+    [
+      "Cyndi Lauper",
+      "Girls Just Want To Have Fun"
+    ],
+    [
+      "Madonna",
+      "Like A Prayer"
+    ],
+    [
+      "Duran Duran",
+      "The Reflex"
+    ],
+    [
+      "Simple Minds",
+      "Don't You (Forget About Me)"
+    ],
+    [
+      "Phil Collins",
+      "Sussudio"
+    ],
+    [
+      "Depeche Mode",
+      "Enjoy The Silence"
+    ],
+    [
+      "INXS",
+      "Need You Tonight"
+    ],
+    [
+      "The Cure",
+      "Friday I'm In Love"
+    ],
+    [
+      "Roxette",
+      "The Look"
+    ],
+    [
+      "Alphaville",
+      "Big In Japan"
+    ],
+    [
+      "Billy Idol",
+      "Rebel Yell"
+    ],
+    [
+      "Whitney Houston",
+      "I Wanna Dance With Somebody (Who Loves Me)"
+    ],
+    [
+      "Haddaway",
+      "What Is Love"
+    ],
+    [
+      "Snap!",
+      "Rhythm Is A Dancer"
+    ],
+    [
+      "Dr. Alban",
+      "It's My Life"
+    ],
+    [
+      "Corona",
+      "The Rhythm Of The Night"
+    ],
+    [
+      "La Bouche",
+      "Be My Lover"
+    ],
+    [
+      "Ace Of Base",
+      "The Sign"
+    ],
+    [
+      "Robert Miles",
+      "Children"
+    ],
+    [
+      "Gala",
+      "Freed From Desire"
+    ],
+    [
+      "Culture Beat",
+      "Mr. Vain"
+    ],
+    [
+      "Faithless",
+      "Insomnia"
+    ],
+    [
+      "Oasis",
+      "Wonderwall"
+    ],
+    [
+      "Blur",
+      "Song 2"
+    ],
+    [
+      "Nirvana",
+      "Come As You Are"
+    ],
+    [
+      "R.E.M.",
+      "Losing My Religion"
+    ],
+    [
+      "Red Hot Chili Peppers",
+      "Under The Bridge"
+    ],
+    [
+      "Spin Doctors",
+      "Two Princes"
+    ],
+    [
+      "No Doubt",
+      "Don't Speak"
+    ],
+    [
+      "Alanis Morissette",
+      "Ironic"
+    ],
+    [
+      "Lenny Kravitz",
+      "Fly Away"
+    ],
+    [
+      "Coldplay",
+      "Clocks"
+    ],
+    [
+      "The Killers",
+      "Mr. Brightside"
+    ],
+    [
+      "Linkin Park",
+      "Numb"
+    ],
+    [
+      "Green Day",
+      "American Idiot"
+    ],
+    [
+      "P!nk",
+      "So What"
+    ],
+    [
+      "Katy Perry",
+      "Hot N Cold"
+    ],
+    [
+      "Lady Gaga",
+      "Poker Face"
+    ],
+    [
+      "Rihanna",
+      "Don't Stop The Music"
+    ],
+    [
+      "Nelly Furtado",
+      "Say It Right"
+    ],
+    [
+      "Justin Timberlake",
+      "Can't Stop The Feeling!"
+    ],
+    [
+      "Daft Punk",
+      "One More Time"
+    ],
+    [
+      "Modjo",
+      "Lady (Hear Me Tonight)"
+    ],
+    [
+      "Spiller",
+      "Groovejet (If This Ain't Love)"
+    ],
+    [
+      "David Guetta",
+      "When Love Takes Over"
+    ],
+    [
+      "Avicii",
+      "Wake Me Up"
+    ],
+    [
+      "Calvin Harris",
+      "Feel So Close"
+    ],
+    [
+      "Swedish House Mafia",
+      "Don't You Worry Child"
+    ],
+    [
+      "Dua Lipa",
+      "Don't Start Now"
+    ],
+    [
+      "The Weeknd",
+      "Blinding Lights"
+    ],
+    [
+      "Miley Cyrus",
+      "Flowers"
+    ],
+    [
+      "Harry Styles",
+      "As It Was"
+    ],
+    [
+      "Sabrina Carpenter",
+      "Espresso"
+    ],
+    [
+      "Benson Boone",
+      "Beautiful Things"
+    ],
+    [
+      "Alex Warren",
+      "Ordinary"
+    ],
+    [
+      "Lola Young",
+      "Messy"
+    ],
+    [
+      "Ed Sheeran",
+      "Shape Of You"
+    ],
+    [
+      "Adele",
+      "Rolling In The Deep"
+    ],
+    [
+      "Imagine Dragons",
+      "On Top Of The World"
+    ],
+    [
+      "OneRepublic",
+      "Counting Stars"
+    ],
+    [
+      "Walk The Moon",
+      "Shut Up And Dance"
+    ],
+    [
+      "Bruno Mars",
+      "Locked Out Of Heaven"
+    ],
+    [
+      "Taylor Swift",
+      "Shake It Off"
+    ],
+    [
+      "Sia",
+      "Cheap Thrills"
+    ],
+    [
+      "Robin Schulz",
+      "Sugar"
+    ],
+    [
+      "Purple Disco Machine",
+      "Hypnotized"
+    ],
+    [
+      "Clean Bandit",
+      "Rather Be"
+    ],
+    [
+      "Portugal. The Man",
+      "Feel It Still"
+    ],
+    [
+      "George Ezra",
+      "Shotgun"
+    ],
+    [
+      "Wham!",
+      "Last Christmas"
+    ],
+    [
+      "Mariah Carey",
+      "All I Want For Christmas Is You"
+    ],
+    [
+      "Sia",
+      "Snowman"
+    ],
+    [
+      "Dua Lipa",
+      "Go Easy"
+    ],
+    [
+      "Tate McRae",
+      "Housewife"
+    ],
+    [
+      "U2",
+      "Beautiful Day"
+    ],
+    [
+      "Keane",
+      "Somewhere Only We Know"
+    ],
+    [
+      "Snow Patrol",
+      "Chasing Cars"
+    ],
+    [
+      "Kings Of Leon",
+      "Sex On Fire"
+    ],
+    [
+      "The Calling",
+      "Wherever You Will Go"
+    ],
+    [
+      "Anastacia",
+      "Left Outside Alone"
+    ],
+    [
+      "Kelly Clarkson",
+      "Since U Been Gone"
+    ],
+    [
+      "Robbie Williams",
+      "Let Me Entertain You"
+    ],
+    [
+      "Shakira",
+      "Whenever, Wherever"
+    ],
+    [
+      "Jennifer Lopez",
+      "Let's Get Loud"
+    ],
+    [
+      "Kylie Minogue",
+      "Can't Get You Out Of My Head"
+    ],
+    [
+      "Sophie Ellis-Bextor",
+      "Murder On The Dancefloor"
+    ],
+    [
+      "Moloko",
+      "Sing It Back"
+    ],
+    [
+      "Mika",
+      "Grace Kelly"
+    ],
+    [
+      "Scissor Sisters",
+      "I Don't Feel Like Dancin'"
+    ],
+    [
+      "Coldplay",
+      "Adventure Of A Lifetime"
+    ],
+    [
+      "Starship",
+      "We Built This City"
+    ],
+    [
+      "Pharrell Williams",
+      "Happy"
+    ],
+    [
+      "Teddy Swims",
+      "Bad Dreams"
+    ],
+    [
+      "Katy Perry",
+      "Firework"
+    ],
+    [
+      "American Authors",
+      "Best Day Of My Life"
+    ],
+    [
+      "Gnarls Barkley",
+      "Crazy"
+    ],
+    [
+      "Lou Bega",
+      "Mambo No 5"
+    ],
+    [
+      "Bomfunk MC's",
+      "Freestyler"
+    ],
+    [
+      "Freddie Mercury",
+      "Living On My Own"
+    ],
+    [
+      "Spice Girls",
+      "Wannabe"
+    ],
+    [
+      "Britney Spears",
+      "Toxic"
+    ],
+    [
+      "Glasperlenspiel",
+      "Nie vergessen"
+    ],
+    [
+      "Dua Lipa",
+      "Dance The Night"
+    ],
+    [
+      "Backstreet Boys",
+      "Everybody"
+    ],
+    [
+      "Velile & Safri Duo",
+      "Helele"
+    ],
+    [
+      "Michael Jackson",
+      "Beat It"
+    ],
+    [
+      "Outkast",
+      "Hey Ya!"
+    ],
+    [
+      "Michael Jackson",
+      "Black Or White"
+    ],
+    [
+      "Sportfreunde Stiller",
+      "Applaus Applaus"
+    ],
+    [
+      "Queen",
+      "Don't Stop Me Now"
+    ],
+    [
+      "Katrina & The Waves",
+      "Walking On Sunshine"
+    ]
   ]
 }
