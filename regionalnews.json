@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T09:49:03+01:00",
+  "updated_at": "2026-11-28T13:16:28+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -20,6 +20,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Polizei meldet Trunkenheitsfahrt und Unfallflucht",
+        "summary": "Die Polizei kontrollierte am Freitagabend einen Autofahrer ohne erforderliche Fahrerlaubnis mit über zwei Promille. Später kam es in Birkesdorf zu einem Verkehrsunfall mit Personenschaden und anschließender Unfallflucht.",
+        "url": "https://www.presseportal.de/blaulicht/pm/8/6399668",
+        "source": "Polizei Düren",
+        "published_at": "2026-11-28T09:48:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Stadt untersagt Nutzung einer Problemimmobilie",
         "summary": "Bei einer Kontrolle stellte die Dürener Task Force erhebliche Brandschutzmängel, Schimmel und Müllablagerungen fest. Für große Teile des Hauses wurde die Nutzung untersagt. 28 Bewohner, darunter 14 Kinder, sind bereits in städtischen Unterkünften untergebracht. Der Vermieter soll die Mängel beseitigen.",
@@ -171,14 +179,6 @@
         "source": "Polizei Düren",
         "published_at": "2026-11-24T10:00:00+01:00",
         "priority": "normal"
-      },
-      {
-        "title": "Brand in Papierfabrik in Untermaubach",
-        "summary": "Im Kreis Düren wurden bei einem Fabrikbrand 16 Menschen verletzt, einer davon schwer. Die Polizei ermittelt zur Ursache.",
-        "url": "https://www.presseportal.de/blaulicht/pm/8/6396751",
-        "source": "Polizei Düren",
-        "published_at": "2026-11-24T10:00:00+01:00",
-        "priority": "normal"
       }
     ],
     "Jülich": [
@@ -256,6 +256,14 @@
       }
     ],
     "Aachen": [
+      {
+        "title": "Zwei Tote und zwei Schwerverletzte bei Verkehrsunfall",
+        "summary": "Auf der Trierer Straße zwischen Königsberger Straße und Debyestraße ereignete sich am Samstagmorgen ein schwerer Verkehrsunfall. Nach Angaben der Polizei kamen zwei Menschen ums Leben, zwei weitere wurden schwer verletzt.",
+        "url": "https://www.news.de/lokales/860226526/blaulicht-news-polizei-einsatz-aachen-28-11-26-autounfall-in-aachen-heute/1/",
+        "source": "news.de / Polizei Aachen",
+        "published_at": "2026-11-28T12:58:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Bistum Aachen kommentiert Kölner Schmerzensgeldurteil nicht",
         "summary": "Nach dem Urteil des Oberlandesgerichts Köln über 550.000 Euro Schmerzensgeld für eine Missbrauchsbetroffene äußert sich das Bistum Aachen nicht zu möglichen regionalen Folgen. Nach eigenen Angaben hat es bisher 5,2 Millionen Euro an Betroffene gezahlt.",
@@ -406,14 +414,6 @@
         "url": "https://www.antenneac.de/artikel/technikcampus-wie-geht-es-weiter-2815377",
         "source": "Antenne AC",
         "published_at": "2026-11-24T14:06:00+01:00",
-        "priority": "normal"
-      },
-      {
-        "title": "Lebensmittelkontrollen auf dem Weihnachtsmarkt",
-        "summary": "Die StädteRegion stellte bei Kontrollen der Hygiene und Kennzeichnung lediglich kleinere Mängel fest.",
-        "url": "https://www.antenneac.de/artikel/lebensmittelkontrolleure-auf-dem-aachener-weihnachtsmarkt-2814877",
-        "source": "Antenne AC",
-        "published_at": "2026-11-24T08:36:00+01:00",
         "priority": "normal"
       }
     ]
