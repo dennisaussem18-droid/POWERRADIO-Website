@@ -1,0 +1,76 @@
+name: POWER RADIO Hoerspiel Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hoerspiel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Software installieren
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install chatterbox-tts
+
+      - name: Deutsche Sprachprobe erzeugen
+        run: |
+          mkdir -p output
+
+          cat > test.py <<'PY'
+          import torch
+          import torchaudio
+          from chatterbox.mtl_tts import ChatterboxMultilingualTTS
+
+          torch.set_num_threads(4)
+
+          model = ChatterboxMultilingualTTS.from_pretrained(
+              device="cpu"
+          )
+
+          text = (
+              "POWER RADIO präsentiert: Die Kriminacht. "
+              "Der Doppelmord in der Rue Morgue. "
+              "Paris lag in tiefem Schlaf. "
+              "Doch plötzlich durchbrach ein entsetzlicher "
+              "Schrei die Stille der Nacht. "
+              "Ein geheimnisvolles Verbrechen sollte "
+              "die ganze Stadt erschüttern."
+          )
+
+          wav = model.generate(
+              text,
+              language_id="de",
+              exaggeration=0.6,
+              cfg_weight=0.5
+          )
+
+          torchaudio.save(
+              "output/hoerprobe.wav",
+              wav.cpu(),
+              model.sr
+          )
+          PY
+
+          python test.py
+
+          ffmpeg -y -i output/hoerprobe.wav \
+            -af loudnorm=I=-16:TP=-1.5:LRA=11 \
+            -codec:a libmp3lame -b:a 192k \
+            output/POWER_RADIO_Hoerprobe.mp3
+
+      - name: MP3 bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: POWER-RADIO-Hoerprobe
+          path: output/POWER_RADIO_Hoerprobe.mp3
