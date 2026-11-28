@@ -4,14 +4,18 @@ on:
   schedule:
     - cron: '0 5 * * *'
   push:
-    paths: ['.github/workflows/vormittag-full.yml']
+    paths: ['.github/workflows/vormittag-full.yml', 'radio/vormittag-edition.json']
 permissions:
   contents: read
-concurrency: power-vormittag-full
+concurrency:
+  group: power-vormittag-full
+  cancel-in-progress: true
 jobs:
   pilot:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
+      - uses: actions/checkout@v4
       - run: pip install edge-tts
       - name: Produce and verify pilot
         env:
@@ -36,32 +40,46 @@ jobs:
                   for v in o.values(): yield from records(v)
               elif isinstance(o,list):
                   for v in o: yield from records(v)
-          title='POWER RADIO – Der Vormittag '+day
+          title='POWER RADIO – Der Vormittag '+day+' (Redaktion)'
           def playlists():
               return [x for x in records(api(base+'/playlists')) if x.get('title')==title and x.get('id')]
-          if playlists(): raise SystemExit('Tagesausgabe existiert bereits; keine doppelte Produktion')
-          music=api(base+'/playlists/556376')
-          extra=api(base+'/playlists/556357')
-          tracks=list(dict.fromkeys([x['track_id'] for x in music['entries']]+[x['track_id'] for x in extra['entries'] if x['track_id']!=1]))
-          meta={}
-          for i in range(0,len(tracks),30):
-              for x in records(api(base+'/tracks/'+','.join(map(str,tracks[i:i+30])))):
-                  if isinstance(x.get('id'),int) and x.get('type')=='song' and isinstance(x.get('duration'),(int,float)): meta[x['id']]=x
-          tracks=[t for t in tracks if t in meta]
-          import re
-          seen=set()
-          unique=[]
-          for t in tracks:
-              x=meta[t]
-              key=tuple(re.sub(r'[^a-z0-9]','',str(x.get(k,'')).lower()) for k in ('artist','title'))
-              if key not in seen: unique.append(t);seen.add(key)
-          tracks=unique
-          random.Random(day).shuffle(tracks)
-          topics=["Schön, dass ihr dabei seid. Wir begleiten euch durch den Vormittag in Düren, Jülich, Aachen und Langerwehe. Wir sind Alex und Lisa, eure digitalen Moderatoren.","Lisa hier. Welcher Song erinnert euch sofort an einen bestimmten Sommer? Musik kann uns gedanklich an ganz besondere Orte zurückbringen.","Alex hier. Ein kleiner Tipp für den Schreibtisch: Schaut zwischendurch einmal aus dem Fenster und gönnt euren Augen eine Pause.","Ob auf dem Weg zur Arbeit oder beim Einkaufen: Wir wünschen euch einen entspannten Vormittag und liefern den passenden Soundtrack.","Kennt ihr das, wenn ein Refrain den ganzen Tag im Kopf bleibt? Genau solche Ohrwürmer haben wir heute für euch dabei.","Zeit für eine kleine musikalische Zeitreise. Von Synthesizern der Achtziger bis zu modernen Dance Beats ist heute alles dabei.","Lisa fragt: Kaffee oder Tee? Egal, was in eurer Tasse ist, die nächste Portion Musik geht auf uns.","Ein Gruß an alle, die heute im Einzelhandel, in der Pflege oder im Handwerk unterwegs sind. Schön, dass wir euch begleiten dürfen.","Manchmal reicht ein guter Song, um die Stimmung zu verändern. Dreht die Musik auf, wenn es gerade passt.","Alex hier. Habt ihr schon einmal einen Lieblingssong erst Jahre nach seiner Veröffentlichung entdeckt? Gute Musik hat kein Verfallsdatum.","Ein kleiner Gedanke für heute: Auch kurze Pausen können einen langen Arbeitstag angenehmer machen.","Von der Rur bis zum Aachener Dom, wir grüßen unsere ganze Region. Hier ist Power Radio.","Lisa hier. Was war eigentlich eure erste gekaufte CD oder Schallplatte? Vielleicht ist heute ein Song aus dieser Zeit dabei.","Wenn ihr gerade unterwegs seid, kommt gut und sicher an. Wir bleiben mit euch auf Empfang.","Die Mittagspause rückt näher. Vielleicht ist jetzt Zeit für etwas Leckeres und einen Moment zum Abschalten.","Alex hier. Ein guter Refrain funktioniert oft auch dann, wenn man nicht jedes Wort versteht. Musik verbindet.","Für alle im Homeoffice: Hier kommt musikalische Gesellschaft für eure nächste Aufgabe.","Lisa hier. Manche Songs beginnen ganz ruhig und entwickeln dann eine unglaubliche Energie. Genau diese Abwechslung lieben wir.","Ein Gruß an alle, die heute früh aufgestanden sind. Ihr habt schon einen großen Teil des Tages geschafft.","Was wäre euer persönlicher Soundtrack für einen Roadtrip? Wir hätten da einige Vorschläge aus unserer Musikmischung.","Alex hier. Ein bisschen Bewegung zur Lieblingsmusik kann Spaß machen, selbst wenn es nur ein Wippen mit dem Fuß ist.","Wir machen weiter mit einem Mix aus verschiedenen Jahrzehnten. Alte Lieblingshits treffen auf jüngere Songs.","Lisa hier. Wer heute etwas Neues ausprobieren möchte, könnte einmal ein Album hören, das bisher nicht auf der eigenen Liste stand.","Ein musikalischer Gruß an alle, die gerade eine Pause machen. Genießt die nächsten Minuten.","Alex hier. Musik ist auch eine schöne Möglichkeit, mit anderen ins Gespräch zu kommen. Fragt doch mal nach ihrem Lieblingssong.","Wir nähern uns dem Nachmittag. Noch ist aber genug Zeit für eine ordentliche Portion gute Musik.","Lisa hier. Danke, dass ihr euren Vormittag mit uns verbringt. Ob laut oder leise, wir sind gerne eure Begleitung.","Alex hier. Wir wünschen euch für den Rest des Tages gute Laune und möglichst wenig Stress.","Die letzten Hits unseres Vormittags stehen an. Schön, dass ihr heute mit uns unterwegs wart.","Hier sind Alex und Lisa. Danke fürs Zuhören und einen schönen Nachmittag. Ihr hört Power Radio, mehr Musik, mehr Power."]
-          topics=[re.sub(r'^(Lisa hier\\. |Alex hier\\. |Lisa fragt: )','',v).replace('Wir sind Alex und Lisa, eure digitalen Moderatoren.','Diese Sendung enthält KI-generierte Moderationen.').replace('Hier sind Alex und Lisa. ','') for v in topics]
-          middle=topics[1:-1];random.Random(day).shuffle(middle)
-          topics=[topics[0]+' Heute ist der '+now.strftime('%d.%m.%Y')+'.',*middle,topics[-1]]
-          scripts=[('de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural',v) for i,v in enumerate(topics)]
+          if playlists(): raise SystemExit('Dated edition already exists; inspect it before retrying')
+          import re,unicodedata,urllib.parse
+          edition=json.load(open('radio/vormittag-edition.json',encoding='utf-8'))
+          assert edition['date']==day, 'Missing fresh daily editorial input; existing schedule preserved'
+          def norm(v):
+              return ''.join(c for c in unicodedata.normalize('NFKD',str(v)).casefold() if c.isalnum())
+          def key(x): return (norm(x.get('artist','')),norm(x.get('title','')))
+          def valid(x):
+              return isinstance(x.get('id'),int) and x['id']>1 and x.get('type')=='song' and 100<=x.get('duration',0)<=480 and all(key(x)) and not any(g in str(x.get('genre','')).lower() for g in ('schlager','volksmusik','ballermann')) and not any(v in str(x.get('title','')).lower() for v in ('karaoke','tribute','cover version','live version','sped up','slowed'))
+          all_lists=list(records(api(base+'/playlists')))
+          previous=[p for p in all_lists if isinstance(p.get('id'),int) and str(p.get('title','')).startswith('POWER RADIO – Der Vormittag ') and re.search(r'\d{4}-\d{2}-\d{2}',p['title']) and re.search(r'\d{4}-\d{2}-\d{2}',p['title']).group()<day]
+          previous.sort(key=lambda p:p['title'],reverse=True)
+          previous_id=previous[0]['id'] if previous else 556384
+          prior=api(base+'/playlists/'+str(previous_id))
+          prior_ids=list(dict.fromkeys(e['track_id'] for e in prior['entries']))
+          old=[]
+          for tid in prior_ids:
+              x=api(base+'/tracks/'+str(tid))
+              if valid(x) and key(x) not in {key(y) for y in old}: old.append(x)
+          assert len(old)>=30,'Yesterday music baseline unavailable'
+          oldkeys={key(x) for x in old}
+          chartkeys={tuple(norm(v) for v in pair) for pair in edition['current_chart_candidates']}
+          fresh=[]
+          # Search the entire station library by exact artist/title, every daily run.
+          for artist,song in edition['candidates']:
+              q=urllib.parse.urlencode(dict(artist=artist,title=song,type='song'))
+              matches=[x for x in records(api(base+'/tracks?'+q)) if valid(x) and key(x)==(norm(artist),norm(song))]
+              if not matches: continue
+              x=sorted(matches,key=lambda t:t['id'])[0]
+              # Resolve the ID again: search results alone are not playability evidence.
+              x=api(base+'/tracks/'+str(x['id']))
+              if valid(x) and key(x)==(norm(artist),norm(song)) and key(x) not in oldkeys|{key(t) for t in fresh}:
+                  fresh.append(x)
+          print('LIBRARY SEARCH VERIFIED',len(edition['candidates']),'queries;',len(fresh),'new exact playable matches; baseline',previous_id,len(old))
+          assert len(fresh)>=20,'Not enough verified new library titles; existing programme retained'
+          assert len(edition['moderations'])==30 and len(set(edition['moderations']))==30
+          scripts=[('de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural',v) for i,v in enumerate(edition['moderations'])]
           mods=[]
           for i,(voice,script) in enumerate(scripts):
               f=f'moderation-{day}-{uuid.uuid4().hex}-{i}.mp3'
@@ -86,12 +104,36 @@ jobs:
           expected=[]
           mod_seconds=sum(api(base+'/tracks/'+str(m)).get('duration',0) for m in mods)
           target=14400-mod_seconds
-          selected=[]
-          seconds=0
-          for t in tracks:
-              if seconds>=target: break
-              selected.append(t);seconds+=meta[t]['duration']
-          if seconds<target-120: raise SystemExit('Nicht genug Musik')
+
+          # Choose a set with ~60% retained songs and ~40% genuinely new songs.
+          rng=random.Random(day)
+          best=None
+          for _ in range(24000):
+              count=rng.randint(54,68)
+              keep=round(count*.60);new=count-keep
+              if keep>len(old) or new>len(fresh): continue
+              chosen=rng.sample(old,keep)+rng.sample(fresh,new)
+              if not any(key(x) in chartkeys for x in chosen): continue
+              total=sum(x['duration'] for x in chosen)
+              if total<=target-1 and (best is None or total>best[0]): best=(total,chosen,keep,new)
+          assert best is not None and target-120<=best[0]<target,'Cannot fill four-hour window safely'
+          seconds,chosen,kept,new=best
+          # Spread decades and avoid back-to-back appearances by the same artist.
+          rng.shuffle(chosen)
+          ordered=[]
+          while chosen:
+              last=norm(ordered[-1]['artist']) if ordered else None
+              year=str(ordered[-1].get('release_year') or ordered[-1].get('releaseyear') or '') if ordered else ''
+              era=int(year)//10 if year.isdigit() else None
+              options=[x for x in chosen if norm(x['artist'])!=last]
+              assert options,'Cannot separate repeated artists'
+              def decade(x):
+                  y=str(x.get('release_year') or x.get('releaseyear') or '')
+                  return int(y)//10 if y.isdigit() else None
+              alternate=[x for x in options if decade(x)!=era]
+              x=rng.choice(alternate or options);ordered.append(x);chosen.remove(x)
+          selected=[x['id'] for x in ordered]
+          print('MUSIC VERIFIED retained',kept,'new',new,'ratio',round(kept/len(selected),3),'music seconds',seconds)
           for i,m in enumerate(mods):
               a=i*len(selected)//len(mods)
               b=(i+1)*len(selected)//len(mods)
@@ -102,8 +144,10 @@ jobs:
           print('PILOT',actual['id'],'Dauer',actual.get('duration'),'Shuffle',actual.get('shuffled'))
           print('SOLL',expected,'IST',[x['track_id'] for x in actual['entries']])
           if actual.get('shuffled') is not False or [x['track_id'] for x in actual['entries']]!=expected: raise SystemExit('Reihenfolge nicht bestaetigt')
-          if not 14400<=actual.get('duration',0)<=14820: raise SystemExit('Spielzeit ausserhalb Toleranz')
-          print('Reihenfolge und vier Stunden bestaetigt')
+          if not 14280<=actual.get('duration',0)<14400: raise SystemExit('Spielzeit ausserhalb Toleranz')
+          assert abs(actual['duration']-(seconds+mod_seconds))<=2, 'Duration disagrees with resolved metadata'
+          print('Reihenfolge und Spielzeit unter vier Stunden bestaetigt')
+          print('VERIFIED TRACKS',json.dumps([dict(id=x['id'],artist=x['artist'],title=x['title'],duration=x['duration']) for x in ordered],ensure_ascii=False))
           def expand(s):
               a=[None]*168
               for e in s['entries']:
@@ -125,6 +169,9 @@ jobs:
               else: entries.append(dict(playlist_id=v,slot=i,duration=1))
           assert expand(api(base+'/schedule'))==a
           api(base+'/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
-          assert expand(api(base+'/schedule'))==b
+          confirmed=api(base+'/schedule')
+          if expand(confirmed)!=b or confirmed.get('base_playlist_id')!=old['base_playlist_id']:
+              raise SystemExit('Schedule verification failed; manual inspection required; no further changes')
+          assert all(expand(confirmed)[i]==a[i] for i in range(168) if i not in range(start,start+4))
           print('VERIFIED DAILY SHOW',day,actual['id'],'10-14; other slots unchanged')
           PY
