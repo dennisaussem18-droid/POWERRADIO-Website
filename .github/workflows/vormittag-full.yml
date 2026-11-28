@@ -1,6 +1,8 @@
 name: POWER RADIO Vormittag Produktion
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * *'
   push:
     paths: ['.github/workflows/vormittag-full.yml']
 permissions:
@@ -16,7 +18,11 @@ jobs:
           LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
         run: |
           python - <<'PY'
-          import os,json,urllib.request,subprocess,time
+          import os,json,urllib.request,subprocess,time,datetime,random,uuid
+          from zoneinfo import ZoneInfo
+          now=datetime.datetime.now(ZoneInfo('Europe/Berlin'))
+          day=now.date().isoformat()
+          if now.hour>=10: raise SystemExit('Production window closed; existing schedule preserved')
           base='/stations/1687'
           token=os.environ['LAUTFM_TOKEN']
           def api(path,method='GET',body=None):
@@ -30,10 +36,10 @@ jobs:
                   for v in o.values(): yield from records(v)
               elif isinstance(o,list):
                   for v in o: yield from records(v)
-          title='POWER RADIO – Der Vormittag'
+          title='POWER RADIO – Der Vormittag '+day
           def playlists():
               return [x for x in records(api(base+'/playlists')) if x.get('title')==title and x.get('id')]
-          if playlists(): raise SystemExit('Sendung existiert bereits')
+          if playlists(): raise SystemExit('Tagesausgabe existiert bereits; keine doppelte Produktion')
           music=api(base+'/playlists/556376')
           extra=api(base+'/playlists/556357')
           tracks=list(dict.fromkeys([x['track_id'] for x in music['entries']]+[x['track_id'] for x in extra['entries'] if x['track_id']!=1]))
@@ -50,16 +56,20 @@ jobs:
               key=tuple(re.sub(r'[^a-z0-9]','',str(x.get(k,'')).lower()) for k in ('artist','title'))
               if key not in seen: unique.append(t);seen.add(key)
           tracks=unique
+          random.Random(day).shuffle(tracks)
           topics=["Schön, dass ihr dabei seid. Wir begleiten euch durch den Vormittag in Düren, Jülich, Aachen und Langerwehe. Wir sind Alex und Lisa, eure digitalen Moderatoren.","Lisa hier. Welcher Song erinnert euch sofort an einen bestimmten Sommer? Musik kann uns gedanklich an ganz besondere Orte zurückbringen.","Alex hier. Ein kleiner Tipp für den Schreibtisch: Schaut zwischendurch einmal aus dem Fenster und gönnt euren Augen eine Pause.","Ob auf dem Weg zur Arbeit oder beim Einkaufen: Wir wünschen euch einen entspannten Vormittag und liefern den passenden Soundtrack.","Kennt ihr das, wenn ein Refrain den ganzen Tag im Kopf bleibt? Genau solche Ohrwürmer haben wir heute für euch dabei.","Zeit für eine kleine musikalische Zeitreise. Von Synthesizern der Achtziger bis zu modernen Dance Beats ist heute alles dabei.","Lisa fragt: Kaffee oder Tee? Egal, was in eurer Tasse ist, die nächste Portion Musik geht auf uns.","Ein Gruß an alle, die heute im Einzelhandel, in der Pflege oder im Handwerk unterwegs sind. Schön, dass wir euch begleiten dürfen.","Manchmal reicht ein guter Song, um die Stimmung zu verändern. Dreht die Musik auf, wenn es gerade passt.","Alex hier. Habt ihr schon einmal einen Lieblingssong erst Jahre nach seiner Veröffentlichung entdeckt? Gute Musik hat kein Verfallsdatum.","Ein kleiner Gedanke für heute: Auch kurze Pausen können einen langen Arbeitstag angenehmer machen.","Von der Rur bis zum Aachener Dom, wir grüßen unsere ganze Region. Hier ist Power Radio.","Lisa hier. Was war eigentlich eure erste gekaufte CD oder Schallplatte? Vielleicht ist heute ein Song aus dieser Zeit dabei.","Wenn ihr gerade unterwegs seid, kommt gut und sicher an. Wir bleiben mit euch auf Empfang.","Die Mittagspause rückt näher. Vielleicht ist jetzt Zeit für etwas Leckeres und einen Moment zum Abschalten.","Alex hier. Ein guter Refrain funktioniert oft auch dann, wenn man nicht jedes Wort versteht. Musik verbindet.","Für alle im Homeoffice: Hier kommt musikalische Gesellschaft für eure nächste Aufgabe.","Lisa hier. Manche Songs beginnen ganz ruhig und entwickeln dann eine unglaubliche Energie. Genau diese Abwechslung lieben wir.","Ein Gruß an alle, die heute früh aufgestanden sind. Ihr habt schon einen großen Teil des Tages geschafft.","Was wäre euer persönlicher Soundtrack für einen Roadtrip? Wir hätten da einige Vorschläge aus unserer Musikmischung.","Alex hier. Ein bisschen Bewegung zur Lieblingsmusik kann Spaß machen, selbst wenn es nur ein Wippen mit dem Fuß ist.","Wir machen weiter mit einem Mix aus verschiedenen Jahrzehnten. Alte Lieblingshits treffen auf jüngere Songs.","Lisa hier. Wer heute etwas Neues ausprobieren möchte, könnte einmal ein Album hören, das bisher nicht auf der eigenen Liste stand.","Ein musikalischer Gruß an alle, die gerade eine Pause machen. Genießt die nächsten Minuten.","Alex hier. Musik ist auch eine schöne Möglichkeit, mit anderen ins Gespräch zu kommen. Fragt doch mal nach ihrem Lieblingssong.","Wir nähern uns dem Nachmittag. Noch ist aber genug Zeit für eine ordentliche Portion gute Musik.","Lisa hier. Danke, dass ihr euren Vormittag mit uns verbringt. Ob laut oder leise, wir sind gerne eure Begleitung.","Alex hier. Wir wünschen euch für den Rest des Tages gute Laune und möglichst wenig Stress.","Die letzten Hits unseres Vormittags stehen an. Schön, dass ihr heute mit uns unterwegs wart.","Hier sind Alex und Lisa. Danke fürs Zuhören und einen schönen Nachmittag. Ihr hört Power Radio, mehr Musik, mehr Power."]
+          topics=[re.sub(r'^(Lisa hier\\. |Alex hier\\. |Lisa fragt: )','',v).replace('Wir sind Alex und Lisa, eure digitalen Moderatoren.','Diese Sendung enthält KI-generierte Moderationen.').replace('Hier sind Alex und Lisa. ','') for v in topics]
+          middle=topics[1:-1];random.Random(day).shuffle(middle)
+          topics=[topics[0]+' Heute ist der '+now.strftime('%d.%m.%Y')+'.',*middle,topics[-1]]
           scripts=[('de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural',v) for i,v in enumerate(topics)]
           mods=[]
           for i,(voice,script) in enumerate(scripts):
-              f=f'moderation-{i}.mp3'
-              subprocess.run(['edge-tts','--voice',voice,'--text',script,'--write-media',f],check=True)
+              f=f'moderation-{day}-{uuid.uuid4().hex}-{i}.mp3'
+              subprocess.run(['edge-tts','--voice',voice,'--rate=+5%','--text',script,'--write-media',f],check=True)
               raw=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
               pending=int(json.loads(raw)['id'])
               tid=None
-              for _ in range(30):
+              for _ in range(90):
                   try:
                       found=[x['id'] for x in records(api(base+'/tracks/'+str(pending))) if isinstance(x.get('id'),int) and x['id']>0 and x.get('private') is True and x.get('duration',0)>0]
                       if len(set(found))==1: tid=found[0];break
@@ -92,6 +102,29 @@ jobs:
           print('PILOT',actual['id'],'Dauer',actual.get('duration'),'Shuffle',actual.get('shuffled'))
           print('SOLL',expected,'IST',[x['track_id'] for x in actual['entries']])
           if actual.get('shuffled') is not False or [x['track_id'] for x in actual['entries']]!=expected: raise SystemExit('Reihenfolge nicht bestaetigt')
-          if not 14280<=actual.get('duration',0)<=14820: raise SystemExit('Spielzeit ausserhalb Toleranz')
-          print('Reihenfolge und vier Stunden bestaetigt; Sendeplan unveraendert')
+          if not 14400<=actual.get('duration',0)<=14820: raise SystemExit('Spielzeit ausserhalb Toleranz')
+          print('Reihenfolge und vier Stunden bestaetigt')
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          current=datetime.datetime.now(ZoneInfo('Europe/Berlin'))
+          assert current.date()==now.date() and current.hour<10, 'Too late; previous schedule retained'
+          old=api(base+'/schedule');a=expand(old);b=a.copy()
+          start=current.weekday()*24+10
+          known={556384}|{x['id'] for x in records(api(base+'/playlists')) if isinstance(x.get('id'),int) and str(x.get('title','')).startswith('POWER RADIO – Der Vormittag ')}
+          assert all(a[i] in known for i in range(start,start+4)), 'Unexpected schedule; no overwrite'
+          for i in range(start,start+4): b[i]=actual['id']
+          entries=[]
+          for i,v in enumerate(b):
+              if v is None: continue
+              if entries and i%24 and entries[-1]['playlist_id']==v and entries[-1]['slot']+entries[-1]['duration']==i: entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=v,slot=i,duration=1))
+          assert expand(api(base+'/schedule'))==a
+          api(base+'/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
+          assert expand(api(base+'/schedule'))==b
+          print('VERIFIED DAILY SHOW',day,actual['id'],'10-14; other slots unchanged')
           PY
