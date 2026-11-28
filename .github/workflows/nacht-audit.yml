@@ -1,0 +1,51 @@
+name: Nachtmix Bestandsprüfung
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/nacht-audit.yml']
+permissions:
+  contents: read
+concurrency: nacht-rotation
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,datetime,random,unicodedata,re,time
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def playlists(): return {x['title']:x['id'] for x in records(api('/playlists')) if x.get('title') and x.get('id')}
+          def norm(s):
+              return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',str(s).lower()).encode('ascii','ignore').decode())
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          schedule=expand(api('/schedule'))
+          for title,pid in playlists().items():
+              if not ('nacht' in title.lower() or pid in {520023,*range(556517,556535)}): continue
+              p=api('/playlists/'+str(pid))
+              ids=[e['track_id'] for e in p['entries']]
+              print('PLAYLIST',pid,title,'ACTIVE SLOTS',[i for i,v in enumerate(schedule) if v==pid],flush=True)
+              for i in range(0,len(ids),30):
+                  wanted=set(ids[i:i+30])
+                  for x in records(api('/tracks/'+','.join(map(str,wanted)))):
+                      if x.get('id') in wanted and x.get('type')=='song':
+                          print('SONG',pid,x['id'],x.get('artist'),x.get('title'),x.get('genre'),flush=True)
+          PY
