@@ -31,6 +31,7 @@ jobs:
           def norm(s):
               return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',str(s).lower()).encode('ascii','ignore').decode())
           catalog=["ABBA|Dancing Queen;Queen|Don't Stop Me Now;Bee Gees|Stayin' Alive;Fleetwood Mac|Go Your Own Way;Earth Wind & Fire|September;Gloria Gaynor|I Will Survive;Donna Summer|Hot Stuff;Chic|Le Freak;Electric Light Orchestra|Mr. Blue Sky;Elton John|Rocket Man;David Bowie|Heroes;Supertramp|The Logical Song;Blondie|Heart of Glass;Toto|Hold the Line;Boston|More Than a Feeling;The Police|Roxanne;Rod Stewart|Da Ya Think I'm Sexy;Boney M.|Rasputin;The Rolling Stones|Miss You;Billy Joel|Piano Man;Stevie Wonder|Superstition;The Jacksons|Blame It on the Boogie;Kiss|I Was Made for Lovin' You;Gerry Rafferty|Baker Street;10cc|I'm Not in Love;ABBA|Mamma Mia;Queen|We Will Rock You;Village People|Y.M.C.A.;Sister Sledge|We Are Family;The Knack|My Sharona","Michael Jackson|Billie Jean;Madonna|Like a Prayer;a-ha|Take On Me;Depeche Mode|Just Can't Get Enough;Toto|Africa;Bon Jovi|Livin' on a Prayer;Whitney Houston|I Wanna Dance with Somebody;Eurythmics|Sweet Dreams;Nena|99 Luftballons;Tears for Fears|Everybody Wants to Rule the World;Duran Duran|Hungry Like the Wolf;Rick Astley|Never Gonna Give You Up;Europe|The Final Countdown;Cyndi Lauper|Girls Just Want to Have Fun;Phil Collins|In the Air Tonight;Bruce Springsteen|Dancing in the Dark;Bryan Adams|Summer of '69;Survivor|Eye of the Tiger;Kim Wilde|Kids in America;Pet Shop Boys|West End Girls;Soft Cell|Tainted Love;New Order|Blue Monday;INXS|Need You Tonight;U2|With or Without You;Simple Minds|Don't You Forget About Me;George Michael|Faith;Roxette|The Look;Queen|Radio Ga Ga;Falco|Rock Me Amadeus;Katrina and the Waves|Walking on Sunshine","Roxette|Joyride;Backstreet Boys|Everybody;Snap!|Rhythm Is a Dancer;Bryan Adams|Everything I Do I Do It for You;Oasis|Wonderwall;Blur|Song 2;Spice Girls|Wannabe;Britney Spears|Baby One More Time;Haddaway|What Is Love;Corona|The Rhythm of the Night;Culture Beat|Mr. Vain;Ace of Base|All That She Wants;Dr. Alban|It's My Life;Scatman John|Scatman;Nirvana|Smells Like Teen Spirit;R.E.M.|Losing My Religion;The Cranberries|Zombie;No Doubt|Don't Speak;Robbie Williams|Angels;Cher|Believe;TLC|No Scrubs;Coolio|Gangsta's Paradise;Will Smith|Men in Black;Fugees|Killing Me Softly;Natalie Imbruglia|Torn;Sixpence None the Richer|Kiss Me;Gala|Freed from Desire;Robert Miles|Children;Liquido|Narcotic;Die Fantastischen Vier|MfG","Rihanna|Umbrella;P!nk|So What;Coldplay|Viva la Vida;Robbie Williams|Feel;Kylie Minogue|Can't Get You Out of My Head;Lady Gaga|Poker Face;Beyoncé|Crazy in Love;Outkast|Hey Ya!;Gnarls Barkley|Crazy;The Killers|Mr. Brightside;The Black Eyed Peas|I Gotta Feeling;Shakira|Whenever Wherever;Nelly Furtado|Say It Right;Justin Timberlake|SexyBack;Katy Perry|Hot n Cold;Linkin Park|In the End;Green Day|Boulevard of Broken Dreams;Snow Patrol|Chasing Cars;Keane|Somewhere Only We Know;James Blunt|You're Beautiful;Maroon 5|This Love;Amy Winehouse|Rehab;Mark Ronson|Valerie;Madcon|Beggin;Eric Prydz|Call on Me;Cascada|Everytime We Touch;Guru Josh Project|Infinity 2008;Peter Fox|Haus am See;Wir sind Helden|Denkmal;Sportfreunde Stiller|Ein Kompliment","Avicii|Wake Me Up;Adele|Rolling in the Deep;Bruno Mars|Locked Out of Heaven;David Guetta|Titanium;Daft Punk|Get Lucky;Pharrell Williams|Happy;Taylor Swift|Shake It Off;Ed Sheeran|Shape of You;Imagine Dragons|Radioactive;OneRepublic|Counting Stars;Sia|Chandelier;Clean Bandit|Rather Be;Calvin Harris|Feel So Close;Swedish House Mafia|Don't You Worry Child;Robin Schulz|Sugar;Felix Jaehn|Ain't Nobody;Lost Frequencies|Are You with Me;Kygo|Firestone;Major Lazer|Lean On;Justin Bieber|Sorry;The Weeknd|Can't Feel My Face;Dua Lipa|New Rules;Portugal. The Man|Feel It Still;George Ezra|Shotgun;Passenger|Let Her Go;Milky Chance|Stolen Dance;Mark Forster|Chöre;Andreas Bourani|Auf uns;Clueso|Gewinner;Walk the Moon|Shut Up and Dance","Dua Lipa|Levitating;The Weeknd|Save Your Tears;Ed Sheeran|Bad Habits;Miley Cyrus|Flowers;Harry Styles|As It Was;Olivia Rodrigo|Good 4 U;Glass Animals|Heat Waves;Imagine Dragons|Bones;OneRepublic|I Ain't Worried;David Guetta|I'm Good (Blue);Purple Disco Machine|Hypnotized;Elton John|Cold Heart;Tiësto|The Business;Meduza|Paradise;Joel Corry|Head & Heart;Topic|Breaking Me;Alok|Deep Down;Lost Frequencies|Where Are You Now;Lewis Capaldi|Forget Me;Tate McRae|Greedy;Sabrina Carpenter|Espresso;Benson Boone|Beautiful Things;Hozier|Too Sweet;Billie Eilish|Birds of a Feather;Chappell Roan|Good Luck Babe;Shaboozey|A Bar Song (Tipsy);Lady Gaga|Abracadabra;Alex Warren|Ordinary;Lola Young|Messy;ROSÉ|APT."]
+          catalog[-1]+=";Tate McRae|Housewife;Ashe|Stop The Wedding!;Temper City|Self Aware;Jamie Miller|Babydoll;ADÉLA|Ain't In LA;Taylor Swift|Patient Zero;Olivia Rodrigo|The Cure;sombr|My Body Isn't Ready;Alex Warren|Fever Dream;KATSEYE|Animal;Bebe Rexha|New Religion;Teddy Swims|Mr. Know It All"
           pools=[]
           seen=set()
           for group in catalog:
@@ -62,6 +63,7 @@ jobs:
           assert meta[1]['type']=='news'
           assert all(meta[t].get('own') for t in special[1:])
           blocks=[]
+          tag=datetime.datetime.now(ZoneInfo('Europe/Berlin')).strftime('%Y%m%d-%H%M')
           cursor=0
           for n in range(18):
               seq=[1,19896219]
@@ -76,7 +78,7 @@ jobs:
                       j={4:19893862,8:20662554,12:19849290,16:20551604}[count]
                       seq.append(j);seconds+=meta[j]['duration']
               assert 20662554 in seq and len(seq)==len(set(seq))
-              title=f'Gemischt in die Nacht – Radiohits Stunde {n+1:02}'
+              title=f'Gemischt in die Nacht – Radiohits Stunde {n+1:02} – {tag}'
               pid=playlists().get(title)
               if not pid:
                   api('/playlists','POST',dict(title=title,color='#F1C40F',description='Nachrichten und Wetter zum Stundenbeginn, eigene Jingles und Weihnachtswunder, Musikmix 1970–2026',shuffled=False))
@@ -97,7 +99,7 @@ jobs:
                       a[i]=e['playlist_id']
               return a
           old=api('/schedule');a=expand(old);b=a.copy()
-          slots=[i for i,v in enumerate(a) if v in {520023,*range(556424,556442),*range(556444,556462)}]
+          slots=[i for i,v in enumerate(a) if v in {520023,*range(556424,556442),*range(556444,556462),*range(556517,556535)}]
           assert slots
           for n,i in enumerate(slots): b[i]=blocks[n%len(blocks)]
           entries=[]
@@ -109,4 +111,11 @@ jobs:
           api('/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
           assert expand(api('/schedule'))==b
           print('VERIFIED NIGHT SCHEDULE',slots,'other slots unchanged')
+          # Label obsolete playlists rather than delete them.
+          for title,pid in playlists().items():
+              if pid in blocks or pid in b or pid==520023 or pid==556517: continue
+              if title.startswith('Gemischt in die Nacht'):
+                  api('/playlists/'+str(pid),'PATCH',{'title':'ARCHIV – '+title})
+                  print('Archived inactive playlist',pid,flush=True)
+          print('VERIFIED active blocks',blocks,flush=True)
           PY
