@@ -1,4 +1,4 @@
-name: POWER RADIO Hoerspiel Demo
+name: POWER RADIO Hoerspiel Demo Clean
 
 on:
   workflow_dispatch:
@@ -74,7 +74,7 @@ jobs:
           from huggingface_hub import HfApi, hf_hub_download
           from chatterbox.mtl_tts import ChatterboxMultilingualTTS
           from pydub import AudioSegment, effects
-          from pydub.generators import Sine, WhiteNoise
+          from pydub.generators import Sine
           torch.set_num_threads(4)
           repo = "Fraunhofer-IEM/designed-voices-de-en"
           files = HfApi().list_repo_files(repo, repo_type="dataset")
@@ -88,8 +88,6 @@ jobs:
           model = ChatterboxMultilingualTTS.from_pretrained(device="cpu")
           def silence(ms):
               return AudioSegment.silent(duration=ms,frame_rate=24000)
-          def noise(ms, cutoff, gain):
-              return WhiteNoise().to_audio_segment(duration=ms).low_pass_filter(cutoff).fade_out(min(ms,500)).apply_gain(gain)
           scene = silence(3000)
           lines = [
               ("Erzaehler","POWER RADIO präsentiert die Kriminacht. Ein Hörspiel mit künstlich erzeugten Stimmen."),
@@ -110,13 +108,8 @@ jobs:
               ("Erzaehler","Stimmreferenzen von Fraunhofer I E M, Creative Commons Namensnennung vier Punkt null, und Thorsten Voice.")
           ]
           for role, text in lines:
-              if role == "Donner":
-                  scene += noise(2500,120,-14)
-              elif role == "Schritte":
-                  for _ in range(6):
-                      scene += noise(140,250,-14)+silence(370)
-              elif role == "Tuer":
-                  scene += noise(450,700,-14)
+              if role in ("Donner", "Schritte", "Tuer"):
+                  scene += silence(400)
               else:
                   print(role,text,flush=True)
                   wav = model.generate(text,language_id="de",audio_prompt_path=voices[role],exaggeration=0.5,cfg_weight=0.5)
@@ -126,10 +119,9 @@ jobs:
           scene += silence(5000)
           duration = len(scene)
           music = Sine(55).to_audio_segment(duration=duration).overlay(Sine(82.41).to_audio_segment(duration=duration).apply_gain(-6)).apply_gain(-34).fade_in(3000).fade_out(5000)
-          rain = WhiteNoise().to_audio_segment(duration=duration).high_pass_filter(1500).low_pass_filter(6500).apply_gain(-35).fade_in(2000).fade_out(4000)
-          effects.normalize(scene.overlay(music).overlay(rain),headroom=1).export("output/POWER_RADIO_Kriminacht_Demo.mp3",format="mp3",bitrate="192k")
+          effects.normalize(scene.overlay(music[:3000].fade_out(1000),position=0).overlay(music[-5000:].fade_in(1000),position=duration-5000),headroom=1).export("output/POWER_RADIO_Kriminacht_Demo.mp3",format="mp3",bitrate="192k")
           with open("output/LIZENZEN.txt","w") as f:
-              f.write("Thorsten-Voice: CC0\nFraunhofer IEM: designed-voices-de-en, CC BY 4.0, used for speech synthesis\nhttps://creativecommons.org/licenses/by/4.0/\nhttps://huggingface.co/datasets/"+repo+"\nMusik und Effekte: synthetisch erzeugt\nText: freie Poe-Bearbeitung\n")
+              f.write("Thorsten-Voice: CC0\nFraunhofer IEM: designed-voices-de-en, CC BY 4.0, used for speech synthesis\nhttps://creativecommons.org/licenses/by/4.0/\nhttps://huggingface.co/datasets/"+repo+"\nMusik: synthetisch erzeugt; keine Geraeusche in dieser Testfassung\nText: freie Poe-Bearbeitung\n")
           PY
           python production.py
 
