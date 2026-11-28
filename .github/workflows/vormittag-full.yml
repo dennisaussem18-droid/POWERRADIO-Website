@@ -62,6 +62,10 @@ jobs:
           for tid in prior_ids:
               x=api(base+'/tracks/'+str(tid))
               if valid(x) and key(x) not in {key(y) for y in old}: old.append(x)
+          print('BASELINE DIAGNOSTIC',previous_id,prior.get('title'),len(prior_ids),len(old))
+          for tid in prior_ids[:3]:
+              sample=api(base+'/tracks/'+str(tid))
+              print('BASELINE TRACK',json.dumps(sample,ensure_ascii=False))
           assert len(old)>=30,'Yesterday music baseline unavailable'
           oldkeys={key(x) for x in old}
           chartkeys={tuple(norm(v) for v in pair) for pair in edition['current_chart_candidates']}
