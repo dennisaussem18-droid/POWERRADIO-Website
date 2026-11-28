@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T02:45:08.121093+00:00",
+  "updated_at": "2026-11-28T11:54:30.338357+00:00",
   "regions": {
     "Langerwehe": [
       {
@@ -15,6 +15,12 @@
         "published_at": "2026-11-24T16:00:00+00:00"
       },
       {
+        "title": "Sommertransfer-Update: Die Zu- und Abgänge der Bezirksliga Staffel 4 - FuPa ⚽️",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPVzMxbEduc2Nncml2dkVNTllEZS13aEZoU3hPZ2dqNjl0aF95cXVIdXcyUWVBZUZXLXFnZUV5Y1dRQVZXazBNYUNuWXhtQWFwd1RmV2tzWjlNVTkwVXZDTjNxYnFTSWRpcEdlODFkNmdIRWMtU0xVdmhJYWJRNG9Gc3VUVGk4OEpLY0ZHZDZvd3I5bllBMlRXZExIell1S0Z6a2dZ?oc=5",
+        "source": "FuPa ⚽️",
+        "published_at": "2026-11-25T13:16:03+00:00"
+      },
+      {
         "title": "Romantischer Weihnachtsmarkt Merode mit Christkind und Eisstockbahn - DN-News",
         "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPbHhybXg5NlRHTnBmTWNWbXhJU3lXYmtlWWQ1Z18wLXBUZTFYMHhIQkYtSGRhVkZsQTZuLXdpZVVtZENKeUpEek1PS3lna1FXM3doRmN0NTU1b0ZYcnZ3N2l2LWJydEtoenpKeDkzZjEtenVEbTJqeUdLY1VtVEJqOVhSVmF3dmtJQ2g4bUxHd3VySEdpRkIzT0RWVGFnRFZqLUVyU0hudUV4Z2JRUHfSAbYBQVVfeXFMUFlacm5DMFVlMUt6RC1PTmlwZ2ZDdDA4aVlTZGk1UUhuR0xDenFzUlN6emdkVUpKQXlwc1g3b05KOEZqOHVWM3RxT2hVaE9xM2R3Ym54V3dZLXh6RHRTWDN2OGw5ZW52V3N1bi1kS3RZTjdmTkh0bTRiWHBrVzR2WGZrMHFSN1JSa0dKT0VrSnBQREhiNy1EQmZTRGd3WVpnTGl6dGdCSm4wdFdidlUtUVZGcEJUeHc?oc=5",
         "source": "DN-News",
@@ -22,12 +28,6 @@
       }
     ],
     "Düren": [
-      {
-        "title": "Fundsachen Online-Auktion der Stadt Düren - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWkFrcWpmRDExcEx0SHh2Ull5Z2dNcndrVGs0RDVKSTA4WUdJWkZ1cFJ2NGdCbTFHUXdlNG9NWVhZazVxakMwZENqeVBPQm5CNzZRSGNYY0dsNkw3Y19BeGJPTVAtbkNwN0VyUUtTaFY2cVlzMDNJZnNkaGlESjhpZEhuRVZ5ZVRRWHc?oc=5",
-        "source": "Radio Rur",
-        "published_at": "2026-11-26T13:22:00+00:00"
-      },
       {
         "title": "Christian Düren: \"Ich bin gerade noch in einer Baby-Bubble\" - RTL.de",
         "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPelNDcU5ZQzFqSWx4aVlwU3RJWmthZXEySl9LUDBGbFk4VktZYW9WT0NyX3RIOExqcXBxZVZ2NjZ0RnhyUE1mTVU0bGg2NEZIZEFnMHk4RUNvQ0Y0dVM5Z29lM3ZWbDJONDBLUmtmTXlKaTRvb1dCem5pN0tZZWJ2TElVcUhBYVNvM18wSTdFak1pa2hJMDhyakFfYzBuRjVmQzJualdvNDlFaFBWZzVyaQ?oc=5",
@@ -41,30 +41,36 @@
         "published_at": "2026-11-27T09:20:00+00:00"
       },
       {
-        "title": "POL-DN: Polizei Düren schlägt bei den Powervolleys auf - Presseportal",
-        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE8wbmlBbGNXNmZ1d1pLTWlzNGNTOG9HUVZPcWxnVEFKZ3BzNzQ4ajhqaUF3eEJRbl9XQjV2NWY4elpWR1JmRmtISVlfelQySkxTOWJDZ19JSTV5aHlfT3pJ?oc=5",
-        "source": "Presseportal",
-        "published_at": "2026-11-24T08:32:10+00:00"
-      },
-      {
         "title": "Organisationshelfer für die Familie - HERZOG Kultur",
         "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9OblJUMzJ1a0E0MUo2WW1BWm1QTG1SbWVkOVcxRUV3ajZ3ZGlPWFFNYXN5bDVnWUZZYlNZWnFSbVQyVlNYM0JYU3N2eW5zQkYt?oc=5",
         "source": "HERZOG Kultur",
         "published_at": "2026-11-26T07:00:02+00:00"
       },
       {
+        "title": "POL-DN: Polizei Düren schlägt bei den Powervolleys auf - Presseportal",
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE8wbmlBbGNXNmZ1d1pLTWlzNGNTOG9HUVZPcWxnVEFKZ3BzNzQ4ajhqaUF3eEJRbl9XQjV2NWY4elpWR1JmRmtISVlfelQySkxTOWJDZ19JSTV5aHlfT3pJ?oc=5",
+        "source": "Presseportal",
+        "published_at": "2026-11-24T08:32:10+00:00"
+      },
+      {
         "title": "\"Es dreht sich alles um die Kleine\": Christian Düren spricht erstmals über seine Tochter - T-Online",
         "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPaGdFRVJnVGc2aTlHRFdNMXNpajBGOFJVMkdUXzhPSkY3cFpJdmNPaFBsZVhNVDFVM0VSWFdKeV9WcWQwcG5icC1paERSWWg3eXlLTHNiWGZydm5Hck1JS0NrVy1fcHBnREl1UnRfY2Fic3Y0Q1BUM2Rrel9uZTRyOWZNV0FzY2VZTzdTR3ZzelFzUUxZMGp4M3g3dzdsSXdyd0pzNEtIR1pjT295N1BpalBDSUgxNERVV1BsdGJNTnJlUE1EVGk2QlhFTXgzaDFR?oc=5",
         "source": "T-Online",
         "published_at": "2026-11-27T12:20:28+00:00"
+      },
+      {
+        "title": "Helios GRIZZLYS wollen gegen den Tabellenzweiten punkten - Hildesheimer Presse",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNSVI5X2N1blpkWjBWeXlJSWFyeEFDTUdVWjU5V2RmRV96cTlvZWtsNmduRFpoWjdTc0gwc2NHODNlLWhKa1pNTGVmd3ZFWU1aWDg4TTN4SkJ2UEx5eHRvVTdSNjlRQS05U3BtbXlKQ2lETGZMeGZ5Nk9LODJDQ3Z5TDVVYUNSbjNCWHRvQ1M4UmJqbExkOUZKLVZMOVJWdFFD?oc=5",
+        "source": "Hildesheimer Presse",
+        "published_at": "2026-11-27T10:08:00+00:00"
       }
     ],
     "Jülich": [
       {
-        "title": "Betrunkener Autofahrer in Jülich - Radio Rur",
-        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5SbW5laldwMmstaTVVeklvbHFERnY0a3ZLQU41cS02T0NfdF81Rk9fRFI5UWY4RVd4YWhXMElhVTV4RURHNmFGZE9LQm1jRm5faXJJRlpnWFVzM3MxeFhxMDJMaGZONjBFQWx6VndvUUdGS1ZwY1JyNm1SVlZMZw?oc=5",
+        "title": "Wohnungseinbrüche in Jülich - Radio Rur",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE95Z2VJcXVqNWR2NDU2dEVxVDBFbUNKTTJISDIwcm1Ja3haWXRMc0FvNml5ZEU5NnVIZlo4aHk4b3doY3o5Y1BRZGVmU2dhR3kzMnJPUXlsbFI0WExmc3Q4LUg2NzZzdVZPWGU1NDN5QVJha3ItQkFLbQ?oc=5",
         "source": "Radio Rur",
-        "published_at": "2026-11-26T13:25:00+00:00"
+        "published_at": "2026-11-27T13:49:00+00:00"
       },
       {
         "title": "Neugier braucht Freiheit - HERZOG Kultur",
@@ -79,10 +85,10 @@
         "published_at": "2026-11-26T15:00:16+00:00"
       },
       {
-        "title": "Nachbarschaftskaffee - HERZOG Kultur",
-        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1GUTFDRnZnMC1BX2RwVmR5Wm9qOTJuT0hQVGlFV2swbjZpN21MSFJTM1Y3QW1nMmgwN2NYS0tfVDJZTGRWRzhKOUhyWi1Ic2RS?oc=5",
-        "source": "HERZOG Kultur",
-        "published_at": "2026-11-27T15:00:16+00:00"
+        "title": "Radfahrer bei Verkehrsunfall in Jülich leicht verletzt - DN-News",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQMW8tY3IzYlU5NlVIY2ZaWURBZjIxa2dKOGhQVENiUFhIb1NmN0FCdDA1aXVOMlJlTHA5ODRZVHJwWXdpZEE3aTlaZWFhci1qeGpJQWxvdGVyTUtqalNWSHZHVkF3SWxvVnJQQzNBaWV6Rzg4NmtCc2lBdm5ySkY4N3FnWmpaR0pQcW8xUy1RaTZlLUxzSXpCVTFFTVphR2dzeGw0QlNPNmhlQTRWbjNfTdIBuAFBVV95cUxOME9oZVpZaW12OVJpVVFuQVBKY3VVR25sV3AyOXJIa3hVX190c2hYalJwNWRvalF5Tl9jZTlhdllzOVJpc3FNWEsxVzdacENNZGJIeVk4MkZaRHFWSEttdURlSEkxWnhUTGVJWXh3MUJhOXAtU3VjUjBYOHFyZGJsYnNObmpuR015amlGQXJNZkJ2TTZBdmNXLXRQa0RxdlFhNFJBTUZqMmRSQ1VacUQ2empqQXZwZlc0?oc=5",
+        "source": "DN-News",
+        "published_at": "2026-11-27T09:49:24+00:00"
       },
       {
         "title": "Polizei-News Jülich, 27.11.26: Radfahrer bei Verkehrsunfall in Jülich leicht verletzt - News.de",
@@ -91,10 +97,10 @@
         "published_at": "2026-11-27T09:38:02+00:00"
       },
       {
-        "title": "Radfahrer bei Verkehrsunfall in Jülich leicht verletzt - meinestadt.de",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE90TDMyaEhpWkh5X2h6dWpwd3NLazgzSGxNSUg0SFR3UGx0UTBOZjc1eWJheVZjeldvRklmTGU1a2FRTGZQWkh4ejYtQ2pWUzhCNFZWbFRpOEhWYXdBZ2JqVjNBczZKLVNFZWt6NVZPc2ZtY2Z6R2tjYg?oc=5",
-        "source": "meinestadt.de",
-        "published_at": "2026-11-27T09:04:20+00:00"
+        "title": "Polizei-News Jülich, 27.11.26: Tageswohnungseinbrüche in Jülich - News.de",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPa2d3TWI1ZkJQbldobFNtRmlkSklQOXJVN2xmbW1hLXA5Sjhxcjk1Z0UxUkdJcU4xQURhMXhiODNUUUxIWHNEX2g3cFBHVkVSU3Jmdi1PSmVxcnQ1VHhXRGpvYkY2aS1RZUFiS1lfSXYwandid0FyNzJXTjFSRmxLaGlFMFFzLUpxUUlaS01zY0dHNFpiak1RbV95TUZ6N2huSS1faS1aYw?oc=5",
+        "source": "News.de",
+        "published_at": "2026-11-27T09:39:03+00:00"
       }
     ],
     "Aachen": [
@@ -129,10 +135,10 @@
         "published_at": "2026-11-27T12:15:32+00:00"
       },
       {
-        "title": "Heiner Schepp - Aachener Zeitung",
-        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBIeWZNdXVTSDIzQXRtS2oxWW80UnBQY3dKeUhSYmp2VEs5dlFXWlFSTGdBWWRJWWp0MWpnRVlSM25QcEJ2dHdZTjQ5MVhGTWRmRmlOTTVfbmxPcXZBbTVNdE1BR1RMU09hZ1ZWMDRPVQ?oc=5",
-        "source": "Aachener Zeitung",
-        "published_at": "2026-11-25T11:30:00+00:00"
+        "title": "1. FC Saarbrücken gegen Alemannia Aachen: Der Liveticker zum Spiel - SOL.DE",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOUTdzd2JLNVd4ZjFDWi0yMWc2cHVzcGJmVnFYY1BuMXhqOUNzV1RKVTJFM3VTdjl0SjVHSlRGSi1sNnM3MTcteklfLTR3YlBxaVAyZ0lZNHQ0QWJMRklxMUtPT0paTWpvaXp1bU04OGgtZ0w3R21BZ1BSMzVQWG5LS0JOLVRqdFZNQkJ0Q1k4MUxaOUJYblprOUN3S0d5M21pUUc3VVhUQjdnTDZNWUJB?oc=5",
+        "source": "SOL.DE",
+        "published_at": "2026-11-28T06:19:16+00:00"
       }
     ]
   }
