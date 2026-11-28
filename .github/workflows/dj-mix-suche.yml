@@ -1,0 +1,43 @@
+name: DJ Mix Bibliothek Suche
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/dj-mix-suche.yml']
+permissions:
+  contents: read
+concurrency: dj-mix-suche
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,datetime,random,unicodedata,re,time
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def playlists(): return {x['title']:x['id'] for x in records(api('/playlists')) if x.get('title') and x.get('id')}
+          def norm(s):
+              return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',str(s).lower()).encode('ascii','ignore').decode())
+          seen=set()
+          for term in ['Megamix','Mega Mix','DJ Mix','Live Mix','Continuous Mix','Nonstop Mix','Mashup','Yearmix','Year Mix','90s Mix','80s Mix','Club Mix','DJ Set','Dance Mix','Disco Mix','Minimix']:
+              for field in ['title','artist']:
+                  try:
+                      for x in records(api('/tracks?'+urllib.parse.urlencode({field:term,'type':'song'}))):
+                          if x.get('type')=='song' and not x.get('private') and isinstance(x.get('id'),int) and x.get('duration',0)>=480 and x['id'] not in seen:
+                              seen.add(x['id'])
+                              print('MIX',json.dumps({k:x.get(k) for k in ['id','artist','title','duration','genre']},ensure_ascii=False),flush=True)
+                  except Exception as e: print('Search error',term,field,str(e),flush=True)
+          print('FOUND',len(seen),'long mixes; read only')
+          PY
