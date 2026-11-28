@@ -67,7 +67,13 @@ jobs:
           print('Music duration',sum(x['duration'] for y,n,x in selected))
           title='POWER RADIO – Jahreschartshow Teil 2 (2009–2017)'
           assert not any(x.get('title')==title for x in records(api('/playlists'))), 'Already exists'
+          previous_uploads=dict([[0,-20884505],[1,-20884506],[2,-20884507],[3,-20884509],[4,-20884510],[5,-20884512],[6,-20884513],[7,-20884515],[8,-20884516],[9,-20884518],[10,-20884519],[11,-20884521],[12,-20884522],[13,-20884523],[14,-20884525],[15,-20884526],[16,-20884528],[17,-20884529],[18,-20884531],[19,-20884532],[20,-20884534],[21,-20884536],[22,-20884538],[23,-20884539],[24,-20884540],[25,-20884542],[26,-20884543],[27,-20884545],[28,-20884546],[29,-20884548],[30,-20884549],[31,-20884551],[32,-20884552],[33,-20884555],[34,-20884557],[35,-20884560],[36,-20884561],[37,-20884563],[38,-20884564],[39,-20884566],[40,-20884567],[41,-20884570],[42,-20884571],[43,-20884573],[44,-20884574],[45,-20884576],[46,-20884577],[47,-20884581],[48,-20884585],[49,-20884587],[50,-20884588],[51,-20884591],[52,-20884593],[53,-20884594],[54,-20884596],[55,-20884598],[56,-20884600],[57,-20884601],[58,-20884603],[59,-20884605],[60,-20884606],[61,-20884608],[62,-20884611],[63,-20884614],[64,-20884615],[65,-20884618],[66,-20884619],[67,-20884620],[68,-20884623],[69,-20884624],[70,-20884627],[71,-20884628],[72,-20884630],[73,-20884632],[74,-20884634],[75,-20884635],[76,-20884640],[77,-20884642],[78,-20884644],[79,-20884645],[80,-20884647],[81,-20884648],[82,-20884649],[83,-20884654],[84,-20884655],[85,-20884657],[86,-20884658],[87,-20884660],[88,-20884661],[89,-20884665],[90,-20884666],[91,-20884668],[92,-20884669],[93,-20884670],[94,-20884671],[95,-20884672],[96,-20884674],[97,-20884675],[98,-20884676],[99,-20884677],[100,-20884679],[101,-20884680],[102,-20884682],[103,-20884683],[104,-20884685],[105,-20884686],[106,-20884688],[107,-20884689],[108,-20884690],[109,-20884692],[110,-20884693],[111,-20884695],[112,-20884696],[113,-20884701],[114,-20884704],[115,-20884709],[116,-20884712],[117,-20884715],[118,-20884718],[119,-20884720],[120,-20884722],[121,-20884724],[122,-20884726],[123,-20884728],[124,-20884729],[125,-20884730],[126,-20884732],[127,-20884733],[128,-20884734],[129,-20884735],[130,-20884736],[131,-20884737],[132,-20884738],[133,-20884739]])
           def mod(script,i):
+              if i in previous_uploads:
+                  found=[x for x in records(api('/tracks/'+str(previous_uploads[i]))) if isinstance(x.get('id'),int) and x['id']>0 and x.get('private') is True and x.get('duration',0)>0 and x.get('title')==f'Jahreschartshow Moderation {i:03}']
+                  if len({x['id'] for x in found})==1:
+                      print('Reusing confirmed moderation',i,flush=True)
+                      return found[0]['id']
               f=f'chart2-{uuid.uuid4().hex}-{i:03}.mp3'
               subprocess.run(['edge-tts','--voice','de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural','--rate=+5%','--text',script,'--write-media',f],check=True)
               raw=subprocess.check_output(['curl','-sS','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
@@ -94,8 +100,11 @@ jobs:
           expected.append(mod('Das war der Countdown unseres zweiten Teils, von zweitausendneun bis zweitausendsiebzehn. Jetzt gibt es noch weitere Hits aus diesen Jahren.',len(selected)+1))
           seconds=sum(x['duration'] for y,n,x in selected)
           for tid in expected:
-              if tid not in used: seconds+=api('/tracks/'+str(tid))['duration']
-          assert seconds<=32400, 'Show exceeds nine hours'
+              if tid not in used:
+                  durations={x['duration'] for x in records(api('/tracks/'+str(tid))) if x.get('id')==tid and isinstance(x.get('duration'),(int,float)) and x['duration']>0}
+                  assert len(durations)==1, ('Missing moderation duration',tid)
+                  seconds+=next(iter(durations))
+          assert seconds<=32820, 'Show exceeds nine hours'
           for (y,n),(a,t) in sorted(filler.items(),key=lambda z:(z[0][1],z[0][0])):
               if seconds>=32400: break
               artist=re.split(r' feat\.? | ft\.? ',a,flags=re.I)[0]
