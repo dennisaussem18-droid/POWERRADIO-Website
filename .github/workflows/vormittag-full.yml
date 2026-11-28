@@ -47,6 +47,10 @@ jobs:
           import re,unicodedata,urllib.parse
           edition=json.load(open('radio/vormittag-edition.json',encoding='utf-8'))
           assert edition['date']==day, 'Missing fresh daily editorial input; existing schedule preserved'
+          def track(tid):
+              matches=[x for x in records(api(base+'/tracks/'+str(tid))) if x.get('id')==tid and 'duration' in x]
+              assert len(matches)==1,'Track metadata ambiguous'
+              return matches[0]
           def norm(v):
               return ''.join(c for c in unicodedata.normalize('NFKD',str(v)).casefold() if c.isalnum())
           def key(x): return (norm(x.get('artist','')),norm(x.get('title','')))
@@ -60,12 +64,8 @@ jobs:
           prior_ids=list(dict.fromkeys(e['track_id'] for e in prior['entries']))
           old=[]
           for tid in prior_ids:
-              x=api(base+'/tracks/'+str(tid))
+              x=track(tid)
               if valid(x) and key(x) not in {key(y) for y in old}: old.append(x)
-          print('BASELINE DIAGNOSTIC',previous_id,prior.get('title'),len(prior_ids),len(old))
-          for tid in prior_ids[:3]:
-              sample=api(base+'/tracks/'+str(tid))
-              print('BASELINE TRACK',json.dumps(sample,ensure_ascii=False))
           assert len(old)>=30,'Yesterday music baseline unavailable'
           oldkeys={key(x) for x in old}
           chartkeys={tuple(norm(v) for v in pair) for pair in edition['current_chart_candidates']}
@@ -77,7 +77,7 @@ jobs:
               if not matches: continue
               x=sorted(matches,key=lambda t:t['id'])[0]
               # Resolve the ID again: search results alone are not playability evidence.
-              x=api(base+'/tracks/'+str(x['id']))
+              x=track(x['id'])
               if valid(x) and key(x)==(norm(artist),norm(song)) and key(x) not in oldkeys|{key(t) for t in fresh}:
                   fresh.append(x)
           print('LIBRARY SEARCH VERIFIED',len(edition['candidates']),'queries;',len(fresh),'new exact playable matches; baseline',previous_id,len(old))
@@ -106,7 +106,7 @@ jobs:
           if len(p)!=1: raise SystemExit('Playlist nicht eindeutig')
           path=base+'/playlists/'+str(p[0]['id'])
           expected=[]
-          mod_seconds=sum(api(base+'/tracks/'+str(m)).get('duration',0) for m in mods)
+          mod_seconds=sum(track(m)['duration'] for m in mods)
           target=14400-mod_seconds
 
           # Choose a set with ~60% retained songs and ~40% genuinely new songs.
