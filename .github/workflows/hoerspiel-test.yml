@@ -1,4 +1,4 @@
-name: POWER RADIO Hoerspiel Test
+name: POWER RADIO Stimmen-Test 2
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
 jobs:
   hoerspiel:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     steps:
       - name: Python einrichten
@@ -21,12 +21,54 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
-          pip install chatterbox-tts
+          pip install chatterbox-tts requests
 
-      - name: Deutsche Sprachprobe erzeugen
+      - name: Referenzstimme herunterladen
         run: |
           mkdir -p output
 
+          python - <<'PY'
+          import requests
+          import subprocess
+
+          url = "https://datasets-server.huggingface.co/rows"
+          params = {
+              "dataset": "Thorsten-Voice/TV-44kHz-Full",
+              "config": "TV-2022.10-Neutral",
+              "split": "train",
+              "offset": 0,
+              "length": 30
+          }
+
+          r = requests.get(url, params=params, timeout=120)
+          r.raise_for_status()
+
+          rows = [x["row"] for x in r.json()["rows"]]
+          rows = sorted(
+              rows,
+              key=lambda x: x.get("durationSeconds", 0),
+              reverse=True
+          )
+
+          audio = rows[0]["audio"][0]["src"]
+          r = requests.get(audio, timeout=120)
+          r.raise_for_status()
+
+          with open("reference_original.wav", "wb") as f:
+              f.write(r.content)
+
+          subprocess.run([
+              "ffmpeg", "-y",
+              "-i", "reference_original.wav",
+              "-af", "loudnorm",
+              "-ar", "24000",
+              "-ac", "1",
+              "reference.wav"
+          ], check=True)
+          PY
+
+      - name: Drei Stimmenvarianten erzeugen
+        run: |
           cat > test.py <<'PY'
           import torch
           import torchaudio
@@ -39,38 +81,49 @@ jobs:
           )
 
           text = (
-              "POWER RADIO präsentiert: Die Kriminacht. "
-              "Der Doppelmord in der Rue Morgue. "
+              "POWER RADIO präsentiert die Kriminacht. "
               "Paris lag in tiefem Schlaf. "
-              "Doch plötzlich durchbrach ein entsetzlicher "
-              "Schrei die Stille der Nacht. "
-              "Ein geheimnisvolles Verbrechen sollte "
-              "die ganze Stadt erschüttern."
+              "Die Straßen waren menschenleer. "
+              "Doch plötzlich durchbrach ein Schrei "
+              "die Stille der Nacht. "
+              "Was war hinter diesen verschlossenen "
+              "Türen geschehen?"
           )
 
-          wav = model.generate(
-              text,
-              language_id="de",
-              exaggeration=0.6,
-              cfg_weight=0.5
-          )
+          variants = [
+              ("01_Ruhig", 0.3, 0.6),
+              ("02_Dramatisch", 0.8, 0.4),
+              ("03_Geheimnisvoll", 0.5, 0.7)
+          ]
 
-          torchaudio.save(
-              "output/hoerprobe.wav",
-              wav.cpu(),
-              model.sr
-          )
+          for name, emotion, cfg in variants:
+              torch.manual_seed(42)
+
+              wav = model.generate(
+                  text,
+                  language_id="de",
+                  audio_prompt_path="reference.wav",
+                  exaggeration=emotion,
+                  cfg_weight=cfg
+              )
+
+              torchaudio.save(
+                  f"output/{name}.wav",
+                  wav.cpu(),
+                  model.sr
+              )
           PY
 
           python test.py
 
-          ffmpeg -y -i output/hoerprobe.wav \
-            -af loudnorm=I=-16:TP=-1.5:LRA=11 \
-            -codec:a libmp3lame -b:a 192k \
-            output/POWER_RADIO_Hoerprobe.mp3
+          for file in output/*.wav; do
+            ffmpeg -y -i "$file" \
+              -af loudnorm=I=-16:TP=-1.5:LRA=11 \
+              -b:a 192k "${file%.wav}.mp3"
+          done
 
-      - name: MP3 bereitstellen
+      - name: Hoerproben bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: POWER-RADIO-Hoerprobe
-          path: output/POWER_RADIO_Hoerprobe.mp3
+          name: POWER-RADIO-Stimmentest-2
+          path: output/*.mp3
