@@ -1,4 +1,4 @@
-name: POWER RADIO Stimmen-Test 2
+name: POWER RADIO Hoerspiel Demo
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
 jobs:
   hoerspiel:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
 
     steps:
       - name: Python einrichten
@@ -21,7 +21,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
-          pip install chatterbox-tts requests
+          pip install chatterbox-tts requests pydub huggingface_hub
 
       - name: Referenzstimme herunterladen
         run: |
@@ -67,63 +67,74 @@ jobs:
           ], check=True)
           PY
 
-      - name: Drei Stimmenvarianten erzeugen
+      - name: Hoerspiel produzieren
         run: |
-          cat > test.py <<'PY'
-          import torch
-          import torchaudio
+          cat > production.py <<'PY'
+          import torch, torchaudio, re
+          from huggingface_hub import HfApi, hf_hub_download
           from chatterbox.mtl_tts import ChatterboxMultilingualTTS
-
+          from pydub import AudioSegment, effects
+          from pydub.generators import Sine, WhiteNoise
           torch.set_num_threads(4)
-
-          model = ChatterboxMultilingualTTS.from_pretrained(
-              device="cpu"
-          )
-
-          text = (
-              "POWER RADIO präsentiert die Kriminacht. "
-              "Paris lag in tiefem Schlaf. "
-              "Die Straßen waren menschenleer. "
-              "Doch plötzlich durchbrach ein Schrei "
-              "die Stille der Nacht. "
-              "Was war hinter diesen verschlossenen "
-              "Türen geschehen?"
-          )
-
-          variants = [
-              ("01_Ruhig", 0.3, 0.6),
-              ("02_Dramatisch", 0.8, 0.4),
-              ("03_Geheimnisvoll", 0.5, 0.7)
+          repo = "Fraunhofer-IEM/designed-voices-de-en"
+          files = HfApi().list_repo_files(repo, repo_type="dataset")
+          candidates = [p for p in files if p.lower().endswith(".wav") and "reference" in p.lower()]
+          males = [p for p in candidates if re.search(r'de-m', p)]
+          females = [p for p in candidates if re.search(r'de-f', p)]
+          assert len(males) >= 2 and females, f"Keine passenden Referenzen: {candidates[:20]}"
+          voices = {"Erzaehler": "reference.wav"}
+          for role, path in zip(["Dupin","Kommissar","Zeugin"], [males[0],males[-1],females[0]]):
+              voices[role] = hf_hub_download(repo,path,repo_type="dataset")
+          model = ChatterboxMultilingualTTS.from_pretrained(device="cpu")
+          def silence(ms):
+              return AudioSegment.silent(duration=ms,frame_rate=24000)
+          def noise(ms, cutoff, gain):
+              return WhiteNoise().to_audio_segment(duration=ms).low_pass_filter(cutoff).fade_out(min(ms,500)).apply_gain(gain)
+          scene = silence(3000)
+          lines = [
+              ("Erzaehler","POWER RADIO präsentiert die Kriminacht. Ein Hörspiel mit künstlich erzeugten Stimmen."),
+              ("Erzaehler","Der Doppelmord in der Rue Morgue. Nach Edgar Allan Poe. Paris lag in tiefem Schlaf. Doch plötzlich durchbrach ein Schrei die Stille der Nacht."),
+              ("Donner",""),
+              ("Schritte",""),
+              ("Tuer",""),
+              ("Kommissar","Monsieur Dupin! Endlich sind Sie da. Wir stehen vor einem vollkommenen Rätsel."),
+              ("Dupin","Erzählen Sie mir genau, was passiert ist. Lassen Sie keine Einzelheit aus."),
+              ("Kommissar","Die Tür war von innen verschlossen. Niemand konnte das Zimmer verlassen."),
+              ("Zeugin","Ich habe Schreie gehört! Zwei Stimmen. Eine davon klang überhaupt nicht menschlich!"),
+              ("Dupin","Nicht menschlich, sagen Sie? Das ist ausgesprochen interessant."),
+              ("Donner",""),
+              ("Erzaehler","Dupin trat langsam an das Fenster. Sein Blick blieb an einem kleinen Gegenstand auf dem Fensterbrett hängen."),
+              ("Kommissar","Haben Sie etwas entdeckt?"),
+              ("Dupin","Vielleicht. Herr Kommissar, ich glaube, wir suchen nach dem falschen Täter."),
+              ("Erzaehler","Ein Geheimnis, das ganz Paris erschüttern sollte, nahm seinen Anfang."),
+              ("Erzaehler","Stimmreferenzen von Fraunhofer I E M, Creative Commons Namensnennung vier Punkt null, und Thorsten Voice.")
           ]
-
-          for name, emotion, cfg in variants:
-              torch.manual_seed(42)
-
-              wav = model.generate(
-                  text,
-                  language_id="de",
-                  audio_prompt_path="reference.wav",
-                  exaggeration=emotion,
-                  cfg_weight=cfg
-              )
-
-              torchaudio.save(
-                  f"output/{name}.wav",
-                  wav.cpu(),
-                  model.sr
-              )
+          for role, text in lines:
+              if role == "Donner":
+                  scene += noise(2500,120,-14)
+              elif role == "Schritte":
+                  for _ in range(6):
+                      scene += noise(140,250,-14)+silence(370)
+              elif role == "Tuer":
+                  scene += noise(450,700,-14)
+              else:
+                  print(role,text,flush=True)
+                  wav = model.generate(text,language_id="de",audio_prompt_path=voices[role],exaggeration=0.5,cfg_weight=0.5)
+                  torchaudio.save("speech.wav",wav.cpu(),model.sr)
+                  scene += effects.normalize(AudioSegment.from_wav("speech.wav")).apply_gain(-3)
+              scene += silence(850)
+          scene += silence(5000)
+          duration = len(scene)
+          music = Sine(55).to_audio_segment(duration=duration).overlay(Sine(82.41).to_audio_segment(duration=duration).apply_gain(-6)).apply_gain(-34).fade_in(3000).fade_out(5000)
+          rain = WhiteNoise().to_audio_segment(duration=duration).high_pass_filter(1500).low_pass_filter(6500).apply_gain(-35).fade_in(2000).fade_out(4000)
+          effects.normalize(scene.overlay(music).overlay(rain),headroom=1).export("output/POWER_RADIO_Kriminacht_Demo.mp3",format="mp3",bitrate="192k")
+          with open("output/LIZENZEN.txt","w") as f:
+              f.write("Thorsten-Voice: CC0\nFraunhofer IEM: designed-voices-de-en, CC BY 4.0, used for speech synthesis\nhttps://creativecommons.org/licenses/by/4.0/\nhttps://huggingface.co/datasets/"+repo+"\nMusik und Effekte: synthetisch erzeugt\nText: freie Poe-Bearbeitung\n")
           PY
+          python production.py
 
-          python test.py
-
-          for file in output/*.wav; do
-            ffmpeg -y -i "$file" \
-              -af loudnorm=I=-16:TP=-1.5:LRA=11 \
-              -b:a 192k "${file%.wav}.mp3"
-          done
-
-      - name: Hoerproben bereitstellen
+      - name: Hoerspiel bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: POWER-RADIO-Stimmentest-2
-          path: output/*.mp3
+          name: POWER-RADIO-Kriminacht-Demo
+          path: output/
