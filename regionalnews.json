@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T07:34:20+01:00",
+  "updated_at": "2026-11-28T08:24:22+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -42,6 +42,14 @@
         "url": "https://www.radiorur.de/artikel/keine-hundeleichen-in-arnoldsweiler-am-feldweg-2817801",
         "source": "Radio Rur",
         "published_at": "2026-11-26T16:53:00+01:00",
+        "priority": "normal"
+      },
+      {
+        "title": "Stadt Düren versteigert Fundsachen online",
+        "summary": "Seit Donnerstagabend läuft die Online-Versteigerung des städtischen Fundbüros mit Fahrrädern und weiteren Fundsachen. Die Preise sinken über zehn Tage; sperrige Gegenstände müssen vor Ort abgeholt werden.",
+        "url": "https://www.radiorur.de/artikel/fundsachen-online-auktion-der-stadt-dueren-2817488",
+        "source": "Radio Rur",
+        "published_at": "2026-11-26T14:22:00+01:00",
         "priority": "normal"
       },
       {
@@ -170,14 +178,6 @@
         "url": "https://www.radiorur.de/artikel/weihnachtsbaeume-im-kreis-dueren-werden-teurer-2814793",
         "source": "Radio Rur",
         "published_at": "2026-11-24T06:54:00+01:00",
-        "priority": "normal"
-      },
-      {
-        "title": "Powervolleys auf Tabellenplatz zwei",
-        "summary": "Nach einem 3:0-Auswärtssieg in Freiburg rücken die Dürener in der Volleyball-Bundesliga auf Rang zwei vor.",
-        "url": "https://www.radiorur.de/artikel/swd-powervolleys-dueren-springen-auf-platz-zwei-2813490",
-        "source": "Radio Rur",
-        "published_at": "2026-11-23T06:39:00+01:00",
         "priority": "normal"
       }
     ],
