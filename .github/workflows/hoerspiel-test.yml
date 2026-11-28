@@ -112,16 +112,15 @@ jobs:
                   scene += silence(400)
               else:
                   print(role,text,flush=True)
-                  wav = model.generate(text,language_id="de",audio_prompt_path=voices[role],exaggeration=0.5,cfg_weight=0.5)
+                  wav = model.generate(text,language_id="de",audio_prompt_path=voices[role],exaggeration=(0.85 if role == "Zeugin" else 0.65 if role == "Kommissar" else 0.35 if role == "Dupin" else 0.5),cfg_weight=(0.35 if role == "Zeugin" else 0.55))
                   torchaudio.save("speech.wav",wav.cpu(),model.sr)
                   scene += effects.normalize(AudioSegment.from_wav("speech.wav")).apply_gain(-3)
               scene += silence(850)
           scene += silence(5000)
           duration = len(scene)
-          music = Sine(55).to_audio_segment(duration=duration).overlay(Sine(82.41).to_audio_segment(duration=duration).apply_gain(-6)).apply_gain(-34).fade_in(3000).fade_out(5000)
-          effects.normalize(scene.overlay(music[:3000].fade_out(1000),position=0).overlay(music[-5000:].fade_in(1000),position=duration-5000),headroom=1).export("output/POWER_RADIO_Kriminacht_Demo.mp3",format="mp3",bitrate="192k")
+          effects.normalize(scene,headroom=1).export("output/POWER_RADIO_Kriminacht_Demo.mp3",format="mp3",bitrate="192k")
           with open("output/LIZENZEN.txt","w") as f:
-              f.write("Thorsten-Voice: CC0\nFraunhofer IEM: designed-voices-de-en, CC BY 4.0, used for speech synthesis\nhttps://creativecommons.org/licenses/by/4.0/\nhttps://huggingface.co/datasets/"+repo+"\nMusik: synthetisch erzeugt; keine Geraeusche in dieser Testfassung\nText: freie Poe-Bearbeitung\n")
+              f.write("Thorsten-Voice: CC0\nFraunhofer IEM: designed-voices-de-en, CC BY 4.0, used for speech synthesis\nhttps://creativecommons.org/licenses/by/4.0/\nhttps://huggingface.co/datasets/"+repo+"\nNur Sprache, keine Musik oder Effekte\nText: freie Poe-Bearbeitung\n")
           PY
           python production.py
 
