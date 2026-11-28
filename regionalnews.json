@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T08:24:22+01:00",
+  "updated_at": "2026-11-28T09:49:03+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -20,6 +20,14 @@
       }
     ],
     "Düren": [
+      {
+        "title": "Stadt untersagt Nutzung einer Problemimmobilie",
+        "summary": "Bei einer Kontrolle stellte die Dürener Task Force erhebliche Brandschutzmängel, Schimmel und Müllablagerungen fest. Für große Teile des Hauses wurde die Nutzung untersagt. 28 Bewohner, darunter 14 Kinder, sind bereits in städtischen Unterkünften untergebracht. Der Vermieter soll die Mängel beseitigen.",
+        "url": "https://www.radiorur.de/artikel/task-force-dueren-kontrolliert-schrottimmobilien-2818624",
+        "source": "Radio Rur",
+        "published_at": "2026-11-27T14:41:00+01:00",
+        "priority": "normal"
+      },
       {
         "title": "Polizei beschlagnahmt Führerschein nach gefährlichen Fahrmanövern",
         "summary": "Die Polizei Düren berichtet von erheblichen Geschwindigkeitsüberschreitungen und gefährlichen Fahrmanövern auf der B56 und im Stadtgebiet. Der Führerschein des Fahrers wurde beschlagnahmt.",
@@ -170,14 +178,6 @@
         "url": "https://www.presseportal.de/blaulicht/pm/8/6396751",
         "source": "Polizei Düren",
         "published_at": "2026-11-24T10:00:00+01:00",
-        "priority": "normal"
-      },
-      {
-        "title": "Weihnachtsbäume werden teurer",
-        "summary": "Für Nordmanntannen werden laut Radio Rur 25 bis 33 Euro pro Meter erwartet. Gestiegene Produktionskosten treiben die Preise.",
-        "url": "https://www.radiorur.de/artikel/weihnachtsbaeume-im-kreis-dueren-werden-teurer-2814793",
-        "source": "Radio Rur",
-        "published_at": "2026-11-24T06:54:00+01:00",
         "priority": "normal"
       }
     ],
