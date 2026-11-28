@@ -1,0 +1,89 @@
+name: Saturday Night Mix
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 6'
+  push:
+    paths: ['.github/workflows/saturday-night-mix.yml']
+permissions:
+  contents: read
+concurrency: saturday-night-mix
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          LAUTFM_TOKEN: ${{ secrets.LAUTFM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.parse,datetime,random,unicodedata,re,time
+          from zoneinfo import ZoneInfo
+          def api(path,method='GET',body=None):
+              req=urllib.request.Request('https://api.radioadmin.laut.fm/stations/1687'+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+os.environ['LAUTFM_TOKEN'],'Origin':'LautfmMCP','Accept':'application/json','Content-Type':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          def records(o):
+              if isinstance(o,dict):
+                  yield o
+                  for v in o.values(): yield from records(v)
+              elif isinstance(o,list):
+                  for v in o: yield from records(v)
+          def playlists(): return {x['title']:x['id'] for x in records(api('/playlists')) if x.get('title') and x.get('id')}
+          day=datetime.datetime.now(ZoneInfo('Europe/Berlin')).date()
+          assert day.weekday()==5, 'Saturday only'
+          ids=[3703336,2590705,834139,1456949,3328651,3152450,15371808,105289,6452668,5442827,5812409,3843367,10113756,4884531,13458139,1126521,6594463,1767089,15371802,9602612,10481372,10240508,16975191,16975636,14880943,12039525,19140611,7874330,572427,5812268,248951,572392,15476211,15476205,15476210,5812624]
+          special=[1,19896219,19893862,19849290,20662554]
+          meta={}
+          for i in range(0,len(ids+special),25):
+              for x in records(api('/tracks/'+','.join(map(str,(ids+special)[i:i+25])))):
+                  if isinstance(x.get('id'),int) and x.get('duration',0)>0: meta[x['id']]=x
+          ids=[t for t in ids if t in meta and meta[t].get('type')=='song' and not meta[t].get('private')]
+          random.Random(str(day)).shuffle(ids)
+          assert len(ids)>=12
+          used=set();blocks=[]
+          for n in range(2):
+              seq=[1,19896219]
+              seconds=sum(meta[t]['duration'] for t in seq)
+              while seconds<3600:
+                  options=[t for t in ids if t not in used and all(meta[t].get('artist')!=meta[s].get('artist') for s in used)]
+                  assert options
+                  remaining=3600-seconds
+                  t=options[0] if remaining>1500 else min(options,key=lambda t:abs(meta[t]['duration']-remaining))
+                  used.add(t);seq.append(t);seconds+=meta[t]['duration']
+                  if len(seq)==4:
+                      j=20662554 if n==0 else 19893862
+                      seq.append(j);seconds+=meta[j]['duration']
+              title=f'Saturday Night Mix – {day} – Stunde {n+1}'
+              pid=playlists().get(title)
+              if not pid:
+                  api('/playlists','POST',dict(title=title,color='#9B59B6',description='Dein Start in den Samstagabend – Megamixe, Dance und Partybeats',shuffled=False))
+                  pid=playlists()[title]
+              path='/playlists/'+str(pid)
+              old=[x['track_id'] for x in api(path)['entries']]
+              assert old==seq[:len(old)]
+              for t in seq[len(old):]: api(path,'POST',dict(track_id=t))
+              actual=api(path)
+              assert [x['track_id'] for x in actual['entries']]==seq and actual['duration']>=3600 and actual['shuffled'] is False
+              blocks.append(pid)
+              print('VERIFIED MIX HOUR',n+1,pid,actual['duration'],[(meta[t].get('artist'),meta[t].get('title')) for t in seq],flush=True)
+          def expand(s):
+              a=[None]*168
+              for e in s['entries']:
+                  for i in range(e['slot'],e['slot']+e['duration']):
+                      assert a[i] is None
+                      a[i]=e['playlist_id']
+              return a
+          old=api('/schedule');a=expand(old);b=a.copy()
+          slots=[140,141]
+          for n,i in enumerate(slots): b[i]=blocks[n]
+          entries=[]
+          for i,v in enumerate(b):
+              if v is None: continue
+              if entries and i%24 and entries[-1]['playlist_id']==v and entries[-1]['slot']+entries[-1]['duration']==i: entries[-1]['duration']+=1
+              else: entries.append(dict(playlist_id=v,slot=i,duration=1))
+          assert expand(api('/schedule'))==a
+          api('/schedule','PATCH',dict(base_playlist_id=old['base_playlist_id'],entries=entries))
+          assert expand(api('/schedule'))==b
+          print('VERIFIED SATURDAY 20-22',slots,'other slots unchanged')
+          PY
