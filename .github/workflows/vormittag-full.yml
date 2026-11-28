@@ -40,7 +40,7 @@ jobs:
                   for v in o.values(): yield from records(v)
               elif isinstance(o,list):
                   for v in o: yield from records(v)
-          title='POWER RADIO – Der Vormittag '+day+' (Redaktion)'
+          title='POWER RADIO – Der Vormittag '+day+' (Redaktion 2)'
           def playlists():
               return [x for x in records(api(base+'/playlists')) if x.get('title')==title and x.get('id')]
           if playlists(): raise SystemExit('Dated edition already exists; inspect it before retrying')
@@ -53,7 +53,12 @@ jobs:
               return matches[0]
           def norm(v):
               return ''.join(c for c in unicodedata.normalize('NFKD',str(v)).casefold() if c.isalnum())
+          def identity(x):
+              artist=re.split(r'\s+(?:feat\.?|ft\.?)\s+',str(x.get('artist','')),flags=re.I)[0]
+              title=re.sub(r'\s*\((?:radio edit|single edit|original mix)\)\s*','',str(x.get('title','')),flags=re.I)
+              return norm(artist),norm(title)
           def key(x): return (norm(x.get('artist','')),norm(x.get('title','')))
+          originalkeys={identity(dict(artist=a,title=t)) for a,t in edition['original_artist_pairs']}
           def valid(x):
               return isinstance(x.get('id'),int) and x['id']>1 and x.get('type')=='song' and 100<=x.get('duration',0)<=480 and all(key(x)) and not any(g in str(x.get('genre','')).lower() for g in ('schlager','volksmusik','ballermann')) and not any(v in str(x.get('title','')).lower() for v in ('karaoke','tribute','cover version','live version','sped up','slowed'))
           all_lists=list(records(api(base+'/playlists')))
@@ -65,9 +70,9 @@ jobs:
           old=[]
           for tid in prior_ids:
               x=track(tid)
-              if valid(x) and key(x) not in {key(y) for y in old}: old.append(x)
+              if valid(x) and identity(x) in originalkeys and identity(x) not in {identity(y) for y in old}: old.append(x)
           assert len(old)>=30,'Yesterday music baseline unavailable'
-          oldkeys={key(x) for x in old}
+          oldkeys={identity(x) for x in old}
           chartkeys={tuple(norm(v) for v in pair) for pair in edition['current_chart_candidates']}
           fresh=[]
           # Search the entire station library by exact artist/title, every daily run.
@@ -78,14 +83,22 @@ jobs:
               x=sorted(matches,key=lambda t:t['id'])[0]
               # Resolve the ID again: search results alone are not playability evidence.
               x=track(x['id'])
-              if valid(x) and key(x)==(norm(artist),norm(song)) and key(x) not in oldkeys|{key(t) for t in fresh}:
+              if valid(x) and key(x)==(norm(artist),norm(song)) and identity(x) not in oldkeys|{identity(t) for t in fresh}:
                   fresh.append(x)
           print('LIBRARY SEARCH VERIFIED',len(edition['candidates']),'queries;',len(fresh),'new exact playable matches; baseline',previous_id,len(old))
           assert len(fresh)>=20,'Not enough verified new library titles; existing programme retained'
           assert len(edition['moderations'])==30 and len(set(edition['moderations']))==30
           scripts=[('de-DE-ConradNeural' if i%2==0 else 'de-DE-KatjaNeural',v) for i,v in enumerate(edition['moderations'])]
           mods=[]
-          for i,(voice,script) in enumerate(scripts):
+          reuse=edition.get('reuse_moderations',[])
+          if reuse:
+              assert len(reuse)==30 and edition.get('reuse_verified_run')==46115429367
+              for tid in reuse:
+                  x=track(tid)
+                  assert x.get('private') is True and x.get('type')=='moderation' and x.get('artist')=='POWER RADIO' and x['duration']>0
+                  mods.append(tid)
+              print('REUSED VERIFIED DAILY MODERATIONS',len(mods))
+          for i,(voice,script) in enumerate(scripts if not reuse else []):
               f=f'moderation-{day}-{uuid.uuid4().hex}-{i}.mp3'
               subprocess.run(['edge-tts','--voice',voice,'--rate=+5%','--text',script,'--write-media',f],check=True)
               raw=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','120','-H','Authorization: Bearer '+token,'-H','Origin: LautfmMCP','-H','Accept: application/json','-F',f'track=@{f};type=audio/mpeg','-F','private=true','https://api.radioadmin.laut.fm'+base+'/tracks'])
