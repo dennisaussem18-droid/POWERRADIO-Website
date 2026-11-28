@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T13:16:28+01:00",
+  "updated_at": "2026-11-28T15:07:28+01:00",
   "regions": {
     "Langerwehe": [
       {
@@ -265,6 +265,14 @@
         "priority": "normal"
       },
       {
+        "title": "Benefizkonzert für die Sanierung des Aachener Doms",
+        "summary": "Am Samstagabend findet im Dom ein Benefizkonzert statt. Neu festgestellte Schäden an Figuren und Fenstern der Anna- und Matthäuskapelle machen Sanierungen erforderlich. Die Kosten könnten bis zu 500.000 Euro betragen.",
+        "url": "https://radio700.eu/news",
+        "source": "Radio 700",
+        "published_at": "2026-11-28T00:16:00+01:00",
+        "priority": "normal"
+      },
+      {
         "title": "Bistum Aachen kommentiert Kölner Schmerzensgeldurteil nicht",
         "summary": "Nach dem Urteil des Oberlandesgerichts Köln über 550.000 Euro Schmerzensgeld für eine Missbrauchsbetroffene äußert sich das Bistum Aachen nicht zu möglichen regionalen Folgen. Nach eigenen Angaben hat es bisher 5,2 Millionen Euro an Betroffene gezahlt.",
         "url": "https://www.antenneac.de/artikel/bistum-aachen-schweigt-zu-koelner-schmerzensgeld-urteil-2818706",
@@ -406,14 +414,6 @@
         "url": "https://www.antenneac.de/artikel/einigung-bei-generali-aachener-standort-schliesst-ende-2030-2815441",
         "source": "Antenne AC",
         "published_at": "2026-11-24T15:15:00+01:00",
-        "priority": "normal"
-      },
-      {
-        "title": "Handwerkskammer hält am Technikcampus fest",
-        "summary": "Nach der angekündigten Streichung von Landesfördermitteln sucht die Kammer erneut das Gespräch mit der Landesregierung.",
-        "url": "https://www.antenneac.de/artikel/technikcampus-wie-geht-es-weiter-2815377",
-        "source": "Antenne AC",
-        "published_at": "2026-11-24T14:06:00+01:00",
         "priority": "normal"
       }
     ]
